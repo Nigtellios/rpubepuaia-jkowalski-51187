@@ -12,8 +12,9 @@ The frontend is a NEXT React app with Apollo Client to communicate with the back
 - GraphQL
 
 ## BackEnd
-Backend is a Strapi app (made on Node.JS environment).
+Backend is a Strapi app (made on Node.JS environment) with Tensorflow JS.
 - Strapi (Node.JS)
+- Tensorflow
 
 # Commands
 To build both projects, use: 
