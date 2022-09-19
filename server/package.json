@@ -1,0 +1,30 @@
+{
+  "name": "server",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Backend for my Final Project's Shop",
+  "scripts": {
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "build": "strapi build",
+    "strapi": "strapi"
+  },
+  "devDependencies": {},
+  "dependencies": {
+    "@strapi/strapi": "4.3.8",
+    "@strapi/plugin-users-permissions": "4.3.8",
+    "@strapi/plugin-i18n": "4.3.8",
+    "better-sqlite3": "7.4.6"
+  },
+  "author": {
+    "name": "Jakub Kowalski"
+  },
+  "strapi": {
+    "uuid": "d707e884-e8d9-4af7-87a5-4a6a3ac76442"
+  },
+  "engines": {
+    "node": ">=14.19.1 <=16.x.x",
+    "npm": ">=6.0.0"
+  },
+  "license": "MIT"
+}
