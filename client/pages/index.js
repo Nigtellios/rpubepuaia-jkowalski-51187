@@ -1,12 +1,38 @@
 import Image from 'next/image';
 import styles from '../styles/modules/Home/Home.module.scss';
 import Header from "../components/Header/Header";
-export default function Home() {
+import client from '../connection/apollo-client';
+import headerQuery from "../components/Header/HeaderQuery";
+
+export async function getServerSideProps () {
+  try {
+    const { data } = await client.query({
+      query: headerQuery,
+    });
   
+    return {
+      props: {
+        headerData: data?.header,
+      },
+    };
+  } catch (error) {
+    let errorMessage = '';
+  
+    if (error instanceof Error) {
+      errorMessage = error.message;
+    }
+  
+    throw new Error(errorMessage);
+  }
+}
+
+export default function Home({ headerData }) {
   
   return (
     <>
-      <Header />
+      <Header
+        name={headerData.data.attributes.PageName}
+      />
       
       <div className={styles.container}>
         <main className={styles.main}>
