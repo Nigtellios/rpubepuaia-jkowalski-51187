@@ -1,0 +1,7 @@
+@import '../settings/mixins';
+
+.navigation {
+    display: flex;
+    background: red;
+    height: rem(80);
+}

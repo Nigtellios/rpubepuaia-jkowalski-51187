@@ -1,0 +1,18 @@
+@use 'sass:math';
+
+// Mixin for VW size pixels declaration on specific breakpoint vw-size(16px, 1200) - 16px on 1200 width breakpoint
+@function vw-size($s, $w: 1440) {
+  @return math.div($s, $w) * 100+vw;
+}
+
+@function rem($input, $sizeValue: 16) {
+  @return math.div($input, $sizeValue) + rem;
+}
+
+@function rel($size, $rel) {
+  @return math.div($size, $rel);
+}
+
+@function em($size, $rel) {
+  @return rel($size, $rel) * 1em;
+}
