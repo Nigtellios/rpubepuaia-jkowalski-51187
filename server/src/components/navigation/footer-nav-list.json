@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_navigation_footer_nav_lists",
+  "info": {
+    "displayName": "Footer Nav List",
+    "icon": "align-center"
+  },
+  "options": {},
+  "attributes": {
+    "FooterList": {
+      "displayName": "Footer List",
+      "type": "component",
+      "repeatable": true,
+      "component": "footer.footer-list"
+    }
+  }
+}

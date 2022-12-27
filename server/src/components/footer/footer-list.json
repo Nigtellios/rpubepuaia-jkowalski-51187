@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_footer_footer_lists",
+  "info": {
+    "displayName": "Footer List",
+    "icon": "bars"
+  },
+  "options": {},
+  "attributes": {
+    "ListName": {
+      "type": "string"
+    },
+    "FooterLink": {
+      "type": "component",
+      "repeatable": true,
+      "component": "navigation.navigation-link"
+    }
+  }
+}

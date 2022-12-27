@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_routing_navigation_links",
+  "info": {
+    "displayName": "Nav Link",
+    "icon": "angle-right",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "LinkName": {
+      "type": "string"
+    },
+    "LinkURL": {
+      "type": "text"
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_routing_navigations",
+  "info": {
+    "displayName": "Combined Nav",
+    "icon": "align-left",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Link": {
+      "displayName": "Navigation Link",
+      "type": "component",
+      "repeatable": true,
+      "component": "navigation.navigation-link"
+    },
+    "Button": {
+      "type": "component",
+      "repeatable": true,
+      "component": "navigation.navigation-button"
+    }
+  }
+}

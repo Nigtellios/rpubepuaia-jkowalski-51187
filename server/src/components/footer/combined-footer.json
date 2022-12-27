@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_footer_combined_footers",
+  "info": {
+    "displayName": "Combined Footer",
+    "icon": "angle-double-right"
+  },
+  "options": {},
+  "attributes": {
+    "FooterLogotype": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    },
+    "FooterCopyright": {
+      "type": "richtext"
+    }
+  }
+}
