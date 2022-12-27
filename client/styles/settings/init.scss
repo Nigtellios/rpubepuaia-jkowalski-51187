@@ -1,2 +1,9 @@
-@import '_breakpoints';
-@import '_global';
+/* 3rd Party */
+@import 'vendor/reset';
+
+/* Main Settings */
+@import 'breakpoints';
+@import 'mixins';
+@import 'colors';
+@import 'typography';
+@import 'global';
