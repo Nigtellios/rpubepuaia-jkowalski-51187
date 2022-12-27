@@ -32,6 +32,9 @@ export default function Home({ headerData }) {
     <>
       <Header
         name={headerData.data.attributes.PageName}
+        logoUrl={headerData.data.attributes.Logotype.data.attributes.url}
+        navigationItems={headerData.data.attributes.Navigation}
+        navigationButtons={headerData.data.attributes.Navigation}
       />
       
       <div className={styles.container}>
