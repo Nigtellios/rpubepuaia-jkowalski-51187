@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Image from 'next/image';
+import Link from 'next/link';
 import styles from '../../styles/components/header.module.scss';
 
 export default function Header(
@@ -11,6 +12,9 @@ export default function Header(
   }
 ) {
   const pageName = name || 'RPUBEPUAIA';
+  const url = logoUrl;
+  const navigationItemsList = navigationItems || [];
+  const navigationButtonsList = navigationButtons || [];
   
   return (
     <>
@@ -25,8 +29,16 @@ export default function Header(
         <link rel="icon" href="/favicon.ico"/>
       </Head>
       
-      <div className={styles.navigation}>
-      
+      <div className={`container ${styles.navigation}`}>
+        <div className={styles.navigation__wrapper}>
+          { url.length > 0 &&
+            <Image
+              src={ process.env.NEXT_PUBLIC_URL + url }
+              width={ 64 }
+              height={ 71 }
+            />
+          }
+        </div>
       </div>
     </>
   );
