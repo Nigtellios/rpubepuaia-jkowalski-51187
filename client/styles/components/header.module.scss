@@ -39,4 +39,14 @@
         z-index: 1;
         pointer-events: auto;
     }
+    
+    &__items {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        
+        &-item {
+            padding: rem(10) rem(10);
+        }
+    }
 }
