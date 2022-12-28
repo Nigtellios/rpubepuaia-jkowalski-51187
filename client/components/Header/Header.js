@@ -16,8 +16,6 @@ export default function Header(
   const navigationItemsList = navigationItems || [];
   const navigationButtonsList = navigationButtons || [];
   
-  console.log(navigationItemsList)
-  
   return (
     <>
       <Head>
@@ -31,8 +29,8 @@ export default function Header(
         <link rel="icon" href="/favicon.ico"/>
       </Head>
       
-      <div className={`container ${styles.navigation}`}>
-        <div className={styles.navigation__wrapper}>
+      <div className={ `container ${styles.navigation}` }>
+        <div className={ styles.navigation__wrapper }>
           
           {
             url.length > 0 &&
@@ -45,11 +43,16 @@ export default function Header(
   
           {
             navigationItemsList.length > 0 &&
-            <ul className={styles.navigation__items}>
+            <ul className={ styles.navigation__items }>
               {
                 navigationItemsList.map((item) => (
-                  <li key={ item.id }>
-                    <Link href={ item.LinkURL } className={styles.navigation__itemsItem}>
+                  <li
+                    key={ item.id }
+                    className={ styles.navigation__item }
+                  >
+                    <Link
+                      href={ item.LinkURL }
+                    >
                       { item.LinkName }
                     </Link>
                   </li>
