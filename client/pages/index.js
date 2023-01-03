@@ -27,7 +27,6 @@ export async function getServerSideProps () {
 }
 
 export default function Home({ headerData }) {
-  const pageName = headerData.data.attributes.PageName;
   const logoUrl = headerData.data.attributes.Logotype.data.attributes.url;
   const navigationItems = headerData.data.attributes.Navigation.Link;
   const navigationButtons = headerData.data.attributes.Navigation.Button;
@@ -35,7 +34,6 @@ export default function Home({ headerData }) {
   return (
     <>
       <Header
-        name={ pageName }
         logoUrl={ logoUrl }
         navigationItems={ navigationItems }
         navigationButtons={ navigationButtons }

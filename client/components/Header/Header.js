@@ -2,16 +2,15 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from '../../styles/components/header.module.scss';
+import utils from '../../styles/modules/utilities/utility.module.scss';
 
 export default function Header(
   {
-    name,
     logoUrl,
     navigationItems,
     navigationButtons,
   }
 ) {
-  const pageName = name || 'RPUBEPUAIA';
   const url = logoUrl;
   const navigationItemsList = navigationItems || [];
   const navigationButtonsList = navigationButtons || [];
@@ -20,7 +19,7 @@ export default function Header(
     <>
       <Head>
         <title>
-          { pageName } - Jakub Kowalski, 51187
+          RPUBEPUAIA - Jakub Kowalski, 51187
         </title>
         <meta
           name="description"
@@ -29,8 +28,8 @@ export default function Header(
         <link rel="icon" href="/favicon.ico"/>
       </Head>
       
-      <div className={ `container ${styles.navigation}` }>
-        <div className={ styles.navigation__wrapper }>
+      <div className={ `${ styles.navigation } ${ utils.container }` }>
+        <div className={ styles[`navigation__wrapper`] }>
           
           {
             url.length > 0 &&
@@ -43,12 +42,12 @@ export default function Header(
   
           {
             navigationItemsList.length > 0 &&
-            <ul className={ styles.navigation__items }>
+            <ul className={ styles[`navigation__items`] }>
               {
                 navigationItemsList.map((item) => (
                   <li
                     key={ item.id }
-                    className={ styles.navigation__item }
+                    className={ styles[`navigation__items-item`] }
                   >
                     <Link
                       href={ item.LinkURL }

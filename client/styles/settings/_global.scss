@@ -14,16 +14,3 @@ a {
 * {
     box-sizing: border-box;
 }
-
-.container {
-    max-width: 1440px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.margin {
-    &__normal {
-        margin-left: 1.25rem;
-        margin-right: 1.25rem;
-    }
-}
