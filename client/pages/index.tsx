@@ -1,5 +1,4 @@
-import Image from 'next/image';
-import styles from '../styles/modules/Home/Home.module.scss';
+import Image from "next/image";
 import Header from "../components/Header/Header";
 import client from '../connection/apollo-client';
 import headerQuery from "../components/Header/HeaderQuery";
@@ -26,7 +25,7 @@ export async function getServerSideProps () {
   }
 }
 
-export default function Home({ headerData }) {
+export default function Home({ headerData }: any) {
   const logoUrl = headerData.data.attributes.Logotype.data.attributes.url;
   const navigationItems = headerData.data.attributes.Navigation.Link;
   const navigationButtons = headerData.data.attributes.Navigation.Button;

@@ -9,6 +9,10 @@ export default function Header(
     logoUrl,
     navigationItems,
     navigationButtons,
+  }: {
+    logoUrl: string,
+    navigationItems: any,
+    navigationButtons: any,
   }
 ) {
   const url = logoUrl;
@@ -44,7 +48,7 @@ export default function Header(
             navigationItemsList.length > 0 &&
             <ul className={ styles[`navigation__items`] }>
               {
-                navigationItemsList.map((item) => (
+                navigationItemsList.map((item: any) => (
                   <li
                     key={ item.id }
                     className={ styles[`navigation__items-item`] }
