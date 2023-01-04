@@ -1,4 +1,4 @@
-import Header from "../components/Header/Header";
+import Header from "../components/standard/Header/Header";
 import HeaderData from "../lib/HeaderData";
 
 export async function getServerSideProps () {

@@ -1,13 +1,15 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-import styles from '../../styles/components/header.module.scss';
-import utils from '../../styles/modules/utilities/utility.module.scss';
+import styles from './Header.module.scss';
+import utils from '../../../styles/modules/utilities/utility.module.scss';
 import { HeaderProps } from "./Header.interface";
 import {
   ComponentNavigationNavigationButton,
   ComponentNavigationNavigationLink
-} from "../../gql/generated/graphql";
+} from "../../../gql/generated/graphql";
+import ReusableButton from "../../reusable/Button/Button";
+import {IReusableButton} from "../../reusable/Button/Button.interface";
 
 export default function Header(
   {
@@ -75,21 +77,16 @@ export default function Header(
             <div className={ styles[`navigation__buttons`] }>
 
               {
-                navigationButtonsList.map((button: ComponentNavigationNavigationButton) => (
-                  <button key={ button.id }>
+                navigationButtonsList.map((button: IReusableButton) => (
 
-                    {
-                      button.ButtonIcon?.data?.attributes?.url &&
-                      <Image
-                        src={ process.env.NEXT_PUBLIC_URL + button.ButtonIcon.data.attributes.url }
-                        width={ 25 }
-                        height={ 25}
-                      />
-                    }
+                  <ReusableButton
+                    className={ button.ButtonStyle as string }
+                    icon={ button.ButtonIcon?.data?.attributes?.url }
+                    text={ button.ButtonText }
+                    url={ button.ButtonLink }
+                    key={ button.id }
+                  />
 
-                    { button.ButtonText }
-
-                  </button>
                 ))
               }
 

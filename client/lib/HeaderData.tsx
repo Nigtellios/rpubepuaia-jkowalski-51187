@@ -1,5 +1,5 @@
 import client from "../connection/apollo-client";
-import headerQuery from "../components/Header/HeaderQuery";
+import headerQuery from "../components/standard/Header/HeaderQuery";
 
 const HeaderData = {
   fetchHeaderData: async () => {
