@@ -1,28 +1,14 @@
-import Image from "next/image";
 import Header from "../components/Header/Header";
-import client from '../connection/apollo-client';
-import headerQuery from "../components/Header/HeaderQuery";
+import HeaderData from "../lib/HeaderData";
 
 export async function getServerSideProps () {
-  try {
-    const { data } = await client.query({
-      query: headerQuery,
-    });
-  
-    return {
-      props: {
-        headerData: data.header,
-      },
-    };
-  } catch (error) {
-    let errorMessage = '';
-  
-    if (error instanceof Error) {
-      errorMessage = error.message;
-    }
-  
-    throw new Error(errorMessage);
-  }
+  const data = await HeaderData.fetchHeaderData();
+
+  return {
+    props: {
+      headerData: data,
+    },
+  };
 }
 
 export default function Home({ headerData }: any) {
