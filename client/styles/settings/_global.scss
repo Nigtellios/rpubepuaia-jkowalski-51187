@@ -2,8 +2,15 @@ html,
 body {
     padding: 0;
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    font-family: $lato;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: $inter;
+}
+
+span, p, a, li, ul, ol, button, input, textarea {
+    font-family: $lato;
 }
 
 a {

@@ -1,5 +1,7 @@
+/* Colors */
 $white: rgba(255, 255, 255, 1);
 
+/* Effects */
 $nav-bcg: linear-gradient(
         175.14deg,
         rgba(255, 255, 255, 0.075) -30.21%,
@@ -7,3 +9,7 @@ $nav-bcg: linear-gradient(
         #FFFFFF;
 
 $nav-border: 0 0 rem(15) rgba(0, 0, 0, 0.1);
+
+/* Typography */
+$inter: 'Inter', sans-serif;
+$lato: 'Lato', sans-serif;
