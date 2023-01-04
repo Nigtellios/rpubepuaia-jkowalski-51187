@@ -1,7 +1,7 @@
 {
   "collectionName": "components_routing_navigations",
   "info": {
-    "displayName": "Combined Nav",
+    "displayName": "Combined Navigation",
     "icon": "align-left",
     "description": ""
   },
@@ -17,6 +17,11 @@
       "type": "component",
       "repeatable": true,
       "component": "navigation.navigation-button"
+    },
+    "CartButton": {
+      "type": "component",
+      "repeatable": false,
+      "component": "navigation.cart-button"
     }
   }
 }

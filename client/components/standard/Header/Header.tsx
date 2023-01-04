@@ -13,11 +13,13 @@ export default function Header(
     logoUrl,
     navigationItems,
     navigationButtons,
+    cartButtonIcon
   }: HeaderProps
 ) {
   const url = logoUrl;
   const navigationItemsList = navigationItems || [];
   const navigationButtonsList = navigationButtons || [];
+  const cartButton = cartButtonIcon || [];
   
   return (
     <>
@@ -66,26 +68,35 @@ export default function Header(
             </ul>
           }
 
-          {
-            navigationButtonsList.length > 0 &&
-            <div className={ styles[`navigation__buttons`] }>
+          <div className={ styles[`navigation__buttons`] }>
 
-              {
-                navigationButtonsList.map((button: IReusableButton) => (
+            {
+              navigationButtonsList.length > 0 &&
+                  navigationButtonsList.map((button: IReusableButton) => (
 
-                  <ReusableButton
-                    className={ button.ButtonStyle as string }
-                    icon={ button.ButtonIcon?.data?.attributes?.url }
-                    text={ button.ButtonText }
-                    url={ button.ButtonLink }
-                    key={ button.id }
-                  />
+                    <ReusableButton
+                      className={ button.ButtonStyle as string }
+                      icon={ button.ButtonIcon?.data?.attributes?.url }
+                      text={ button.ButtonText }
+                      url={ button.ButtonLink }
+                      key={ button.id }
+                    />
 
-                ))
-              }
+                  ))
+            }
 
-            </div>
-          }
+            {
+              cartButton &&
+              <a className={ styles[`navigation__button--cart`] }>
+                <Image
+                  src={ process.env.NEXT_PUBLIC_URL + `${ cartButton.CartIcon.data.attributes.url }` }
+                  width={ 25 }
+                  height={ 25 }>
+                </Image>
+              </a>
+            }
+
+          </div>
           
         </div>
       </div>

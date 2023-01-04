@@ -15,6 +15,7 @@ export default function Home({ headerData }: any) {
   const logoUrl = headerData.data.attributes.Logotype.data.attributes.url;
   const navigationItems = headerData.data.attributes.Navigation.Link;
   const navigationButtons = headerData.data.attributes.Navigation.Button;
+  const cartButtonIcon = headerData.data.attributes.Navigation.CartButton;
   
   return (
     <>
@@ -22,6 +23,7 @@ export default function Home({ headerData }: any) {
         logoUrl={ logoUrl }
         navigationItems={ navigationItems }
         navigationButtons={ navigationButtons }
+        cartButtonIcon={ cartButtonIcon }
       />
     </>
   )

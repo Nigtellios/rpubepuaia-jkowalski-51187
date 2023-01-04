@@ -34,6 +34,18 @@ const headerQuery = gql`
                             }
                             ButtonText
                             ButtonStyle
+                            ButtonLink
+                        }
+                        CartButton {
+                            id
+                            CartIcon {
+                                data {
+                                    attributes {
+                                        url
+                                        alternativeText
+                                    }
+                                }
+                            }
                         }
                     }
                 }

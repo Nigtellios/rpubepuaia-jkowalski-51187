@@ -4,7 +4,6 @@ import Image from "next/image";
 import styles from './Button.module.scss';
 
 export default function ReusableButton({ icon, url, text, className }: IReusableButton) {
-
   return (
     <Link href={ `${url}` }>
       <a className={ styles[`${className}`] }>
