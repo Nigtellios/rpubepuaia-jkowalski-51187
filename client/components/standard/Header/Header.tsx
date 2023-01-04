@@ -4,12 +4,9 @@ import Link from 'next/link';
 import styles from './Header.module.scss';
 import utils from '../../../styles/modules/utilities/utility.module.scss';
 import { HeaderProps } from "./Header.interface";
-import {
-  ComponentNavigationNavigationButton,
-  ComponentNavigationNavigationLink
-} from "../../../gql/generated/graphql";
+import { ComponentNavigationNavigationLink } from "../../../gql/generated/graphql";
 import ReusableButton from "../../reusable/Button/Button";
-import {IReusableButton} from "../../reusable/Button/Button.interface";
+import { IReusableButton } from "../../reusable/Button/Button.interface";
 
 export default function Header(
   {
@@ -21,9 +18,6 @@ export default function Header(
   const url = logoUrl;
   const navigationItemsList = navigationItems || [];
   const navigationButtonsList = navigationButtons || [];
-
-  console.log(navigationButtonsList);
-  console.log(navigationButtonsList[1].ButtonIcon.data.attributes.url);
   
   return (
     <>
