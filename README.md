@@ -6,10 +6,11 @@ Research and prediction of user behavior on an e-commerce platform using artific
 
 ## FrontEnd
 The frontend is a NEXT React app with Apollo Client to communicate with the backend using GraphQL Interface.
-- Next
+- Next.JS
 - React
 - Apollo Client
 - GraphQL
+- Codegen (for generating typescript types from GraphQL schema - https://the-guild.dev/graphql/codegen)
 
 ## BackEnd
 Backend is a Strapi app (made on Node.JS environment) with Tensorflow JS.
