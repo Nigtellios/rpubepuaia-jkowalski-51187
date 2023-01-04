@@ -132,12 +132,14 @@ export type ComponentNavigationNavigationLinkArgs = {
 export type ComponentNavigationNavigationButton = {
   __typename?: 'ComponentNavigationNavigationButton';
   ButtonIcon?: Maybe<UploadFileEntityResponse>;
+  ButtonLink?: Maybe<Scalars['String']>;
   ButtonStyle?: Maybe<Enum_Componentnavigationnavigationbutton_Buttonstyle>;
   ButtonText?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
 };
 
 export type ComponentNavigationNavigationButtonFiltersInput = {
+  ButtonLink?: InputMaybe<StringFilterInput>;
   ButtonStyle?: InputMaybe<StringFilterInput>;
   ButtonText?: InputMaybe<StringFilterInput>;
   and?: InputMaybe<Array<InputMaybe<ComponentNavigationNavigationButtonFiltersInput>>>;
@@ -147,6 +149,7 @@ export type ComponentNavigationNavigationButtonFiltersInput = {
 
 export type ComponentNavigationNavigationButtonInput = {
   ButtonIcon?: InputMaybe<Scalars['ID']>;
+  ButtonLink?: InputMaybe<Scalars['String']>;
   ButtonStyle?: InputMaybe<Enum_Componentnavigationnavigationbutton_Buttonstyle>;
   ButtonText?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['ID']>;
@@ -1221,12 +1224,14 @@ export type ComponentNavigationNavigationLinkArgs = {
 export type ComponentNavigationNavigationButton = {
   __typename?: 'ComponentNavigationNavigationButton';
   ButtonIcon?: Maybe<UploadFileEntityResponse>;
+  ButtonLink?: Maybe<Scalars['String']>;
   ButtonStyle?: Maybe<Enum_Componentnavigationnavigationbutton_Buttonstyle>;
   ButtonText?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
 };
 
 export type ComponentNavigationNavigationButtonFiltersInput = {
+  ButtonLink?: InputMaybe<StringFilterInput>;
   ButtonStyle?: InputMaybe<StringFilterInput>;
   ButtonText?: InputMaybe<StringFilterInput>;
   and?: InputMaybe<Array<InputMaybe<ComponentNavigationNavigationButtonFiltersInput>>>;
@@ -1236,6 +1241,7 @@ export type ComponentNavigationNavigationButtonFiltersInput = {
 
 export type ComponentNavigationNavigationButtonInput = {
   ButtonIcon?: InputMaybe<Scalars['ID']>;
+  ButtonLink?: InputMaybe<Scalars['String']>;
   ButtonStyle?: InputMaybe<Enum_Componentnavigationnavigationbutton_Buttonstyle>;
   ButtonText?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['ID']>;

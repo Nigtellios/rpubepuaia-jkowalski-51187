@@ -4,7 +4,10 @@ import Link from 'next/link';
 import styles from '../../styles/components/header.module.scss';
 import utils from '../../styles/modules/utilities/utility.module.scss';
 import { HeaderProps } from "./Header.interface";
-import { ComponentNavigationNavigationLink } from "../../gql/generated/graphql";
+import {
+  ComponentNavigationNavigationButton,
+  ComponentNavigationNavigationLink
+} from "../../gql/generated/graphql";
 
 export default function Header(
   {
@@ -16,6 +19,9 @@ export default function Header(
   const url = logoUrl;
   const navigationItemsList = navigationItems || [];
   const navigationButtonsList = navigationButtons || [];
+
+  console.log(navigationButtonsList);
+  console.log(navigationButtonsList[1].ButtonIcon.data.attributes.url);
   
   return (
     <>
@@ -45,6 +51,7 @@ export default function Header(
           {
             navigationItemsList.length > 0 &&
             <ul className={ styles[`navigation__items`] }>
+
               {
                 navigationItemsList.map((item: ComponentNavigationNavigationLink) => (
                   <li
@@ -52,14 +59,41 @@ export default function Header(
                     className={ styles[`navigation__items-item`] }
                   >
                     <Link
-                      href={ `${item.LinkURL}` }
+                      href={ `${ item.LinkURL }` }
                     >
                       { item.LinkName }
                     </Link>
                   </li>
                 ))
               }
+
             </ul>
+          }
+
+          {
+            navigationButtonsList.length > 0 &&
+            <div className={ styles[`navigation__buttons`] }>
+
+              {
+                navigationButtonsList.map((button: ComponentNavigationNavigationButton) => (
+                  <button key={ button.id }>
+
+                    {
+                      button.ButtonIcon?.data?.attributes?.url &&
+                      <Image
+                        src={ process.env.NEXT_PUBLIC_URL + button.ButtonIcon.data.attributes.url }
+                        width={ 25 }
+                        height={ 25}
+                      />
+                    }
+
+                    { button.ButtonText }
+
+                  </button>
+                ))
+              }
+
+            </div>
           }
           
         </div>

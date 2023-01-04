@@ -6,6 +6,7 @@
     background: $white;
     border-bottom-left-radius: rem(10);
     border-bottom-right-radius: rem(10);
+    box-shadow: $nav-border;
     position: relative;
     overflow: hidden;
     z-index: 0;
@@ -41,6 +42,16 @@
     }
     
     &__items {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        
+        &-item {
+            padding: rem(10) rem(10);
+        }
+    }
+    
+    &__buttons {
         display: flex;
         align-items: center;
         justify-content: space-between;
