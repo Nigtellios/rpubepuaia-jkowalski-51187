@@ -10,11 +10,12 @@ export default function ReusableButton({ icon, url, text, className }: IReusable
     <Link href={ `${url}` }>
       <a className={ `${styles.button}  ${styles[inputStyle]}` }>
         { icon &&
-          <Image
+          <img
             src={ process.env.NEXT_PUBLIC_URL + `${icon}` }
             width={ 25 }
-            height={ 25 }>
-          </Image>
+            height={ 25 }
+            alt={ "Button" }
+          />
         }
         { text }
       </a>

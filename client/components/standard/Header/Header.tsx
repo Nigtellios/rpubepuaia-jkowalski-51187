@@ -40,10 +40,11 @@ export default function Header(
           
           {
             url.length > 0 &&
-            <Image
+            <img
               src={ process.env.NEXT_PUBLIC_URL + url }
               width={ 64 }
               height={ 71 }
+              alt={ "Logo" }
             />
           }
   
@@ -89,11 +90,12 @@ export default function Header(
             {
               cartButton &&
               <a className={ `${cartButtonStyles.button} ${cartButtonStyles[`button--cart`]}` }>
-                <Image
+                <img
                   src={ process.env.NEXT_PUBLIC_URL + `${ cartButton.CartIcon.data.attributes.url }` }
                   width={ 25 }
-                  height={ 25 }>
-                </Image>
+                  height={ 25 }
+                  alt={ "Cart" }
+                />
               </a>
             }
 
