@@ -104,6 +104,19 @@ export default function Header(
 
             </div>
           </div>
+
+          <div className={ styles[`navigation__mobile`] }>
+          </div>
+
+          <div className={ styles[`navigation__mobile-button`] }>
+            <img
+              src={ process.env.NEXT_PUBLIC_URL + mobileButton.MobileButtonIcon.data.attributes.url }
+              width={ 45 }
+              height={ 45 }
+              alt={ "Logo" }
+            />
+          </div>
+
         </div>
       </div>
     </>
