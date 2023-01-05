@@ -3,4 +3,5 @@ export interface HeaderProps {
   navigationItems: any;
   navigationButtons: any;
   cartButtonIcon: any;
+  mobileButtonIcon: any;
 }

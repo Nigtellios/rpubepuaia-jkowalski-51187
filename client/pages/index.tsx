@@ -16,6 +16,7 @@ export default function Home({ headerData }: any) {
   const navigationItems = headerData.data.attributes.Navigation.Link;
   const navigationButtons = headerData.data.attributes.Navigation.Button;
   const cartButtonIcon = headerData.data.attributes.Navigation.CartButton;
+  const mobileButtonIcon = headerData.data.attributes.Navigation.MobileButton;
   
   return (
     <>
@@ -24,6 +25,7 @@ export default function Home({ headerData }: any) {
         navigationItems={ navigationItems }
         navigationButtons={ navigationButtons }
         cartButtonIcon={ cartButtonIcon }
+        mobileButtonIcon={ mobileButtonIcon }
       />
     </>
   )

@@ -14,13 +14,15 @@ export default function Header(
     logoUrl,
     navigationItems,
     navigationButtons,
-    cartButtonIcon
+    cartButtonIcon,
+    mobileButtonIcon
   }: HeaderProps
 ) {
   const url = logoUrl;
   const navigationItemsList = navigationItems || [];
   const navigationButtonsList = navigationButtons || [];
   const cartButton = cartButtonIcon || [];
+  const mobileButton = mobileButtonIcon || [];
   
   return (
     <>
@@ -36,7 +38,7 @@ export default function Header(
       </Head>
       
       <div className={ `${ styles.navigation } ${ utils.container }` }>
-        <div className={ styles[`navigation__wrapper`] }>
+        <div className={ styles.navigation__bar }>
           
           {
             url.length > 0 &&
@@ -47,60 +49,61 @@ export default function Header(
               alt={ "Logo" }
             />
           }
-  
-          {
-            navigationItemsList.length > 0 &&
-            <ul className={ styles[`navigation__items`] }>
+
+          <div className={ styles[`navigation__wrapper`] }>
+            {
+              navigationItemsList.length > 0 &&
+              <ul className={ styles[`navigation__items`] }>
+
+                {
+                  navigationItemsList.map((item: ComponentNavigationNavigationLink) => (
+                    <li
+                      key={ item.id }
+                      className={ styles[`navigation__items-item`] }
+                    >
+                      <Link
+                        href={ `${ item.LinkURL }` }
+                      >
+                        { item.LinkName }
+                      </Link>
+                    </li>
+                  ))
+                }
+
+              </ul>
+            }
+
+            <div className={ styles[`navigation__buttons`] }>
 
               {
-                navigationItemsList.map((item: ComponentNavigationNavigationLink) => (
-                  <li
-                    key={ item.id }
-                    className={ styles[`navigation__items-item`] }
-                  >
-                    <Link
-                      href={ `${ item.LinkURL }` }
-                    >
-                      { item.LinkName }
-                    </Link>
-                  </li>
+                navigationButtonsList.length > 0 &&
+                navigationButtonsList.map((button: IReusableButton) => (
+
+                  <ReusableButton
+                    className={ button.ButtonStyle as string }
+                    icon={ button.ButtonIcon?.data?.attributes?.url }
+                    text={ button.ButtonText }
+                    url={ button.ButtonLink }
+                    key={ button.id }
+                  />
+
                 ))
               }
 
-            </ul>
-          }
+              {
+                cartButton &&
+                <a className={ `${cartButtonStyles.button} ${cartButtonStyles[`button--cart`]}` }>
+                  <img
+                    src={ process.env.NEXT_PUBLIC_URL + `${ cartButton.CartIcon.data.attributes.url }` }
+                    width={ 25 }
+                    height={ 25 }
+                    alt={ "Cart" }
+                  />
+                </a>
+              }
 
-          <div className={ styles[`navigation__buttons`] }>
-
-            {
-              navigationButtonsList.length > 0 &&
-                  navigationButtonsList.map((button: IReusableButton) => (
-
-                    <ReusableButton
-                      className={ button.ButtonStyle as string }
-                      icon={ button.ButtonIcon?.data?.attributes?.url }
-                      text={ button.ButtonText }
-                      url={ button.ButtonLink }
-                      key={ button.id }
-                    />
-
-                  ))
-            }
-
-            {
-              cartButton &&
-              <a className={ `${cartButtonStyles.button} ${cartButtonStyles[`button--cart`]}` }>
-                <img
-                  src={ process.env.NEXT_PUBLIC_URL + `${ cartButton.CartIcon.data.attributes.url }` }
-                  width={ 25 }
-                  height={ 25 }
-                  alt={ "Cart" }
-                />
-              </a>
-            }
-
+            </div>
           </div>
-          
         </div>
       </div>
     </>
