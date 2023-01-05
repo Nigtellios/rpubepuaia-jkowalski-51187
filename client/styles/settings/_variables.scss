@@ -1,5 +1,8 @@
+@import './mixins';
+
 /* Colors */
-$white: rgba(255, 255, 255, 1);
+$white: #FFFFFF;
+$dark: #1E1E1E;
 
 /* Effects */
 $nav-bcg: linear-gradient(
@@ -9,6 +12,9 @@ $nav-bcg: linear-gradient(
         #FFFFFF;
 
 $nav-border: 0 0 rem(15) rgba(0, 0, 0, 0.1);
+$button-shadow: rem(5) rem(5) rem(5) rgba(0, 0, 0, 0.05);
+
+$button-radius: rem(5);
 
 /* Typography */
 $inter: 'Inter', sans-serif;

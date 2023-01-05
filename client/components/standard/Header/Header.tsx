@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from './Header.module.scss';
+import cartButtonStyles from '../../reusable/Button/Button.module.scss';
 import utils from '../../../styles/modules/utilities/utility.module.scss';
 import { HeaderProps } from "./Header.interface";
 import { ComponentNavigationNavigationLink } from "../../../gql/generated/graphql";
@@ -87,7 +88,7 @@ export default function Header(
 
             {
               cartButton &&
-              <a className={ styles[`navigation__button--cart`] }>
+              <a className={ `${cartButtonStyles.button} ${cartButtonStyles[`button--cart`]}` }>
                 <Image
                   src={ process.env.NEXT_PUBLIC_URL + `${ cartButton.CartIcon.data.attributes.url }` }
                   width={ 25 }

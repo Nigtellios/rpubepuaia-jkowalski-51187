@@ -1,0 +1,35 @@
+@import 'styles/settings/variables';
+@import 'styles/settings/mixins';
+
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2rem;
+    margin-left: .25rem;
+    margin-right: .25rem;
+    border-radius: $button-radius;
+    
+    &:last-of-type, &:last-child {
+        margin-right: 0;
+    }
+    
+    &--dark, &--cart {
+        padding: .5rem .5rem;
+        background: $dark;
+        cursor: pointer;
+    }
+    
+    &--light {
+        padding: .75rem 2rem;
+        border: rem(1) solid $dark;
+    }
+    
+    &--main {
+        padding: 1rem 2rem;
+    }
+    
+    &--accent {
+        padding: 1rem 2rem;
+    }
+}

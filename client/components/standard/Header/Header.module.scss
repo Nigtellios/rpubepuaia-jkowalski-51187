@@ -60,4 +60,10 @@
             padding: rem(10) rem(10);
         }
     }
+    
+    &__button {
+        &--cart {
+            padding: 1rem;
+        }
+    }
 }
