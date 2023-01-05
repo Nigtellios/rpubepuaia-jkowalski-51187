@@ -22,6 +22,11 @@
       "type": "component",
       "repeatable": false,
       "component": "navigation.cart-button"
+    },
+    "MobileButton": {
+      "type": "component",
+      "repeatable": false,
+      "component": "navigation.mobile-button"
     }
   }
 }

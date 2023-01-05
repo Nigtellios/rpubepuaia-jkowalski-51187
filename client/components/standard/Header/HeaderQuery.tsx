@@ -10,7 +10,6 @@ const headerQuery = gql`
                         data {
                             attributes {
                                 url
-                                alternativeText
                             }
                         }
                     }
@@ -28,7 +27,6 @@ const headerQuery = gql`
                                 data {
                                     attributes {
                                         url
-                                        alternativeText
                                     }
                                 }
                             }
@@ -42,7 +40,16 @@ const headerQuery = gql`
                                 data {
                                     attributes {
                                         url
-                                        alternativeText
+                                    }
+                                }
+                            }
+                        }
+                        MobileButton {
+                            id
+                            MobileButtonIcon {
+                                data {
+                                    attributes {
+                                        url
                                     }
                                 }
                             }

@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_navigation_mobile_buttons",
+  "info": {
+    "displayName": "Mobile Button",
+    "icon": "align-justify"
+  },
+  "options": {},
+  "attributes": {
+    "MobileButtonIcon": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}
