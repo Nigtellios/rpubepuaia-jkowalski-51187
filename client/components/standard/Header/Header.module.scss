@@ -62,8 +62,11 @@
         margin: 0 auto;
         padding: rem(20) rem(50);
         position: absolute;
+        width: 100%;
+        left: 0;
+        bottom: 0;
         
-        @include media('<=lg') {
+        &--active {
             display: flex;
         }
         

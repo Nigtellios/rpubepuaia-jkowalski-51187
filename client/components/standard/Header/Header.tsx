@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import Image from 'next/image';
 import Link from 'next/link';
 import styles from './Header.module.scss';
 import cartButtonStyles from '../../reusable/Button/Button.module.scss';
@@ -8,6 +7,8 @@ import { HeaderProps } from "./Header.interface";
 import { ComponentNavigationNavigationLink } from "../../../gql/generated/graphql";
 import ReusableButton from "../../reusable/Button/Button";
 import { IReusableButton } from "../../reusable/Button/Button.interface";
+import { useState } from "react";
+import clsx from "clsx";
 
 export default function Header(
   {
@@ -18,11 +19,19 @@ export default function Header(
     mobileButtonIcon
   }: HeaderProps
 ) {
+  /* Variables */
   const url = logoUrl;
   const navigationItemsList = navigationItems || [];
   const navigationButtonsList = navigationButtons || [];
   const cartButton = cartButtonIcon || [];
   const mobileButton = mobileButtonIcon || [];
+
+  /* State */
+  const [ menuActive, setMenuActive ] = useState(false);
+
+  const openMenu = () => {
+    setMenuActive(!menuActive)
+  }
   
   return (
     <>
@@ -105,10 +114,18 @@ export default function Header(
             </div>
           </div>
 
-          <div className={ styles[`navigation__mobile`] }>
+          <div
+            className={ clsx(
+              styles[`navigation__mobile`],
+              menuActive && styles[`navigation__mobile--active`]
+            ) }
+          >
           </div>
 
-          <div className={ styles[`navigation__mobile-button`] }>
+          <div
+            className={ styles[`navigation__mobile-button`] }
+            onClick={ openMenu }
+          >
             <img
               src={ process.env.NEXT_PUBLIC_URL + mobileButton.MobileButtonIcon.data.attributes.url }
               width={ 45 }
