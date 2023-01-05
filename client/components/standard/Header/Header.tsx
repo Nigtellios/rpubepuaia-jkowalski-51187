@@ -60,6 +60,7 @@ export default function Header(
           }
 
           <div className={ styles[`navigation__wrapper`] }>
+
             {
               navigationItemsList.length > 0 &&
               <ul className={ styles[`navigation__items`] }>
@@ -101,9 +102,15 @@ export default function Header(
 
               {
                 cartButton &&
-                <a className={ `${cartButtonStyles.button} ${cartButtonStyles[`button--cart`]}` }>
+                <a className={
+                  `${cartButtonStyles.button} 
+                  ${cartButtonStyles[`button--cart`]}`
+                }>
                   <img
-                    src={ process.env.NEXT_PUBLIC_URL + `${ cartButton.CartIcon.data.attributes.url }` }
+                    src={
+                      process.env.NEXT_PUBLIC_URL +
+                      `${ cartButton.CartIcon.data.attributes.url }`
+                    }
                     width={ 25 }
                     height={ 25 }
                     alt={ "Cart" }
@@ -120,6 +127,62 @@ export default function Header(
               menuActive && styles[`navigation__mobile--active`]
             ) }
           >
+
+            {
+              navigationItemsList.length > 0 &&
+              <ul className={ `${styles[`navigation__items`]} ${styles[`navigation__items--mobile`]}` }>
+
+                {
+                  navigationItemsList.map((item: ComponentNavigationNavigationLink) => (
+                    <li
+                      key={ item.id }
+                      className={ styles[`navigation__items-item`] }
+                    >
+                      <Link
+                        href={ `${ item.LinkURL }` }
+                      >
+                        { item.LinkName }
+                      </Link>
+                    </li>
+                  ))
+                }
+
+              </ul>
+            }
+
+            {
+              navigationButtonsList.length > 0 &&
+              navigationButtonsList.map((button: IReusableButton) => (
+
+                <ReusableButton
+                  className={ button.ButtonStyle as string }
+                  icon={ button.ButtonIcon?.data?.attributes?.url }
+                  text={ button.ButtonText }
+                  url={ button.ButtonLink }
+                  key={ button.id }
+                />
+
+              ))
+            }
+
+            {
+              cartButton &&
+              <a className={
+                `${cartButtonStyles.button} 
+                  ${cartButtonStyles[`button--cart`]}`
+              }>
+                <img
+                  src={
+                    process.env.NEXT_PUBLIC_URL +
+                    `${ cartButton.CartIcon.data.attributes.url }`
+                  }
+                  width={ 25 }
+                  height={ 25 }
+                  alt={ "Cart" }
+                />
+              </a>
+            }
+
           </div>
 
           <div
@@ -127,7 +190,10 @@ export default function Header(
             onClick={ openMenu }
           >
             <img
-              src={ process.env.NEXT_PUBLIC_URL + mobileButton.MobileButtonIcon.data.attributes.url }
+              src={
+                process.env.NEXT_PUBLIC_URL +
+                mobileButton.MobileButtonIcon.data.attributes.url
+              }
               width={ 45 }
               height={ 45 }
               alt={ "Logo" }

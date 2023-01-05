@@ -8,7 +8,6 @@
     border-bottom-right-radius: rem(10);
     box-shadow: $nav-border;
     position: relative;
-    overflow: hidden;
     z-index: 0;
     
     &:after {
@@ -58,16 +57,19 @@
     &__mobile {
         display: none;
         align-items: center;
+        flex-flow: column nowrap;
         justify-content: space-between;
         margin: 0 auto;
         padding: rem(20) rem(50);
         position: absolute;
         width: 100%;
         left: 0;
-        bottom: 0;
+        top: rem(122);
+        background: $dark;
         
         &--active {
             display: flex;
+            color: $white;
         }
         
         &-button {
@@ -95,6 +97,10 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        
+        &--mobile {
+            flex-flow: column nowrap;
+        }
         
         &-item {
             padding: rem(10) rem(10);
