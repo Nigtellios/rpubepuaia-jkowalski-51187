@@ -2,6 +2,8 @@
 @import 'include-media/dist/_include-media.scss';
 
 .navigation {
+    $self: &;
+    
     display: flex;
     background: $white;
     border-bottom-left-radius: rem(10);
@@ -100,10 +102,21 @@
         
         &--mobile {
             flex-flow: column nowrap;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
         }
         
         &-item {
             padding: rem(10) rem(10);
+        }
+    }
+    
+    #{ $self }__items {
+        &--mobile {
+            #{ $self }__items-item {
+                padding: rem(20);
+                font-size: 1.5rem;
+            }
         }
     }
     
