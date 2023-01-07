@@ -1,23 +1,32 @@
 import Header from "../components/standard/Header/Header";
 import HeaderData from "../lib/HeaderData";
+import Footer from "../components/standard/Footer/Footer";
+import FooterData from "../lib/FooterData";
 
 export async function getServerSideProps () {
-  const data = await HeaderData.fetchHeaderData();
+  const headerData = await HeaderData.fetchHeaderData();
+  const footerData = await FooterData.fetchFooterData();
 
   return {
     props: {
-      headerData: data,
+      headerData: headerData,
+      footerData: footerData
     },
   };
 }
 
-export default function Home({ headerData }: any) {
+export default function Home({ headerData, footerData }: any) {
+  /* Header Variables */
   const logoUrl = headerData.data.attributes.Logotype.data.attributes.url;
   const navigationItems = headerData.data.attributes.Navigation.Link;
   const navigationButtons = headerData.data.attributes.Navigation.Button;
   const cartButtonIcon = headerData.data.attributes.Navigation.CartButton;
   const mobileButtonIcon = headerData.data.attributes.Navigation.MobileButton;
-  
+
+  /* Footer Variables */
+  const brandUrl = footerData.data.attributes.FooterBrand.FooterLogotype.data.attributes?.url;
+  const footerNavigationLists = footerData.data.attributes.FooterNavLists;
+
   return (
     <>
       <Header
@@ -26,6 +35,11 @@ export default function Home({ headerData }: any) {
         navigationButtons={ navigationButtons }
         cartButtonIcon={ cartButtonIcon }
         mobileButtonIcon={ mobileButtonIcon }
+      />
+
+      <Footer
+        footerBrandUrl={ brandUrl }
+        footerNavigationLists={ footerNavigationLists }
       />
     </>
   )

@@ -7,7 +7,7 @@ import { HeaderProps } from "./Header.interface";
 import { ComponentNavigationNavigationLink } from "../../../gql/generated/graphql";
 import ReusableButton from "../../reusable/Button/Button";
 import { IReusableButton } from "../../reusable/Button/Button.interface";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import clsx from "clsx";
 
 export default function Header(
@@ -20,7 +20,7 @@ export default function Header(
   }: HeaderProps
 ) {
   /* Variables */
-  const url = logoUrl;
+  const url = logoUrl || '';
   const navigationItemsList = navigationItems || [];
   const navigationButtonsList = navigationButtons || [];
   const cartButton = cartButtonIcon || [];
@@ -52,8 +52,8 @@ export default function Header(
       }
     };
   }, []);
-  
-  
+
+
   return (
     <>
       <Head>
@@ -66,14 +66,14 @@ export default function Header(
         />
         <link rel="icon" href="/favicon.ico"/>
       </Head>
-      
-      <div className={ clsx(
+
+      <nav className={ clsx(
           styles.navigation,
           utils.container
         )}
       >
         <div className={ styles.navigation__bar }>
-          
+
           {
             url.length > 0 &&
               <img
@@ -234,7 +234,7 @@ export default function Header(
           </div>
 
         </div>
-      </div>
+      </nav>
     </>
   );
 }
