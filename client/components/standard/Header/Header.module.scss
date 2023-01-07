@@ -35,7 +35,7 @@
         position: relative;
         padding: rem(20) rem(50);
     
-        @include media('<=lg') {
+        @include media('<=xl') {
             justify-content: space-between;
             padding-top: rem(26);
             padding-bottom: rem(25);
@@ -50,7 +50,7 @@
         margin: 0 auto;
         padding: rem(20) rem(50);
         
-        @include media('<=lg') {
+        @include media('<=xl') {
             display: none;
         }
     }
@@ -106,7 +106,7 @@
             transition: .25s linear all;
             border: rem(1) solid transparent;
     
-            @include media('<=lg') {
+            @include media('<=xl') {
                 display: flex;
             }
             

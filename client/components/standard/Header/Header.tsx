@@ -7,7 +7,7 @@ import { HeaderProps } from "./Header.interface";
 import { ComponentNavigationNavigationLink } from "../../../gql/generated/graphql";
 import ReusableButton from "../../reusable/Button/Button";
 import { IReusableButton } from "../../reusable/Button/Button.interface";
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import clsx from "clsx";
 
 export default function Header(
@@ -30,8 +30,29 @@ export default function Header(
   const [ menuActive, setMenuActive ] = useState(false);
 
   const openMenu = () => {
-    setMenuActive(!menuActive)
+    if (menuActive) {
+      setMenuActive(false);
+    } else {
+      setMenuActive(true);
+    }
   }
+
+  useEffect(() => {
+    const media = window.matchMedia('(min-width: 992px)');
+
+    const handleResizing = () => {
+      if (media.matches) {
+        setMenuActive(false);
+      }
+    }
+
+    return () => {
+      if (typeof window !== "undefined") {
+        window.addEventListener('resize', handleResizing);
+      }
+    };
+  }, []);
+  
   
   return (
     <>
