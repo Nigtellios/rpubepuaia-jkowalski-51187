@@ -77,14 +77,14 @@
             2s linear border-top-color,
             2s linear border-bottom-color;
         transform: translateX(-100%);
-        border-top: rem(2) solid transparent;
-        border-bottom: rem(2) solid transparent;
+        border-top: rem(1) solid transparent;
+        border-bottom: rem(1) solid transparent;
         
         &--active {
             opacity: 1;
             transform: translateX(0%);
-            border-top: rem(2) solid $dark;
-            border-bottom: rem(2) solid $dark;
+            border-top: rem(1) solid $dark;
+            border-bottom: rem(1) solid $dark;
         }
         
         &-button-wrapper {
@@ -98,14 +98,35 @@
             display: none;
             align-items: center;
             justify-content: center;
-            padding: .5rem .5rem;
+            padding: .465rem .465rem;
             border-radius: rem(5);
             background: $dark;
             cursor: pointer;
             z-index: 3;
+            transition: .25s linear all;
+            border: rem(1) solid transparent;
     
             @include media('<=lg') {
                 display: flex;
+            }
+            
+            &--active {
+                background: $white;
+                border-color: $dark;
+    
+                img {
+                    filter: invert(1);
+                    transform: rotate(90deg);
+                }
+            }
+            
+            &:hover {
+                background: $white;
+                border-color: $dark;
+                
+                img {
+                    filter: invert(1);
+                }
             }
         }
     }

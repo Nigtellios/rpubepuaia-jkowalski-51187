@@ -195,7 +195,10 @@ export default function Header(
           </div>
 
           <div
-            className={ styles[`navigation__mobile-button`] }
+            className={ clsx(
+              styles[`navigation__mobile-button`],
+              menuActive && styles[`navigation__mobile-button--active`]
+            ) }
             onClick={ openMenu }
           >
             <img
