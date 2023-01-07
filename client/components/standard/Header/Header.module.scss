@@ -66,19 +66,32 @@
         width: 100%;
         left: 0;
         top: rem(122);
-        background: $white;
+        background: rgba($white, 0.85);
         border-bottom-right-radius: rem(10);
         border-bottom-left-radius: rem(10);
         box-shadow: $nav-border;
         opacity: 0;
         transition:
             .3s linear transform,
-            .5s linear opacity;
+            .5s linear opacity,
+            2s linear border-top-color,
+            2s linear border-bottom-color;
         transform: translateX(-100%);
+        border-top: rem(2) solid transparent;
+        border-bottom: rem(2) solid transparent;
         
         &--active {
             opacity: 1;
             transform: translateX(0%);
+            border-top: rem(2) solid $dark;
+            border-bottom: rem(2) solid $dark;
+        }
+        
+        &-button-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 3.25rem;
         }
         
         &-button {

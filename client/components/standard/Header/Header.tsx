@@ -157,40 +157,43 @@ export default function Header(
               </ul>
             }
 
-            {
-              navigationButtonsList.length > 0 &&
-              navigationButtonsList.map((button: IReusableButton) => (
+            <div className={ styles[`navigation__mobile-button-wrapper`] }>
 
-                <ReusableButton
-                  className={ button.ButtonStyle as string }
-                  icon={ button.ButtonIcon?.data?.attributes?.url }
-                  text={ button.ButtonText }
-                  url={ button.ButtonLink }
-                  key={ button.id }
-                />
+              {
+                navigationButtonsList.length > 0 &&
+                navigationButtonsList.map((button: IReusableButton) => (
 
-              ))
-            }
+                  <ReusableButton
+                    className={ button.ButtonStyle as string }
+                    icon={ button.ButtonIcon?.data?.attributes?.url }
+                    text={ button.ButtonText }
+                    url={ button.ButtonLink }
+                    key={ button.id }
+                  />
 
-            {
-              cartButton &&
-              <a className={ clsx(
-                cartButtonStyles.button,
-                cartButtonStyles[`button--cart`]
-              ) }
-              >
-                <img
-                  src={
-                    process.env.NEXT_PUBLIC_URL +
-                    `${ cartButton.CartIcon.data.attributes.url }`
-                  }
-                  width={ 25 }
-                  height={ 25 }
-                  alt={ "Cart" }
-                />
-              </a>
-            }
+                ))
+              }
 
+              {
+                cartButton &&
+                <a className={ clsx(
+                  cartButtonStyles.button,
+                  cartButtonStyles[`button--cart`]
+                ) }
+                >
+                  <img
+                    src={
+                      process.env.NEXT_PUBLIC_URL +
+                      `${ cartButton.CartIcon.data.attributes.url }`
+                    }
+                    width={ 25 }
+                    height={ 25 }
+                    alt={ "Cart" }
+                  />
+                </a>
+              }
+
+            </div>
           </div>
 
           <div

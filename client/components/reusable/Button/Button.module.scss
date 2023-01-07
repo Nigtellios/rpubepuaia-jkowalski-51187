@@ -10,6 +10,10 @@
     margin-right: .25rem;
     border-radius: $button-radius;
     
+    &:first-of-type, &:first-child {
+        margin-left: 0;
+    }
+    
     &:last-of-type, &:last-child {
         margin-right: 0;
     }
