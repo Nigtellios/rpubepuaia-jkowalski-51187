@@ -128,6 +128,26 @@
         
         &-item {
             padding: rem(10) rem(10);
+            position: relative;
+            
+            a {
+                &:after {
+                    position: absolute;
+                    content: '';
+                    left: 0;
+                    right: 0;
+                    bottom: rem(-2);
+                    width: 0;
+                    height: rem(2);
+                    background: transparent;
+                    transition: .25s ease-in all;
+                }
+    
+                &:hover:after {
+                    width: 100%;
+                    background: $dark;
+                }
+            }
         }
     }
     

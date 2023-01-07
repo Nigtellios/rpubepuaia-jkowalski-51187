@@ -75,9 +75,7 @@ export default function Header(
                       key={ item.id }
                       className={ styles[`navigation__items-item`] }
                     >
-                      <Link
-                        href={ `${ item.LinkURL }` }
-                      >
+                      <Link href={ `${ item.LinkURL }` }>
                         { item.LinkName }
                       </Link>
                     </li>
