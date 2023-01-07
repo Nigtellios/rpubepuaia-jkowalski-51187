@@ -9,6 +9,7 @@
     margin-left: .25rem;
     margin-right: .25rem;
     border-radius: $button-radius;
+    transition: .15s ease-in all;
     
     &:first-of-type, &:first-child {
         margin-left: 0;
@@ -19,14 +20,29 @@
     }
     
     &--dark, &--cart {
-        padding: .5rem .5rem;
+        padding: .465rem .465rem;
         background: $dark;
         cursor: pointer;
+        border: rem(1) solid transparent;
+        
+        &:hover, &:focus {
+            background: $white;
+            border-color: $dark;
+            
+            img {
+                filter: invert(1);
+            }
+        }
     }
     
     &--light {
         padding: .75rem 2rem;
         border: rem(1) solid $dark;
+        
+        &:hover, &:focus, &:active {
+            background: $dark;
+            color: $white;
+        }
     }
     
     &--main {
