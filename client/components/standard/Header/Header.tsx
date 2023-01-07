@@ -46,7 +46,11 @@ export default function Header(
         <link rel="icon" href="/favicon.ico"/>
       </Head>
       
-      <div className={ `${ styles.navigation } ${ utils.container }` }>
+      <div className={ clsx(
+          styles.navigation,
+          utils.container
+        )}
+      >
         <div className={ styles.navigation__bar }>
           
           {
@@ -102,10 +106,11 @@ export default function Header(
 
               {
                 cartButton &&
-                <a className={
-                  `${cartButtonStyles.button} 
-                  ${cartButtonStyles[`button--cart`]}`
-                }>
+                <a className={ clsx(
+                    cartButtonStyles.button,
+                    cartButtonStyles[`button--cart`]
+                  ) }
+                >
                   <img
                     src={
                       process.env.NEXT_PUBLIC_URL +
@@ -130,8 +135,10 @@ export default function Header(
 
             {
               navigationItemsList.length > 0 &&
-              <ul className={ `${styles[`navigation__items`]} ${styles[`navigation__items--mobile`]}` }>
-
+              <ul className={ clsx(
+                styles[`navigation__items`],
+                styles[`navigation__items--mobile`]
+              )}>
                 {
                   navigationItemsList.map((item: ComponentNavigationNavigationLink) => (
                     <li
@@ -167,10 +174,11 @@ export default function Header(
 
             {
               cartButton &&
-              <a className={
-                `${cartButtonStyles.button} 
-                  ${cartButtonStyles[`button--cart`]}`
-              }>
+              <a className={ clsx(
+                cartButtonStyles.button,
+                cartButtonStyles[`button--cart`]
+              ) }
+              >
                 <img
                   src={
                     process.env.NEXT_PUBLIC_URL +

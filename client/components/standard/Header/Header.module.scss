@@ -2,8 +2,7 @@
 @import 'include-media/dist/_include-media.scss';
 
 .navigation {
-    $self: &;
-    
+    $s: &;
     display: flex;
     background: $white;
     border-bottom-left-radius: rem(10);
@@ -57,7 +56,7 @@
     }
     
     &__mobile {
-        display: none;
+        display: flex;
         align-items: center;
         flex-flow: column nowrap;
         justify-content: space-between;
@@ -67,11 +66,19 @@
         width: 100%;
         left: 0;
         top: rem(122);
-        background: $dark;
+        background: $white;
+        border-bottom-right-radius: rem(10);
+        border-bottom-left-radius: rem(10);
+        box-shadow: $nav-border;
+        opacity: 0;
+        transition:
+            .3s linear transform,
+            .5s linear opacity;
+        transform: translateX(-100%);
         
         &--active {
-            display: flex;
-            color: $white;
+            opacity: 1;
+            transform: translateX(0%);
         }
         
         &-button {
@@ -111,9 +118,9 @@
         }
     }
     
-    #{ $self }__items {
+    #{ $s }__items {
         &--mobile {
-            #{ $self }__items-item {
+            #{ $s }__items-item {
                 padding: rem(20);
                 font-size: 1.5rem;
             }
