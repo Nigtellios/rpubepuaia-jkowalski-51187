@@ -95,6 +95,17 @@ export type ComponentFooterFooterListInput = {
   id?: InputMaybe<Scalars['ID']>;
 };
 
+export type ComponentNavigationCartButton = {
+  __typename?: 'ComponentNavigationCartButton';
+  CartIcon?: Maybe<UploadFileEntityResponse>;
+  id: Scalars['ID'];
+};
+
+export type ComponentNavigationCartButtonInput = {
+  CartIcon?: InputMaybe<Scalars['ID']>;
+  id?: InputMaybe<Scalars['ID']>;
+};
+
 export type ComponentNavigationFooterNavList = {
   __typename?: 'ComponentNavigationFooterNavList';
   FooterList?: Maybe<Array<Maybe<ComponentFooterFooterList>>>;
@@ -108,10 +119,23 @@ export type ComponentNavigationFooterNavListFooterListArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
+export type ComponentNavigationMobileButton = {
+  __typename?: 'ComponentNavigationMobileButton';
+  MobileButtonIcon?: Maybe<UploadFileEntityResponse>;
+  id: Scalars['ID'];
+};
+
+export type ComponentNavigationMobileButtonInput = {
+  MobileButtonIcon?: InputMaybe<Scalars['ID']>;
+  id?: InputMaybe<Scalars['ID']>;
+};
+
 export type ComponentNavigationNavigation = {
   __typename?: 'ComponentNavigationNavigation';
   Button?: Maybe<Array<Maybe<ComponentNavigationNavigationButton>>>;
+  CartButton?: Maybe<ComponentNavigationCartButton>;
   Link?: Maybe<Array<Maybe<ComponentNavigationNavigationLink>>>;
+  MobileButton?: Maybe<ComponentNavigationMobileButton>;
   id: Scalars['ID'];
 };
 
@@ -157,7 +181,9 @@ export type ComponentNavigationNavigationButtonInput = {
 
 export type ComponentNavigationNavigationInput = {
   Button?: InputMaybe<Array<InputMaybe<ComponentNavigationNavigationButtonInput>>>;
+  CartButton?: InputMaybe<ComponentNavigationCartButtonInput>;
   Link?: InputMaybe<Array<InputMaybe<ComponentNavigationNavigationLinkInput>>>;
+  MobileButton?: InputMaybe<ComponentNavigationMobileButtonInput>;
   id?: InputMaybe<Scalars['ID']>;
 };
 
@@ -276,7 +302,7 @@ export type FooterInput = {
   publishedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
-export type GenericMorph = ComponentFooterCombinedFooter | ComponentFooterFooterList | ComponentNavigationFooterNavList | ComponentNavigationNavigation | ComponentNavigationNavigationButton | ComponentNavigationNavigationLink | Footer | Header | I18NLocale | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = ComponentFooterCombinedFooter | ComponentFooterFooterList | ComponentNavigationCartButton | ComponentNavigationFooterNavList | ComponentNavigationMobileButton | ComponentNavigationNavigation | ComponentNavigationNavigationButton | ComponentNavigationNavigationLink | Footer | Header | I18NLocale | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type Header = {
   __typename?: 'Header';
@@ -1093,13 +1119,19 @@ export type UsersPermissionsUserRelationResponseCollection = {
   data: Array<UsersPermissionsUserEntity>;
 };
 
+export type FooterQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FooterQuery = { __typename?: 'Query', footer?: { __typename?: 'FooterEntityResponse', data?: { __typename?: 'FooterEntity', attributes?: { __typename?: 'Footer', FooterBrand?: { __typename?: 'ComponentFooterCombinedFooter', id: string, FooterLogotype?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null }> } | null } | null, FooterNavLists?: Array<{ __typename?: 'ComponentFooterFooterList', FooterLink?: Array<{ __typename?: 'ComponentNavigationNavigationLink', LinkName?: string | null, LinkURL?: string | null } | null> | null } | null> | null } | null } | null } | null };
+
 export type HeaderQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type HeaderQuery = { __typename?: 'Query', header?: { __typename?: 'HeaderEntityResponse', data?: { __typename?: 'HeaderEntity', id?: string | null, attributes?: { __typename?: 'Header', PageName?: string | null, Logotype?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null } | null } | null } | null, Navigation?: { __typename?: 'ComponentNavigationNavigation', id: string, Link?: Array<{ __typename?: 'ComponentNavigationNavigationLink', id: string, LinkName?: string | null, LinkURL?: string | null } | null> | null, Button?: Array<{ __typename?: 'ComponentNavigationNavigationButton', id: string, ButtonText?: string | null, ButtonStyle?: Enum_Componentnavigationnavigationbutton_Buttonstyle | null, ButtonIcon?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null } | null } | null } | null } | null> | null } | null } | null } | null } | null };
+export type HeaderQuery = { __typename?: 'Query', header?: { __typename?: 'HeaderEntityResponse', data?: { __typename?: 'HeaderEntity', id?: string | null, attributes?: { __typename?: 'Header', PageName?: string | null, Logotype?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null, Navigation?: { __typename?: 'ComponentNavigationNavigation', id: string, Link?: Array<{ __typename?: 'ComponentNavigationNavigationLink', id: string, LinkName?: string | null, LinkURL?: string | null } | null> | null, Button?: Array<{ __typename?: 'ComponentNavigationNavigationButton', id: string, ButtonText?: string | null, ButtonStyle?: Enum_Componentnavigationnavigationbutton_Buttonstyle | null, ButtonLink?: string | null, ButtonIcon?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null> | null, CartButton?: { __typename?: 'ComponentNavigationCartButton', id: string, CartIcon?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null, MobileButton?: { __typename?: 'ComponentNavigationMobileButton', id: string, MobileButtonIcon?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null } | null } | null } | null } | null };
 
 
-export const HeaderDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Header"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"header"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Logotype"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"alternativeText"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"PageName"}},{"kind":"Field","name":{"kind":"Name","value":"Navigation"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"Link"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"LinkName"}},{"kind":"Field","name":{"kind":"Name","value":"LinkURL"}}]}},{"kind":"Field","name":{"kind":"Name","value":"Button"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"ButtonIcon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"alternativeText"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"ButtonText"}},{"kind":"Field","name":{"kind":"Name","value":"ButtonStyle"}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<HeaderQuery, HeaderQueryVariables>;
+export const FooterDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Footer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"footer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"FooterBrand"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"FooterLogotype"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"FooterNavLists"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"FooterLink"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"LinkName"}},{"kind":"Field","name":{"kind":"Name","value":"LinkURL"}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<FooterQuery, FooterQueryVariables>;
+export const HeaderDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Header"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"header"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Logotype"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"PageName"}},{"kind":"Field","name":{"kind":"Name","value":"Navigation"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"Link"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"LinkName"}},{"kind":"Field","name":{"kind":"Name","value":"LinkURL"}}]}},{"kind":"Field","name":{"kind":"Name","value":"Button"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"ButtonIcon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"ButtonText"}},{"kind":"Field","name":{"kind":"Name","value":"ButtonStyle"}},{"kind":"Field","name":{"kind":"Name","value":"ButtonLink"}}]}},{"kind":"Field","name":{"kind":"Name","value":"CartButton"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"CartIcon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"MobileButton"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"MobileButtonIcon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<HeaderQuery, HeaderQueryVariables>;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -1187,6 +1219,17 @@ export type ComponentFooterFooterListInput = {
   id?: InputMaybe<Scalars['ID']>;
 };
 
+export type ComponentNavigationCartButton = {
+  __typename?: 'ComponentNavigationCartButton';
+  CartIcon?: Maybe<UploadFileEntityResponse>;
+  id: Scalars['ID'];
+};
+
+export type ComponentNavigationCartButtonInput = {
+  CartIcon?: InputMaybe<Scalars['ID']>;
+  id?: InputMaybe<Scalars['ID']>;
+};
+
 export type ComponentNavigationFooterNavList = {
   __typename?: 'ComponentNavigationFooterNavList';
   FooterList?: Maybe<Array<Maybe<ComponentFooterFooterList>>>;
@@ -1200,10 +1243,23 @@ export type ComponentNavigationFooterNavListFooterListArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
+export type ComponentNavigationMobileButton = {
+  __typename?: 'ComponentNavigationMobileButton';
+  MobileButtonIcon?: Maybe<UploadFileEntityResponse>;
+  id: Scalars['ID'];
+};
+
+export type ComponentNavigationMobileButtonInput = {
+  MobileButtonIcon?: InputMaybe<Scalars['ID']>;
+  id?: InputMaybe<Scalars['ID']>;
+};
+
 export type ComponentNavigationNavigation = {
   __typename?: 'ComponentNavigationNavigation';
   Button?: Maybe<Array<Maybe<ComponentNavigationNavigationButton>>>;
+  CartButton?: Maybe<ComponentNavigationCartButton>;
   Link?: Maybe<Array<Maybe<ComponentNavigationNavigationLink>>>;
+  MobileButton?: Maybe<ComponentNavigationMobileButton>;
   id: Scalars['ID'];
 };
 
@@ -1249,7 +1305,9 @@ export type ComponentNavigationNavigationButtonInput = {
 
 export type ComponentNavigationNavigationInput = {
   Button?: InputMaybe<Array<InputMaybe<ComponentNavigationNavigationButtonInput>>>;
+  CartButton?: InputMaybe<ComponentNavigationCartButtonInput>;
   Link?: InputMaybe<Array<InputMaybe<ComponentNavigationNavigationLinkInput>>>;
+  MobileButton?: InputMaybe<ComponentNavigationMobileButtonInput>;
   id?: InputMaybe<Scalars['ID']>;
 };
 
@@ -1368,7 +1426,7 @@ export type FooterInput = {
   publishedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
-export type GenericMorph = ComponentFooterCombinedFooter | ComponentFooterFooterList | ComponentNavigationFooterNavList | ComponentNavigationNavigation | ComponentNavigationNavigationButton | ComponentNavigationNavigationLink | Footer | Header | I18NLocale | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = ComponentFooterCombinedFooter | ComponentFooterFooterList | ComponentNavigationCartButton | ComponentNavigationFooterNavList | ComponentNavigationMobileButton | ComponentNavigationNavigation | ComponentNavigationNavigationButton | ComponentNavigationNavigationLink | Footer | Header | I18NLocale | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type Header = {
   __typename?: 'Header';
@@ -2185,12 +2243,70 @@ export type UsersPermissionsUserRelationResponseCollection = {
   data: Array<UsersPermissionsUserEntity>;
 };
 
+export type FooterQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FooterQuery = { __typename?: 'Query', footer?: { __typename?: 'FooterEntityResponse', data?: { __typename?: 'FooterEntity', attributes?: { __typename?: 'Footer', FooterBrand?: { __typename?: 'ComponentFooterCombinedFooter', id: string, FooterLogotype?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null }> } | null } | null, FooterNavLists?: Array<{ __typename?: 'ComponentFooterFooterList', FooterLink?: Array<{ __typename?: 'ComponentNavigationNavigationLink', LinkName?: string | null, LinkURL?: string | null } | null> | null } | null> | null } | null } | null } | null };
+
 export type HeaderQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type HeaderQuery = { __typename?: 'Query', header?: { __typename?: 'HeaderEntityResponse', data?: { __typename?: 'HeaderEntity', id?: string | null, attributes?: { __typename?: 'Header', PageName?: string | null, Logotype?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null } | null } | null } | null, Navigation?: { __typename?: 'ComponentNavigationNavigation', id: string, Link?: Array<{ __typename?: 'ComponentNavigationNavigationLink', id: string, LinkName?: string | null, LinkURL?: string | null } | null> | null, Button?: Array<{ __typename?: 'ComponentNavigationNavigationButton', id: string, ButtonText?: string | null, ButtonStyle?: Enum_Componentnavigationnavigationbutton_Buttonstyle | null, ButtonIcon?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null } | null } | null } | null } | null> | null } | null } | null } | null } | null };
+export type HeaderQuery = { __typename?: 'Query', header?: { __typename?: 'HeaderEntityResponse', data?: { __typename?: 'HeaderEntity', id?: string | null, attributes?: { __typename?: 'Header', PageName?: string | null, Logotype?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null, Navigation?: { __typename?: 'ComponentNavigationNavigation', id: string, Link?: Array<{ __typename?: 'ComponentNavigationNavigationLink', id: string, LinkName?: string | null, LinkURL?: string | null } | null> | null, Button?: Array<{ __typename?: 'ComponentNavigationNavigationButton', id: string, ButtonText?: string | null, ButtonStyle?: Enum_Componentnavigationnavigationbutton_Buttonstyle | null, ButtonLink?: string | null, ButtonIcon?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null> | null, CartButton?: { __typename?: 'ComponentNavigationCartButton', id: string, CartIcon?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null, MobileButton?: { __typename?: 'ComponentNavigationMobileButton', id: string, MobileButtonIcon?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null } | null } | null } | null } | null };
 
 
+export const FooterDocument = gql`
+    query Footer {
+  footer {
+    data {
+      attributes {
+        FooterBrand {
+          id
+          FooterLogotype {
+            data {
+              attributes {
+                url
+              }
+            }
+          }
+        }
+        FooterNavLists {
+          FooterLink {
+            LinkName
+            LinkURL
+          }
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useFooterQuery__
+ *
+ * To run a query within a React component, call `useFooterQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFooterQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useFooterQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useFooterQuery(baseOptions?: Apollo.QueryHookOptions<FooterQuery, FooterQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<FooterQuery, FooterQueryVariables>(FooterDocument, options);
+      }
+export function useFooterLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FooterQuery, FooterQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<FooterQuery, FooterQueryVariables>(FooterDocument, options);
+        }
+export type FooterQueryHookResult = ReturnType<typeof useFooterQuery>;
+export type FooterLazyQueryHookResult = ReturnType<typeof useFooterLazyQuery>;
+export type FooterQueryResult = Apollo.QueryResult<FooterQuery, FooterQueryVariables>;
 export const HeaderDocument = gql`
     query Header {
   header {
@@ -2201,7 +2317,6 @@ export const HeaderDocument = gql`
           data {
             attributes {
               url
-              alternativeText
             }
           }
         }
@@ -2219,12 +2334,32 @@ export const HeaderDocument = gql`
               data {
                 attributes {
                   url
-                  alternativeText
                 }
               }
             }
             ButtonText
             ButtonStyle
+            ButtonLink
+          }
+          CartButton {
+            id
+            CartIcon {
+              data {
+                attributes {
+                  url
+                }
+              }
+            }
+          }
+          MobileButton {
+            id
+            MobileButtonIcon {
+              data {
+                attributes {
+                  url
+                }
+              }
+            }
           }
         }
       }

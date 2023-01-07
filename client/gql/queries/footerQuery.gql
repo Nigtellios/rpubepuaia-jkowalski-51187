@@ -1,0 +1,24 @@
+query Footer {
+    footer {
+        data {
+            attributes {
+                FooterBrand {
+                    id
+                    FooterLogotype {
+                        data {
+                            attributes {
+                                url
+                            }
+                        }
+                    }
+                }
+                FooterNavLists {
+                    FooterLink {
+                        LinkName
+                        LinkURL
+                    }
+                }
+            }
+        }
+    }
+}

@@ -672,6 +672,80 @@
       },
       {
         "kind": "OBJECT",
+        "name": "ComponentNavigationCartButton",
+        "description": null,
+        "fields": [
+          {
+            "name": "CartIcon",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "UploadFileEntityResponse",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "ComponentNavigationCartButtonInput",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "CartIcon",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
         "name": "ComponentNavigationFooterNavList",
         "description": null,
         "fields": [
@@ -756,6 +830,80 @@
       },
       {
         "kind": "OBJECT",
+        "name": "ComponentNavigationMobileButton",
+        "description": null,
+        "fields": [
+          {
+            "name": "MobileButtonIcon",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "UploadFileEntityResponse",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "ComponentNavigationMobileButtonInput",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "MobileButtonIcon",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
         "name": "ComponentNavigationNavigation",
         "description": null,
         "fields": [
@@ -817,6 +965,18 @@
             "deprecationReason": null
           },
           {
+            "name": "CartButton",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "ComponentNavigationCartButton",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "Link",
             "description": null,
             "args": [
@@ -869,6 +1029,18 @@
                 "name": "ComponentNavigationNavigationLink",
                 "ofType": null
               }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "MobileButton",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "ComponentNavigationMobileButton",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -1155,6 +1327,18 @@
             "deprecationReason": null
           },
           {
+            "name": "CartButton",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ComponentNavigationCartButtonInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "Link",
             "description": null,
             "type": {
@@ -1165,6 +1349,18 @@
                 "name": "ComponentNavigationNavigationLinkInput",
                 "ofType": null
               }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "MobileButton",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ComponentNavigationMobileButtonInput",
+              "ofType": null
             },
             "defaultValue": null,
             "isDeprecated": false,
@@ -2278,7 +2474,17 @@
           },
           {
             "kind": "OBJECT",
+            "name": "ComponentNavigationCartButton",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
             "name": "ComponentNavigationFooterNavList",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ComponentNavigationMobileButton",
             "ofType": null
           },
           {
