@@ -48,7 +48,9 @@
         justify-content: space-between;
         width: 100%;
         margin: 0 auto;
-        padding: rem(20) rem(50);
+        padding-top: rem(20);
+        padding-bottom: rem(20);
+        padding-left: rem(50);
         
         @include media('<=xl') {
             display: none;
