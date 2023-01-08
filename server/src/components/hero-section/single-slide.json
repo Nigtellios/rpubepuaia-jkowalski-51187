@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_hero_section_single_slides",
+  "info": {
+    "displayName": "Single Slide",
+    "icon": "allergies"
+  },
+  "options": {},
+  "attributes": {
+    "SlideHeading": {
+      "type": "text"
+    },
+    "SlideSubheading": {
+      "type": "text"
+    },
+    "SlideImage": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}
