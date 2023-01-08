@@ -24,7 +24,8 @@ export default function Home({ headerData, footerData }: any) {
   const mobileButtonIcon = headerData.data.attributes.Navigation.MobileButton;
 
   /* Footer Variables */
-  const brandUrl = footerData.data.attributes.FooterBrand.FooterLogotype.data.attributes?.url;
+  const brandUrl = footerData.data.attributes.FooterBrand.FooterLogotype.data[0].attributes.url;
+  const footerCopyright = footerData.data.attributes.FooterBrand.FooterCopyright;
   const footerNavigationLists = footerData.data.attributes.FooterNavLists;
 
   return (
@@ -39,6 +40,7 @@ export default function Home({ headerData, footerData }: any) {
 
       <Footer
         footerBrandUrl={ brandUrl }
+        footerCopyright={ footerCopyright }
         footerNavigationLists={ footerNavigationLists }
       />
     </>

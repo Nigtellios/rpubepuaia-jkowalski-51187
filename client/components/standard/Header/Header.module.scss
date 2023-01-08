@@ -9,7 +9,7 @@
     border-bottom-right-radius: rem(10);
     box-shadow: $nav-border;
     position: relative;
-    z-index: 0;
+    z-index: 1;
     
     &:after {
         filter: blur(2.5rem);
@@ -81,6 +81,7 @@
         transform: translateX(-100%);
         border-top: rem(1) solid transparent;
         border-bottom: rem(1) solid transparent;
+        z-index: 3;
         
         &--active {
             opacity: 1;

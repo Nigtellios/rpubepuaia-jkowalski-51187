@@ -11,8 +11,10 @@ query Footer {
                             }
                         }
                     }
+                    FooterCopyright
                 }
                 FooterNavLists {
+                    ListName
                     FooterLink {
                         LinkName
                         LinkURL

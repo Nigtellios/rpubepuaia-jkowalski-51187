@@ -14,8 +14,10 @@ const footerQuery = gql`
                                 }
                             }
                         }
+                        FooterCopyright
                     }
                     FooterNavLists {
+                        ListName
                         FooterLink {
                             LinkName
                             LinkURL
@@ -25,7 +27,6 @@ const footerQuery = gql`
             }
         }
     }
-
 `;
 
 export default footerQuery;
