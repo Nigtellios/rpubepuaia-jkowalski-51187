@@ -41,29 +41,35 @@ export default function Footer(
 
             {
               footerNavigation.length > 0 &&
-                footerNavigation.map((list: any) => (
+                footerNavigation.map((navItem: any) => (
 
                   <div
                     className={ styles[`footer__columns-column`] }
-                    key={ list.id }
+                    key={ navItem.id }
                   >
 
-                    { list.ListName &&
-                      <h5 className={ styles[`footer__columns-column-title`] }>
-                        { list.ListName }
+                    {
+                      navItem.ListName &&
+                      <h5
+                        className={ styles[`footer__columns-column-title`] }
+                        key={ navItem.ListName.id }
+                      >
+                        { navItem.ListName }
                       </h5>
                     }
 
                     {
-                      list.FooterLink.length > 0 &&
-                      <ul>
+                      navItem.FooterLink.length > 0 &&
+                      <ul key={ navItem.FooterLink.id }>
                         {
-                          list.FooterLink.map((item: any) => (
+                          navItem.FooterLink.map((item: any) => (
 
-                            <li className={ styles[`footer__columns-row`] }>
+                            <li
+                              className={ styles[`footer__columns-row`] }
+                              key={ item.id }
+                            >
                               <Link
                                 href={ `${ item.LinkURL }` }
-                                key={ item.id }
                               >
                                 { item.LinkName }
                               </Link>

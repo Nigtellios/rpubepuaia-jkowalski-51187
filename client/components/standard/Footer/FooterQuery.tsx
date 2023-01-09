@@ -4,11 +4,13 @@ const footerQuery = gql`
     query Footer {
         footer {
             data {
+                id
                 attributes {
                     FooterBrand {
                         id
                         FooterLogotype {
                             data {
+                                id
                                 attributes {
                                     url
                                 }
@@ -17,8 +19,10 @@ const footerQuery = gql`
                         FooterCopyright
                     }
                     FooterNavLists {
+                        id
                         ListName
                         FooterLink {
+                            id
                             LinkName
                             LinkURL
                         }
