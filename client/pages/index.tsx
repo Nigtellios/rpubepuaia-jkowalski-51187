@@ -2,20 +2,30 @@ import Header from "../components/standard/Header/Header";
 import HeaderData from "../lib/HeaderData";
 import Footer from "../components/standard/Footer/Footer";
 import FooterData from "../lib/FooterData";
+import HeroSection from "../components/standard/HeroSection/HeroSection";
+import HeroSectionData from "../lib/HeroSectionData";
 
 export async function getServerSideProps () {
   const headerData = await HeaderData.fetchHeaderData();
   const footerData = await FooterData.fetchFooterData();
+  const heroData = await HeroSectionData.fetchHeroData();
 
   return {
     props: {
-      headerData: headerData,
-      footerData: footerData
+      headerData,
+      footerData,
+      heroData
     },
   };
 }
 
-export default function Home({ headerData, footerData }: any) {
+export default function Home(
+  {
+    headerData,
+    footerData,
+    heroData
+  }: any
+) {
   /* Header Variables */
   const logoUrl = headerData.data.attributes.Logotype.data.attributes.url;
   const navigationItems = headerData.data.attributes.Navigation.Link;
@@ -28,6 +38,13 @@ export default function Home({ headerData, footerData }: any) {
   const footerCopyright = footerData.data.attributes.FooterBrand.FooterCopyright;
   const footerNavigationLists = footerData.data.attributes.FooterNavLists;
 
+  /* Hero Section Variables */
+  const slider = heroData.data.attributes.Slider;
+  const arrowUpIcon = heroData.data.attributes.Slider.ArrowUpIcon.data.attributes.url;
+  const arrowDownIcon = heroData.data.attributes.Slider.ArrowDownIcon.data.attributes.url;
+  const lookUpIcon = heroData.data.attributes.Slider.LookUpIcon.data.attributes.url;
+  const addToCartIcon = heroData.data.attributes.Slider.AddToCartIcon.data.attributes.url;
+
   return (
     <>
       <Header
@@ -37,6 +54,16 @@ export default function Home({ headerData, footerData }: any) {
         cartButtonIcon={ cartButtonIcon }
         mobileButtonIcon={ mobileButtonIcon }
       />
+
+      <main>
+        <HeroSection
+          slider={ slider }
+          arrowUpIcon={ arrowUpIcon }
+          arrowDownIcon={ arrowDownIcon }
+          lookUpIcon={ lookUpIcon }
+          addToCartIcon={ addToCartIcon }
+        />
+      </main>
 
       <Footer
         footerBrandUrl={ brandUrl }

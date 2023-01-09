@@ -95,6 +95,55 @@ export type ComponentFooterFooterListInput = {
   id?: InputMaybe<Scalars['ID']>;
 };
 
+export type ComponentHeroSectionSingleSlide = {
+  __typename?: 'ComponentHeroSectionSingleSlide';
+  SlideHeading?: Maybe<Scalars['String']>;
+  SlideImage?: Maybe<UploadFileEntityResponse>;
+  SlideSubheading?: Maybe<Scalars['String']>;
+  id: Scalars['ID'];
+};
+
+export type ComponentHeroSectionSingleSlideFiltersInput = {
+  SlideHeading?: InputMaybe<StringFilterInput>;
+  SlideSubheading?: InputMaybe<StringFilterInput>;
+  and?: InputMaybe<Array<InputMaybe<ComponentHeroSectionSingleSlideFiltersInput>>>;
+  not?: InputMaybe<ComponentHeroSectionSingleSlideFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentHeroSectionSingleSlideFiltersInput>>>;
+};
+
+export type ComponentHeroSectionSingleSlideInput = {
+  SlideHeading?: InputMaybe<Scalars['String']>;
+  SlideImage?: InputMaybe<Scalars['ID']>;
+  SlideSubheading?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+export type ComponentHeroSectionSlider = {
+  __typename?: 'ComponentHeroSectionSlider';
+  AddToCartIcon?: Maybe<UploadFileEntityResponse>;
+  ArrowDownIcon?: Maybe<UploadFileEntityResponse>;
+  ArrowUpIcon?: Maybe<UploadFileEntityResponse>;
+  LookUpIcon?: Maybe<UploadFileEntityResponse>;
+  SingleSlide?: Maybe<Array<Maybe<ComponentHeroSectionSingleSlide>>>;
+  id: Scalars['ID'];
+};
+
+
+export type ComponentHeroSectionSliderSingleSlideArgs = {
+  filters?: InputMaybe<ComponentHeroSectionSingleSlideFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type ComponentHeroSectionSliderInput = {
+  AddToCartIcon?: InputMaybe<Scalars['ID']>;
+  ArrowDownIcon?: InputMaybe<Scalars['ID']>;
+  ArrowUpIcon?: InputMaybe<Scalars['ID']>;
+  LookUpIcon?: InputMaybe<Scalars['ID']>;
+  SingleSlide?: InputMaybe<Array<InputMaybe<ComponentHeroSectionSingleSlideInput>>>;
+  id?: InputMaybe<Scalars['ID']>;
+};
+
 export type ComponentNavigationCartButton = {
   __typename?: 'ComponentNavigationCartButton';
   CartIcon?: Maybe<UploadFileEntityResponse>;
@@ -302,7 +351,7 @@ export type FooterInput = {
   publishedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
-export type GenericMorph = ComponentFooterCombinedFooter | ComponentFooterFooterList | ComponentNavigationCartButton | ComponentNavigationFooterNavList | ComponentNavigationMobileButton | ComponentNavigationNavigation | ComponentNavigationNavigationButton | ComponentNavigationNavigationLink | Footer | Header | I18NLocale | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = ComponentFooterCombinedFooter | ComponentFooterFooterList | ComponentHeroSectionSingleSlide | ComponentHeroSectionSlider | ComponentNavigationCartButton | ComponentNavigationFooterNavList | ComponentNavigationMobileButton | ComponentNavigationNavigation | ComponentNavigationNavigationButton | ComponentNavigationNavigationLink | Footer | Header | HeroSection | I18NLocale | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type Header = {
   __typename?: 'Header';
@@ -328,6 +377,30 @@ export type HeaderInput = {
   Logotype?: InputMaybe<Scalars['ID']>;
   Navigation?: InputMaybe<ComponentNavigationNavigationInput>;
   PageName?: InputMaybe<Scalars['String']>;
+};
+
+export type HeroSection = {
+  __typename?: 'HeroSection';
+  Slider?: Maybe<ComponentHeroSectionSlider>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type HeroSectionEntity = {
+  __typename?: 'HeroSectionEntity';
+  attributes?: Maybe<HeroSection>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type HeroSectionEntityResponse = {
+  __typename?: 'HeroSectionEntityResponse';
+  data?: Maybe<HeroSectionEntity>;
+};
+
+export type HeroSectionInput = {
+  Slider?: InputMaybe<ComponentHeroSectionSliderInput>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
 export type I18NLocale = {
@@ -450,6 +523,7 @@ export type Mutation = {
   createUsersPermissionsUser: UsersPermissionsUserEntityResponse;
   deleteFooter?: Maybe<FooterEntityResponse>;
   deleteHeader?: Maybe<HeaderEntityResponse>;
+  deleteHeroSection?: Maybe<HeroSectionEntityResponse>;
   deleteUploadFile?: Maybe<UploadFileEntityResponse>;
   deleteUploadFolder?: Maybe<UploadFolderEntityResponse>;
   /** Delete an existing role */
@@ -470,6 +544,7 @@ export type Mutation = {
   updateFileInfo: UploadFileEntityResponse;
   updateFooter?: Maybe<FooterEntityResponse>;
   updateHeader?: Maybe<HeaderEntityResponse>;
+  updateHeroSection?: Maybe<HeroSectionEntityResponse>;
   updateUploadFile?: Maybe<UploadFileEntityResponse>;
   updateUploadFolder?: Maybe<UploadFolderEntityResponse>;
   /** Update an existing role */
@@ -583,6 +658,11 @@ export type MutationUpdateHeaderArgs = {
 };
 
 
+export type MutationUpdateHeroSectionArgs = {
+  data: HeroSectionInput;
+};
+
+
 export type MutationUpdateUploadFileArgs = {
   data: UploadFileInput;
   id: Scalars['ID'];
@@ -639,6 +719,7 @@ export type Query = {
   __typename?: 'Query';
   footer?: Maybe<FooterEntityResponse>;
   header?: Maybe<HeaderEntityResponse>;
+  heroSection?: Maybe<HeroSectionEntityResponse>;
   i18NLocale?: Maybe<I18NLocaleEntityResponse>;
   i18NLocales?: Maybe<I18NLocaleEntityResponseCollection>;
   me?: Maybe<UsersPermissionsMe>;
@@ -654,6 +735,11 @@ export type Query = {
 
 
 export type QueryFooterArgs = {
+  publicationState?: InputMaybe<PublicationState>;
+};
+
+
+export type QueryHeroSectionArgs = {
   publicationState?: InputMaybe<PublicationState>;
 };
 
@@ -1122,16 +1208,22 @@ export type UsersPermissionsUserRelationResponseCollection = {
 export type FooterQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type FooterQuery = { __typename?: 'Query', footer?: { __typename?: 'FooterEntityResponse', data?: { __typename?: 'FooterEntity', attributes?: { __typename?: 'Footer', FooterBrand?: { __typename?: 'ComponentFooterCombinedFooter', id: string, FooterCopyright?: string | null, FooterLogotype?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null }> } | null } | null, FooterNavLists?: Array<{ __typename?: 'ComponentFooterFooterList', ListName?: string | null, FooterLink?: Array<{ __typename?: 'ComponentNavigationNavigationLink', LinkName?: string | null, LinkURL?: string | null } | null> | null } | null> | null } | null } | null } | null };
+export type FooterQuery = { __typename?: 'Query', footer?: { __typename?: 'FooterEntityResponse', data?: { __typename?: 'FooterEntity', id?: string | null, attributes?: { __typename?: 'Footer', FooterBrand?: { __typename?: 'ComponentFooterCombinedFooter', id: string, FooterCopyright?: string | null, FooterLogotype?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', url: string } | null }> } | null } | null, FooterNavLists?: Array<{ __typename?: 'ComponentFooterFooterList', id: string, ListName?: string | null, FooterLink?: Array<{ __typename?: 'ComponentNavigationNavigationLink', id: string, LinkName?: string | null, LinkURL?: string | null } | null> | null } | null> | null } | null } | null } | null };
 
 export type HeaderQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type HeaderQuery = { __typename?: 'Query', header?: { __typename?: 'HeaderEntityResponse', data?: { __typename?: 'HeaderEntity', id?: string | null, attributes?: { __typename?: 'Header', PageName?: string | null, Logotype?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null, Navigation?: { __typename?: 'ComponentNavigationNavigation', id: string, Link?: Array<{ __typename?: 'ComponentNavigationNavigationLink', id: string, LinkName?: string | null, LinkURL?: string | null } | null> | null, Button?: Array<{ __typename?: 'ComponentNavigationNavigationButton', id: string, ButtonText?: string | null, ButtonStyle?: Enum_Componentnavigationnavigationbutton_Buttonstyle | null, ButtonLink?: string | null, ButtonIcon?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null> | null, CartButton?: { __typename?: 'ComponentNavigationCartButton', id: string, CartIcon?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null, MobileButton?: { __typename?: 'ComponentNavigationMobileButton', id: string, MobileButtonIcon?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null } | null } | null } | null } | null };
 
+export type HeroSectionQueryVariables = Exact<{ [key: string]: never; }>;
 
-export const FooterDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Footer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"footer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"FooterBrand"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"FooterLogotype"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"FooterCopyright"}}]}},{"kind":"Field","name":{"kind":"Name","value":"FooterNavLists"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"ListName"}},{"kind":"Field","name":{"kind":"Name","value":"FooterLink"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"LinkName"}},{"kind":"Field","name":{"kind":"Name","value":"LinkURL"}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<FooterQuery, FooterQueryVariables>;
+
+export type HeroSectionQuery = { __typename?: 'Query', heroSection?: { __typename?: 'HeroSectionEntityResponse', data?: { __typename?: 'HeroSectionEntity', id?: string | null, attributes?: { __typename?: 'HeroSection', Slider?: { __typename?: 'ComponentHeroSectionSlider', SingleSlide?: Array<{ __typename?: 'ComponentHeroSectionSingleSlide', id: string, SlideHeading?: string | null, SlideSubheading?: string | null, SlideImage?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', url: string, width?: number | null, height?: number | null } | null } | null } | null } | null> | null, ArrowUpIcon?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', url: string, width?: number | null, height?: number | null } | null } | null } | null, ArrowDownIcon?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', url: string, width?: number | null, height?: number | null } | null } | null } | null, LookUpIcon?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', url: string, width?: number | null, height?: number | null } | null } | null } | null, AddToCartIcon?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', url: string, width?: number | null, height?: number | null } | null } | null } | null } | null } | null } | null } | null };
+
+
+export const FooterDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Footer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"footer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"FooterBrand"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"FooterLogotype"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"FooterCopyright"}}]}},{"kind":"Field","name":{"kind":"Name","value":"FooterNavLists"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"ListName"}},{"kind":"Field","name":{"kind":"Name","value":"FooterLink"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"LinkName"}},{"kind":"Field","name":{"kind":"Name","value":"LinkURL"}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<FooterQuery, FooterQueryVariables>;
 export const HeaderDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Header"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"header"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Logotype"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"PageName"}},{"kind":"Field","name":{"kind":"Name","value":"Navigation"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"Link"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"LinkName"}},{"kind":"Field","name":{"kind":"Name","value":"LinkURL"}}]}},{"kind":"Field","name":{"kind":"Name","value":"Button"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"ButtonIcon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"ButtonText"}},{"kind":"Field","name":{"kind":"Name","value":"ButtonStyle"}},{"kind":"Field","name":{"kind":"Name","value":"ButtonLink"}}]}},{"kind":"Field","name":{"kind":"Name","value":"CartButton"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"CartIcon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"MobileButton"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"MobileButtonIcon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<HeaderQuery, HeaderQueryVariables>;
+export const HeroSectionDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"HeroSection"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"heroSection"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Slider"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"SingleSlide"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"SlideHeading"}},{"kind":"Field","name":{"kind":"Name","value":"SlideSubheading"}},{"kind":"Field","name":{"kind":"Name","value":"SlideImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"ArrowUpIcon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"ArrowDownIcon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"LookUpIcon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"AddToCartIcon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}}]}}]}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<HeroSectionQuery, HeroSectionQueryVariables>;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -1219,6 +1311,55 @@ export type ComponentFooterFooterListInput = {
   id?: InputMaybe<Scalars['ID']>;
 };
 
+export type ComponentHeroSectionSingleSlide = {
+  __typename?: 'ComponentHeroSectionSingleSlide';
+  SlideHeading?: Maybe<Scalars['String']>;
+  SlideImage?: Maybe<UploadFileEntityResponse>;
+  SlideSubheading?: Maybe<Scalars['String']>;
+  id: Scalars['ID'];
+};
+
+export type ComponentHeroSectionSingleSlideFiltersInput = {
+  SlideHeading?: InputMaybe<StringFilterInput>;
+  SlideSubheading?: InputMaybe<StringFilterInput>;
+  and?: InputMaybe<Array<InputMaybe<ComponentHeroSectionSingleSlideFiltersInput>>>;
+  not?: InputMaybe<ComponentHeroSectionSingleSlideFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentHeroSectionSingleSlideFiltersInput>>>;
+};
+
+export type ComponentHeroSectionSingleSlideInput = {
+  SlideHeading?: InputMaybe<Scalars['String']>;
+  SlideImage?: InputMaybe<Scalars['ID']>;
+  SlideSubheading?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+export type ComponentHeroSectionSlider = {
+  __typename?: 'ComponentHeroSectionSlider';
+  AddToCartIcon?: Maybe<UploadFileEntityResponse>;
+  ArrowDownIcon?: Maybe<UploadFileEntityResponse>;
+  ArrowUpIcon?: Maybe<UploadFileEntityResponse>;
+  LookUpIcon?: Maybe<UploadFileEntityResponse>;
+  SingleSlide?: Maybe<Array<Maybe<ComponentHeroSectionSingleSlide>>>;
+  id: Scalars['ID'];
+};
+
+
+export type ComponentHeroSectionSliderSingleSlideArgs = {
+  filters?: InputMaybe<ComponentHeroSectionSingleSlideFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type ComponentHeroSectionSliderInput = {
+  AddToCartIcon?: InputMaybe<Scalars['ID']>;
+  ArrowDownIcon?: InputMaybe<Scalars['ID']>;
+  ArrowUpIcon?: InputMaybe<Scalars['ID']>;
+  LookUpIcon?: InputMaybe<Scalars['ID']>;
+  SingleSlide?: InputMaybe<Array<InputMaybe<ComponentHeroSectionSingleSlideInput>>>;
+  id?: InputMaybe<Scalars['ID']>;
+};
+
 export type ComponentNavigationCartButton = {
   __typename?: 'ComponentNavigationCartButton';
   CartIcon?: Maybe<UploadFileEntityResponse>;
@@ -1426,7 +1567,7 @@ export type FooterInput = {
   publishedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
-export type GenericMorph = ComponentFooterCombinedFooter | ComponentFooterFooterList | ComponentNavigationCartButton | ComponentNavigationFooterNavList | ComponentNavigationMobileButton | ComponentNavigationNavigation | ComponentNavigationNavigationButton | ComponentNavigationNavigationLink | Footer | Header | I18NLocale | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = ComponentFooterCombinedFooter | ComponentFooterFooterList | ComponentHeroSectionSingleSlide | ComponentHeroSectionSlider | ComponentNavigationCartButton | ComponentNavigationFooterNavList | ComponentNavigationMobileButton | ComponentNavigationNavigation | ComponentNavigationNavigationButton | ComponentNavigationNavigationLink | Footer | Header | HeroSection | I18NLocale | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type Header = {
   __typename?: 'Header';
@@ -1452,6 +1593,30 @@ export type HeaderInput = {
   Logotype?: InputMaybe<Scalars['ID']>;
   Navigation?: InputMaybe<ComponentNavigationNavigationInput>;
   PageName?: InputMaybe<Scalars['String']>;
+};
+
+export type HeroSection = {
+  __typename?: 'HeroSection';
+  Slider?: Maybe<ComponentHeroSectionSlider>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type HeroSectionEntity = {
+  __typename?: 'HeroSectionEntity';
+  attributes?: Maybe<HeroSection>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type HeroSectionEntityResponse = {
+  __typename?: 'HeroSectionEntityResponse';
+  data?: Maybe<HeroSectionEntity>;
+};
+
+export type HeroSectionInput = {
+  Slider?: InputMaybe<ComponentHeroSectionSliderInput>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
 export type I18NLocale = {
@@ -1574,6 +1739,7 @@ export type Mutation = {
   createUsersPermissionsUser: UsersPermissionsUserEntityResponse;
   deleteFooter?: Maybe<FooterEntityResponse>;
   deleteHeader?: Maybe<HeaderEntityResponse>;
+  deleteHeroSection?: Maybe<HeroSectionEntityResponse>;
   deleteUploadFile?: Maybe<UploadFileEntityResponse>;
   deleteUploadFolder?: Maybe<UploadFolderEntityResponse>;
   /** Delete an existing role */
@@ -1594,6 +1760,7 @@ export type Mutation = {
   updateFileInfo: UploadFileEntityResponse;
   updateFooter?: Maybe<FooterEntityResponse>;
   updateHeader?: Maybe<HeaderEntityResponse>;
+  updateHeroSection?: Maybe<HeroSectionEntityResponse>;
   updateUploadFile?: Maybe<UploadFileEntityResponse>;
   updateUploadFolder?: Maybe<UploadFolderEntityResponse>;
   /** Update an existing role */
@@ -1707,6 +1874,11 @@ export type MutationUpdateHeaderArgs = {
 };
 
 
+export type MutationUpdateHeroSectionArgs = {
+  data: HeroSectionInput;
+};
+
+
 export type MutationUpdateUploadFileArgs = {
   data: UploadFileInput;
   id: Scalars['ID'];
@@ -1763,6 +1935,7 @@ export type Query = {
   __typename?: 'Query';
   footer?: Maybe<FooterEntityResponse>;
   header?: Maybe<HeaderEntityResponse>;
+  heroSection?: Maybe<HeroSectionEntityResponse>;
   i18NLocale?: Maybe<I18NLocaleEntityResponse>;
   i18NLocales?: Maybe<I18NLocaleEntityResponseCollection>;
   me?: Maybe<UsersPermissionsMe>;
@@ -1778,6 +1951,11 @@ export type Query = {
 
 
 export type QueryFooterArgs = {
+  publicationState?: InputMaybe<PublicationState>;
+};
+
+
+export type QueryHeroSectionArgs = {
   publicationState?: InputMaybe<PublicationState>;
 };
 
@@ -2246,23 +2424,30 @@ export type UsersPermissionsUserRelationResponseCollection = {
 export type FooterQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type FooterQuery = { __typename?: 'Query', footer?: { __typename?: 'FooterEntityResponse', data?: { __typename?: 'FooterEntity', attributes?: { __typename?: 'Footer', FooterBrand?: { __typename?: 'ComponentFooterCombinedFooter', id: string, FooterCopyright?: string | null, FooterLogotype?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null }> } | null } | null, FooterNavLists?: Array<{ __typename?: 'ComponentFooterFooterList', ListName?: string | null, FooterLink?: Array<{ __typename?: 'ComponentNavigationNavigationLink', LinkName?: string | null, LinkURL?: string | null } | null> | null } | null> | null } | null } | null } | null };
+export type FooterQuery = { __typename?: 'Query', footer?: { __typename?: 'FooterEntityResponse', data?: { __typename?: 'FooterEntity', id?: string | null, attributes?: { __typename?: 'Footer', FooterBrand?: { __typename?: 'ComponentFooterCombinedFooter', id: string, FooterCopyright?: string | null, FooterLogotype?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', url: string } | null }> } | null } | null, FooterNavLists?: Array<{ __typename?: 'ComponentFooterFooterList', id: string, ListName?: string | null, FooterLink?: Array<{ __typename?: 'ComponentNavigationNavigationLink', id: string, LinkName?: string | null, LinkURL?: string | null } | null> | null } | null> | null } | null } | null } | null };
 
 export type HeaderQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type HeaderQuery = { __typename?: 'Query', header?: { __typename?: 'HeaderEntityResponse', data?: { __typename?: 'HeaderEntity', id?: string | null, attributes?: { __typename?: 'Header', PageName?: string | null, Logotype?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null, Navigation?: { __typename?: 'ComponentNavigationNavigation', id: string, Link?: Array<{ __typename?: 'ComponentNavigationNavigationLink', id: string, LinkName?: string | null, LinkURL?: string | null } | null> | null, Button?: Array<{ __typename?: 'ComponentNavigationNavigationButton', id: string, ButtonText?: string | null, ButtonStyle?: Enum_Componentnavigationnavigationbutton_Buttonstyle | null, ButtonLink?: string | null, ButtonIcon?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null> | null, CartButton?: { __typename?: 'ComponentNavigationCartButton', id: string, CartIcon?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null, MobileButton?: { __typename?: 'ComponentNavigationMobileButton', id: string, MobileButtonIcon?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null } | null } | null } | null } | null };
 
+export type HeroSectionQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type HeroSectionQuery = { __typename?: 'Query', heroSection?: { __typename?: 'HeroSectionEntityResponse', data?: { __typename?: 'HeroSectionEntity', id?: string | null, attributes?: { __typename?: 'HeroSection', Slider?: { __typename?: 'ComponentHeroSectionSlider', SingleSlide?: Array<{ __typename?: 'ComponentHeroSectionSingleSlide', id: string, SlideHeading?: string | null, SlideSubheading?: string | null, SlideImage?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', url: string, width?: number | null, height?: number | null } | null } | null } | null } | null> | null, ArrowUpIcon?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', url: string, width?: number | null, height?: number | null } | null } | null } | null, ArrowDownIcon?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', url: string, width?: number | null, height?: number | null } | null } | null } | null, LookUpIcon?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', url: string, width?: number | null, height?: number | null } | null } | null } | null, AddToCartIcon?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', url: string, width?: number | null, height?: number | null } | null } | null } | null } | null } | null } | null } | null };
+
 
 export const FooterDocument = gql`
     query Footer {
   footer {
     data {
+      id
       attributes {
         FooterBrand {
           id
           FooterLogotype {
             data {
+              id
               attributes {
                 url
               }
@@ -2271,8 +2456,10 @@ export const FooterDocument = gql`
           FooterCopyright
         }
         FooterNavLists {
+          id
           ListName
           FooterLink {
+            id
             LinkName
             LinkURL
           }
@@ -2396,3 +2583,98 @@ export function useHeaderLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Hea
 export type HeaderQueryHookResult = ReturnType<typeof useHeaderQuery>;
 export type HeaderLazyQueryHookResult = ReturnType<typeof useHeaderLazyQuery>;
 export type HeaderQueryResult = Apollo.QueryResult<HeaderQuery, HeaderQueryVariables>;
+export const HeroSectionDocument = gql`
+    query HeroSection {
+  heroSection {
+    data {
+      id
+      attributes {
+        Slider {
+          SingleSlide {
+            id
+            SlideHeading
+            SlideSubheading
+            SlideImage {
+              data {
+                id
+                attributes {
+                  url
+                  width
+                  height
+                }
+              }
+            }
+          }
+          ArrowUpIcon {
+            data {
+              id
+              attributes {
+                url
+                width
+                height
+              }
+            }
+          }
+          ArrowDownIcon {
+            data {
+              id
+              attributes {
+                url
+                width
+                height
+              }
+            }
+          }
+          LookUpIcon {
+            data {
+              id
+              attributes {
+                url
+                width
+                height
+              }
+            }
+          }
+          AddToCartIcon {
+            data {
+              id
+              attributes {
+                url
+                width
+                height
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useHeroSectionQuery__
+ *
+ * To run a query within a React component, call `useHeroSectionQuery` and pass it any options that fit your needs.
+ * When your component renders, `useHeroSectionQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useHeroSectionQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useHeroSectionQuery(baseOptions?: Apollo.QueryHookOptions<HeroSectionQuery, HeroSectionQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<HeroSectionQuery, HeroSectionQueryVariables>(HeroSectionDocument, options);
+      }
+export function useHeroSectionLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<HeroSectionQuery, HeroSectionQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<HeroSectionQuery, HeroSectionQueryVariables>(HeroSectionDocument, options);
+        }
+export type HeroSectionQueryHookResult = ReturnType<typeof useHeroSectionQuery>;
+export type HeroSectionLazyQueryHookResult = ReturnType<typeof useHeroSectionLazyQuery>;
+export type HeroSectionQueryResult = Apollo.QueryResult<HeroSectionQuery, HeroSectionQueryVariables>;

@@ -15,8 +15,6 @@ export default function Footer(
   const footerCopyrightText = footerCopyright || '';
   const footerNavigation = footerNavigationLists || [];
 
-  console.log(footerCopyrightText);
-
   return (
     <footer className={ styles.footer }>
       <div className={ clsx(
