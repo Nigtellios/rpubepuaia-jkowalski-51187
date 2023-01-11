@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import styles from './HeroSection.module.scss';
 import utils from '../../../styles/modules/utilities/utility.module.scss';
 /* https://splidejs.com/integration/react-splide/ */
@@ -95,6 +94,7 @@ export default function HeroSection(
                     width={ slide.SlideImage.data.attributes.width }
                     height={ slide.SlideImage.data.attributes.height }
                     className={ clsx(styles.hero__image, utils.container) }
+                    alt={ "Slider Image" }
                   />
 
                   {
