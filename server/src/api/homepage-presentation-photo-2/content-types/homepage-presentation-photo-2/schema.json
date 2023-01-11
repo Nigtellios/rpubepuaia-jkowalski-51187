@@ -1,0 +1,20 @@
+{
+  "kind": "singleType",
+  "collectionName": "homepage_presentation_photo_2s",
+  "info": {
+    "singularName": "homepage-presentation-photo-2",
+    "pluralName": "homepage-presentation-photo-2s",
+    "displayName": "Homepage - Presentation Photo 2"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "PictureDescriptionCTA2": {
+      "type": "component",
+      "repeatable": false,
+      "component": "reusable.picture-with-description-and-cta"
+    }
+  }
+}

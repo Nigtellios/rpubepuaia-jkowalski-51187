@@ -1,0 +1,49 @@
+{
+  "collectionName": "components_reusable_picture_with_description_and_ctas",
+  "info": {
+    "displayName": "Picture with Description and CTA",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "DescriptionHeading": {
+      "type": "text"
+    },
+    "DescriptionText": {
+      "type": "richtext"
+    },
+    "Variant": {
+      "type": "enumeration",
+      "enum": [
+        "left",
+        "right",
+        "inside",
+        "outside"
+      ]
+    },
+    "Picture": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "CTA": {
+      "type": "component",
+      "repeatable": false,
+      "component": "reusable.navigation-button"
+    },
+    "DescriptionAlignment": {
+      "type": "enumeration",
+      "enum": [
+        "left",
+        "center",
+        "right"
+      ]
+    }
+  }
+}
