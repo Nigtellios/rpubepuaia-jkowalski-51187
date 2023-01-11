@@ -9,7 +9,7 @@
     border-bottom-right-radius: rem(10);
     box-shadow: $nav-border;
     position: relative;
-    z-index: 1;
+    z-index: 5;
     
     &:after {
         filter: blur(2.5rem);
@@ -68,7 +68,7 @@
         width: 100%;
         left: 0;
         top: rem(122);
-        background: rgba($white, 0.85);
+        background: rgba($white, 0.98);
         border-bottom-right-radius: rem(10);
         border-bottom-left-radius: rem(10);
         box-shadow: $nav-border;
