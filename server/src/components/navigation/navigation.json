@@ -16,7 +16,7 @@
     "Button": {
       "type": "component",
       "repeatable": true,
-      "component": "navigation.navigation-button"
+      "component": "reusable.navigation-button"
     },
     "CartButton": {
       "type": "component",

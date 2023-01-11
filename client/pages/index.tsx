@@ -42,8 +42,6 @@ export default function Home(
   const slider = heroData.data.attributes.Slider;
   const arrowUpIcon = heroData.data.attributes.Slider.ArrowUpIcon.data.attributes.url;
   const arrowDownIcon = heroData.data.attributes.Slider.ArrowDownIcon.data.attributes.url;
-  const lookUpIcon = heroData.data.attributes.Slider.LookUpIcon.data.attributes.url;
-  const addToCartIcon = heroData.data.attributes.Slider.AddToCartIcon.data.attributes.url;
 
   return (
     <>
@@ -60,8 +58,6 @@ export default function Home(
           slider={ slider }
           arrowUpIcon={ arrowUpIcon }
           arrowDownIcon={ arrowDownIcon }
-          lookUpIcon={ lookUpIcon }
-          addToCartIcon={ addToCartIcon }
         />
       </main>
 

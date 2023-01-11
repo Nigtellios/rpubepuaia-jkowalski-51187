@@ -42,25 +42,21 @@ const heroSectionQuery = gql`
                                 }
                             }
                         }
-                        LookUpIcon {
-                            data {
-                                id
-                                attributes {
-                                    url
-                                    width
-                                    height
+                        ReusableButton {
+                            id
+                            ButtonIcon {
+                                data {
+                                    id
+                                    attributes {
+                                        url
+                                        width
+                                        height
+                                    }
                                 }
                             }
-                        }
-                        AddToCartIcon {
-                            data {
-                                id
-                                attributes {
-                                    url
-                                    width
-                                    height
-                                }
-                            }
+                            ButtonText
+                            ButtonStyle
+                            ButtonLink
                         }
                     }
                 }

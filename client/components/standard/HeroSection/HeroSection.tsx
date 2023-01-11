@@ -6,21 +6,18 @@ import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
 import '@splidejs/react-splide/css';
 import '@splidejs/react-splide/css/core';
 import clsx from "clsx";
+import ReusableButton from "../../reusable/Button/Button";
 
 export default function HeroSection(
   {
     slider,
     arrowUpIcon,
-    arrowDownIcon,
-    lookUpIcon,
-    addToCartIcon
+    arrowDownIcon
   }: any
   ) {
-  const heroSlider = slider;
-  const arrowUp = arrowUpIcon;
-  const arrowDown = arrowDownIcon;
-  const lookUp = lookUpIcon;
-  const addToCart = addToCartIcon;
+  const heroSlider = slider || [];
+  const arrowUp = arrowUpIcon || '';
+  const arrowDown = arrowDownIcon || '';
 
   return (
     <section className={ styles.hero }>
@@ -31,6 +28,9 @@ export default function HeroSection(
           aria-label="Hero Section"
           className={ utils.container }
           hasTrack={ false }
+          options={{
+            autoplay: true
+          }}
         >
           <div className={ clsx(
             "splide__arrows",
@@ -100,6 +100,16 @@ export default function HeroSection(
                   {
                     slide.SlideHeading && slide.SlideSubheading &&
                     <div className={ styles[`hero__slide-content-wrapper`] }>
+
+                      {
+                        heroSlider.ReusableButton[1] &&
+                        <ReusableButton
+                          className={ heroSlider.ReusableButton[1].ButtonStyle }
+                          icon={ heroSlider.ReusableButton[1].ButtonIcon.data.attributes.url }
+                          url={ heroSlider.ReusableButton[1].ButtonLink }
+                        />
+                      }
+
                       <div className={ styles[`hero__slide-content`] }>
                         <div className={ styles[`hero__slide-content-title`] }>
                           <h4>{ slide.SlideHeading }</h4>
@@ -108,6 +118,16 @@ export default function HeroSection(
                           <p>{ slide.SlideSubheading }</p>
                         </div>
                       </div>
+
+                      {
+                        heroSlider.ReusableButton[0] &&
+                        <ReusableButton
+                          className={ heroSlider.ReusableButton[0].ButtonStyle }
+                          icon={ heroSlider.ReusableButton[0].ButtonIcon.data.attributes.url }
+                          url={ heroSlider.ReusableButton[0].ButtonLink }
+                        />
+                      }
+
                     </div>
                   }
 

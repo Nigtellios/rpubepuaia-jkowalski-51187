@@ -4,7 +4,7 @@ import styles from './Button.module.scss';
 import clsx from "clsx";
 
 export default function ReusableButton({ icon, url, text, className }: IReusableButton) {
-  const inputStyle = `button--` + `${className}`;
+  const inputStyle = `button--` + `${ className }`;
 
   return (
     <Link href={ `${url}` }>
@@ -15,7 +15,7 @@ export default function ReusableButton({ icon, url, text, className }: IReusable
       >
         { icon &&
           <img
-            src={ process.env.NEXT_PUBLIC_URL + `${icon}` }
+            src={ process.env.NEXT_PUBLIC_URL + `${ icon }` }
             width={ 25 }
             height={ 25 }
             alt={ "Button" }

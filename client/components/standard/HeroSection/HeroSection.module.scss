@@ -6,6 +6,11 @@
     padding-bottom: rem(100);
     position: relative;
     
+    @include media('<=xl') {
+        padding-top: rem(50);
+        padding-bottom: rem(50);
+    }
+    
     &__track {
         border-radius: rem(10);
     }
@@ -21,15 +26,17 @@
             display: flex;
             position: absolute;
             justify-content: center;
-            bottom: 0;
-            width: 100%;
+            bottom: rem(35);
             z-index: 1;
+            width: 100%;
         }
         
         &-content {
             z-index: 1;
             background: $white;
-            width: 100%;
+            border-radius: rem(10);
+            margin-left: rem(15);
+            margin-right: rem(15);
             
             &-title {
                 padding: 1rem;
@@ -44,6 +51,8 @@
                 line-height: rem(22);
                 background: $dark;
                 color: $white;
+                border-bottom-left-radius: rem(10);
+                border-bottom-right-radius: rem(10);
             }
         }
     }
@@ -74,6 +83,11 @@
         height: rem(240);
         padding: .5rem;
         z-index: 2;
+        
+        @include media('<=xl') {
+            top: 20%;
+            bottom: 80%;
+        }
     }
     
     &__arrow {
@@ -140,5 +154,20 @@
                 }
             }
         }
+    }
+    
+    &__buttons {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: space-between;
+        align-items: center;
+        position: absolute;
+        top: 32%;
+        bottom: 68%;
+        right: rem(15);
+        width: 2rem;
+        height: rem(240);
+        padding: .5rem;
+        z-index: 2;
     }
 }

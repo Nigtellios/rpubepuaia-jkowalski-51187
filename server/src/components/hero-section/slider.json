@@ -2,7 +2,8 @@
   "collectionName": "components_hero_section_sliders",
   "info": {
     "displayName": "Slider",
-    "icon": "american-sign-language-interpreting"
+    "icon": "american-sign-language-interpreting",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -13,44 +14,31 @@
       "component": "hero-section.single-slide"
     },
     "ArrowUpIcon": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     },
     "ArrowDownIcon": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     },
-    "LookUpIcon": {
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ],
-      "type": "media",
-      "multiple": false
-    },
-    "AddToCartIcon": {
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ],
-      "type": "media",
-      "multiple": false
+    "ReusableButton": {
+      "type": "component",
+      "repeatable": true,
+      "component": "reusable.navigation-button"
     }
   }
 }
