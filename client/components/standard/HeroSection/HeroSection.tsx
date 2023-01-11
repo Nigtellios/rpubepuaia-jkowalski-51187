@@ -41,7 +41,8 @@ export default function HeroSection(
               <button
                 className={ clsx(
                   "splide__arrow splide__arrow--prev",
-                  styles.hero__arrow
+                  styles.hero__arrow,
+                  styles[`hero__arrow--prev`]
                 )}
               >
                 <img
@@ -65,7 +66,8 @@ export default function HeroSection(
               <button
                 className={ clsx(
                   "splide__arrow splide__arrow--next",
-                  styles.hero__arrow
+                  styles.hero__arrow,
+                  styles[`hero__arrow--next`]
                 )}
               >
                 <img

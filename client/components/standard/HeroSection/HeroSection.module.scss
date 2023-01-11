@@ -66,6 +66,14 @@
                 filter: invert(1) !important;
             }
         }
+        
+        &--next {
+            transform: rotate(180deg) !important;
+        }
+    
+        &--prev {
+            transform: rotate(180deg) !important;
+        }
     }
     
     &__pagination {
