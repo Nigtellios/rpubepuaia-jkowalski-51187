@@ -4,4 +4,97 @@
 .hero {
     padding-top: rem(100);
     padding-bottom: rem(100);
+    position: relative;
+    
+    &__slide {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        min-height: rem(600);
+    }
+    
+    &__image {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        object-fit: cover;
+        object-position: center;
+    }
+    
+    &__arrows {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: space-between;
+        align-items: center;
+        position: absolute;
+        top: 32%;
+        bottom: 68%;
+        left: rem(15);
+        width: 2rem;
+        height: rem(240);
+        padding: .5rem;
+        z-index: 2;
+    }
+    
+    &__arrow {
+        position: relative !important;
+        left: unset !important;
+        right: unset !important;
+        bottom: unset !important;
+        top: unset !important;
+        transform: none !important;
+        background: $white !important;
+        border-radius: rem(10) !important;
+        opacity: 1 !important;
+        box-shadow: $button-shadow !important;
+        height: rem(35) !important;
+        width: rem(35) !important;
+        transition: .25s linear all;
+        
+        &:disabled {
+            opacity: .65 !important;
+        }
+        
+        &:hover, &:focus, &:active {
+            background: $dark !important;
+            
+            img {
+                filter: invert(1) !important;
+            }
+        }
+    }
+    
+    &__pagination {
+        position: relative !important;
+        left: unset !important;
+        right: unset !important;
+        bottom: unset !important;
+        top: unset !important;
+        flex-flow: column nowrap;
+        width: rem(35);
+        padding: rem(10) 0 !important;
+        background: $white;
+        border-radius: rem(10);
+        box-shadow: $button-shadow;
+        
+        li[role="presentation"] {
+            button {
+                background: $gray !important;
+                height: rem(15) !important;
+                border-radius: rem(5) !important;
+                margin-top: rem(8) !important;
+                margin-bottom: rem(8) !important;
+                opacity: 1 !important;
+                
+                &[aria-selected="true"] {
+                    background: $dark !important;
+                    opacity: 1;
+                }
+            }
+        }
+    }
 }
