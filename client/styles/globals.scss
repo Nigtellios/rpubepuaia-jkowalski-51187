@@ -55,6 +55,30 @@ h1, h2, h3, h4, h5, h6 {
     font-family: $inter;
 }
 
+h1 {
+    font-size: rem(48);
+}
+
+h2 {
+    font-size: rem(38);
+}
+
+h3 {
+    font-size: rem(32);
+}
+
+h4 {
+    font-size: rem(28);
+}
+
+h5 {
+    font-size: rem(24);
+}
+
+h6 {
+    font-size: rem(20);
+}
+
 span, p, a, li, ul, ol, button, input, textarea {
     font-family: $lato;
 }

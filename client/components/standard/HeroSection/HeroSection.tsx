@@ -80,7 +80,9 @@ export default function HeroSection(
             }
           </div>
 
-          <SplideTrack>
+          <SplideTrack
+            className={ styles.hero__track }
+          >
             {
               heroSlider.SingleSlide.map((slide: any) => (
 
@@ -94,6 +96,21 @@ export default function HeroSection(
                     height={ slide.SlideImage.data.attributes.height }
                     className={ clsx(styles.hero__image, utils.container) }
                   />
+
+                  {
+                    slide.SlideHeading && slide.SlideSubheading &&
+                    <div className={ styles[`hero__slide-content-wrapper`] }>
+                      <div className={ styles[`hero__slide-content`] }>
+                        <div className={ styles[`hero__slide-content-title`] }>
+                          <h4>{ slide.SlideHeading }</h4>
+                        </div>
+                        <div className={ styles[`hero__slide-content-subtitle`] }>
+                          <p>{ slide.SlideSubheading }</p>
+                        </div>
+                      </div>
+                    </div>
+                  }
+
                 </SplideSlide>
 
               ))
