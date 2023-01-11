@@ -3,7 +3,7 @@ import HeaderData from "../lib/HeaderData";
 import Footer from "../components/standard/Footer/Footer";
 import FooterData from "../lib/FooterData";
 import HeroSection from "../components/standard/HeroSection/HeroSection";
-import HeroSectionData from "../lib/HeroSectionData";
+import HeroSectionData from "../lib/homepage/HeroSectionData";
 
 export async function getServerSideProps () {
   const headerData = await HeaderData.fetchHeaderData();

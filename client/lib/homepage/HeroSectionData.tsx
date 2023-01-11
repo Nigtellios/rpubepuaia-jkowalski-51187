@@ -1,5 +1,5 @@
-import client from "../connection/apollo-client";
-import heroSectionQuery from "../components/standard/HeroSection/HeroSectionQuery";
+import client from "../../connection/apollo-client";
+import heroSectionQuery from "../../components/standard/HeroSection/HeroSectionQuery";
 
 const HeroSectionData = {
   fetchHeroData: async () => {

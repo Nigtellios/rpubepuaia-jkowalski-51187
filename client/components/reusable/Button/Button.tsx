@@ -3,7 +3,14 @@ import { IReusableButton } from "./Button.interface";
 import styles from './Button.module.scss';
 import clsx from "clsx";
 
-export default function ReusableButton({ icon, url, text, className }: IReusableButton) {
+export default function ReusableButton(
+  {
+    icon,
+    url,
+    text,
+    className
+  }: IReusableButton
+) {
   const inputStyle = `button--` + `${ className }`;
 
   return (

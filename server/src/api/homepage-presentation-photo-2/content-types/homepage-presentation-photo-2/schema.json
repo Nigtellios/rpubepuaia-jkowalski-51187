@@ -4,10 +4,11 @@
   "info": {
     "singularName": "homepage-presentation-photo-2",
     "pluralName": "homepage-presentation-photo-2s",
-    "displayName": "Homepage - Presentation Photo 2"
+    "displayName": "Homepage - Presentation Photo 2",
+    "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {

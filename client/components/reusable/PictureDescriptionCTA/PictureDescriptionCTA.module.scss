@@ -1,0 +1,44 @@
+@import 'styles/settings/init';
+@import 'include-media/dist/_include-media.scss';
+
+.picture-description-cta {
+    $s: &;
+    display: flex;
+    
+    &--left {
+        flex-flow: row nowrap;
+    }
+    
+    &--right {
+        flex-flow: row nowrap;
+    }
+    
+    &--inside {
+        flex-flow: column nowrap;
+    }
+    
+    &--outside {
+        flex-flow: column nowrap;
+    }
+    
+    &__description {
+        display: flex;
+        flex-flow: column nowrap;
+        
+        &__left {
+            justify-content: flex-start;
+        }
+        
+        &__center {
+            justify-content: center;
+        }
+        
+        &__right {
+            justify-content: flex-end;
+        }
+    }
+    
+    &__image {
+        position: relative;
+    }
+}
