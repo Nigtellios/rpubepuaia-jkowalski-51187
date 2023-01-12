@@ -6,6 +6,7 @@
     display: flex;
     margin-top: rem(100);
     margin-bottom: rem(100);
+    position: relative;
     
     @include media('<=xl') {
         margin-top: rem(50);
@@ -21,7 +22,7 @@
     }
     
     &--right {
-        flex-flow: row nowrap;
+        flex-flow: row-reverse nowrap;
     
         @include media('<=xl') {
             flex-flow: column nowrap;
@@ -30,6 +31,12 @@
     
     &--inside {
         flex-flow: column nowrap;
+        
+        #{ $s }__description {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
     }
     
     &--outside {

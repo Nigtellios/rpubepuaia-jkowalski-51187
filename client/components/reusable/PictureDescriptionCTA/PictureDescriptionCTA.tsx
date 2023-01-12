@@ -18,9 +18,6 @@ export default function PictureDescriptionCTA(
   const inputStyle = `picture-description-cta--` + `${ variant }`;
   const alignmentStyle = `picture-description-cta__description--` + `${ descriptionAlignment }`;
 
-  console.log(picture)
-  console.log(ctaObject);
-
   return (
     <section className={ clsx(
       utils.container,
