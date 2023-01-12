@@ -1,12 +1,12 @@
 import { gql } from '@apollo/client';
 
-const HomepagePictureDescriptionCTA2Query = gql`
-    query HomepagePresentationPhoto2 {
-        homepagePresentationPhoto2 {
+const HomePicDescCTA1Query = gql`
+    query HomepagePresentationPhoto1 {
+        homepagePresentationPhoto1 {
             data {
                 id
                 attributes {
-                    PictureDescriptionCTA2 {
+                    PictureDescriptionCTA {
                         id
                         DescriptionHeading
                         DescriptionText
@@ -45,4 +45,4 @@ const HomepagePictureDescriptionCTA2Query = gql`
     }
 `;
 
-export default HomepagePictureDescriptionCTA2Query;
+export default HomePicDescCTA1Query;

@@ -53,38 +53,72 @@ html, body {
 
 h1, h2, h3, h4, h5, h6 {
     font-family: $inter;
-    
-    @include media('<=xl') {
-        font-size: 80%;
-    }
 }
 
 h1 {
     font-size: rem(48);
+    line-height: rem(58);
+    
+    @include media('<=xl') {
+        font-size: rem(38);
+        line-height: rem(48);
+    }
 }
 
 h2 {
     font-size: rem(38);
+    line-height: rem(48);
+    
+    @include media('<=xl') {
+        font-size: rem(28);
+        line-height: rem(38);
+    }
 }
 
 h3 {
     font-size: rem(32);
+    line-height: rem(42);
+    
+    @include media('<=xl') {
+        font-size: rem(22);
+        line-height: rem(32);
+    }
 }
 
 h4 {
     font-size: rem(28);
+    line-height: rem(38);
+    
+    @include media('<=xl') {
+        font-size: rem(18);
+        line-height: rem(28);
+    }
 }
 
 h5 {
     font-size: rem(24);
+    line-height: rem(34);
+    
+    @include media('<=xl') {
+        font-size: rem(18);
+        line-height: rem(28);
+    }
 }
 
 h6 {
     font-size: rem(20);
+    line-height: rem(30);
+    
+    @include media('<=xl') {
+        font-size: rem(18);
+        line-height: rem(28);
+    }
 }
 
 span, p, a, li, ul, ol, button, input, textarea {
     font-family: $lato;
+    font-size: rem(16);
+    line-height: rem(24);
 }
 
 a {

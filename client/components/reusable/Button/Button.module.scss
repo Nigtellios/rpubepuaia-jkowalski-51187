@@ -47,9 +47,23 @@
     
     &--main {
         padding: 1rem 2rem;
+        background: $main;
+        color: $white;
+    
+        &:hover, &:focus, &:active {
+            background: $accent;
+            color: $dark;
+        }
     }
     
     &--accent {
         padding: 1rem 2rem;
+        background: $accent;
+        color: $dark;
+    
+        &:hover, &:focus, &:active {
+            background: $main;
+            color: $white;
+        }
     }
 }

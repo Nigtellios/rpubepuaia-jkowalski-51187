@@ -1,11 +1,11 @@
 import client from "../../connection/apollo-client";
-import HomepagePictureDescriptionCTA1Query from "./HomepagePictureDescriptionCTA1Query";
+import HomePicDescCTA1Query from "./HomePicDescCTA1Query";
 
-const HomepagePictureDescriptionCTA1 = {
+const HomePicDescCTA1 = {
   fetchHPDCTA1: async () => {
     try {
       const { data } = await client.query({
-        query: HomepagePictureDescriptionCTA1Query,
+        query: HomePicDescCTA1Query,
       });
 
       return data.homepagePresentationPhoto1;
@@ -21,4 +21,4 @@ const HomepagePictureDescriptionCTA1 = {
   }
 }
 
-export default HomepagePictureDescriptionCTA1;
+export default HomePicDescCTA1;

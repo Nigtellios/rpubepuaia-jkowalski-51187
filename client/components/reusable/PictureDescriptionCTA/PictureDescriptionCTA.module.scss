@@ -4,13 +4,28 @@
 .picture-description-cta {
     $s: &;
     display: flex;
+    margin-top: rem(100);
+    margin-bottom: rem(100);
+    
+    @include media('<=xl') {
+        margin-top: rem(50);
+        margin-bottom: rem(50);
+    }
     
     &--left {
         flex-flow: row nowrap;
+        
+        @include media('<=xl') {
+            flex-flow: column nowrap;
+        }
     }
     
     &--right {
         flex-flow: row nowrap;
+    
+        @include media('<=xl') {
+            flex-flow: column nowrap;
+        }
     }
     
     &--inside {
@@ -24,21 +39,65 @@
     &__description {
         display: flex;
         flex-flow: column nowrap;
+        justify-content: center;
+        padding: rem(25) rem(50);
         
-        &__left {
-            justify-content: flex-start;
+        @include media('<=xl') {
+            padding: rem(25) rem(25);
+            width: 100%;
         }
         
-        &__center {
-            justify-content: center;
+        &--left {
+            align-items: flex-start;
         }
         
-        &__right {
-            justify-content: flex-end;
+        &--center {
+            align-items: center;
+        }
+        
+        &--right {
+            align-items: flex-end;
+        }
+        
+        a {
+            display: block;
         }
     }
     
     &__image {
+        min-height: rem(600);
+        min-width: 40%;
         position: relative;
+        border-radius: rem(10);
+        display: block;
+        overflow: hidden;
+        
+        @include media('<=xl') {
+            min-width: 100%;
+            min-height: rem(400);
+        }
+        
+        img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            object-fit: cover;
+            object-position: center;
+            width: 100%;
+            height: 100%;
+            border-radius: rem(10);
+        }
+    }
+    
+    &__heading {
+        font-family: $inter;
+        margin-bottom: rem(25);
+    }
+    
+    &__text {
+        font-family: $lato;
+        margin-bottom: rem(45);
     }
 }
