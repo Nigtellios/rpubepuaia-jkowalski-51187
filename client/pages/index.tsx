@@ -6,19 +6,22 @@ import HeroSection from "../components/standard/HeroSection/HeroSection";
 import HeroSectionData from "../lib/homepage/HeroSectionData";
 import HomePicDescCTA1 from "../lib/homepage/HomePicDescCTA1";
 import PictureDescriptionCTA from "../components/reusable/PictureDescriptionCTA/PictureDescriptionCTA";
+import HomePicDescCTA2 from "../lib/homepage/HomePicDescCTA2";
 
 export async function getServerSideProps () {
   const headerData = await HeaderData.fetchHeaderData();
   const footerData = await FooterData.fetchFooterData();
   const heroData = await HeroSectionData.fetchHeroData();
   const homePicDescCTA1 = await HomePicDescCTA1.fetchHPDCTA1();
+  const homePicDescCTA2 = await HomePicDescCTA2.fetchHPDCTA2();
 
   return {
     props: {
       headerData,
       footerData,
       heroData,
-      homePicDescCTA1
+      homePicDescCTA1,
+      homePicDescCTA2
     },
   };
 }
@@ -28,7 +31,8 @@ export default function Home(
     headerData,
     footerData,
     heroData,
-    homePicDescCTA1
+    homePicDescCTA1,
+    homePicDescCTA2
   }: any
 ) {
   /* Header Variables */
@@ -56,6 +60,14 @@ export default function Home(
   const descPic1 = homePicDescCTA1.data.attributes.PictureDescriptionCTA.Picture;
   const descCTA1 = homePicDescCTA1.data.attributes.PictureDescriptionCTA.CTA;
 
+  /* Picture Description CTA 2 */
+  const variant2 = homePicDescCTA2.data.attributes.PictureDescriptionCTA2.Variant;
+  const descAlignment2 = homePicDescCTA2.data.attributes.PictureDescriptionCTA2.DescriptionAlignment;
+  const descHeading2 = homePicDescCTA2.data.attributes.PictureDescriptionCTA2.DescriptionHeading;
+  const descText2 = homePicDescCTA2.data.attributes.PictureDescriptionCTA2.DescriptionText;
+  const descPic2 = homePicDescCTA2.data.attributes.PictureDescriptionCTA2.Picture;
+  const descCTA2 = homePicDescCTA2.data.attributes.PictureDescriptionCTA2.CTA;
+
   return (
     <>
       <Header
@@ -80,6 +92,15 @@ export default function Home(
           descriptionText={ descText1 }
           picture={ descPic1 }
           ctaObject={ descCTA1 }
+        />
+
+        <PictureDescriptionCTA
+          variant={ variant2 }
+          descriptionAlignment={ descAlignment2 }
+          descriptionHeading={ descHeading2 }
+          descriptionText={ descText2 }
+          picture={ descPic2 }
+          ctaObject={ descCTA2 }
         />
       </main>
 

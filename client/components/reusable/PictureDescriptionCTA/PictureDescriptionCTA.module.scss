@@ -41,16 +41,20 @@
     
     &--outside {
         flex-flow: column nowrap;
+        
+        #{ $s }__description {
+            position: relative;
+        }
     }
     
     &__description {
         display: flex;
         flex-flow: column nowrap;
         justify-content: center;
-        padding: rem(25) rem(50);
+        padding: rem(50);
         
         @include media('<=xl') {
-            padding: rem(25) rem(25);
+            padding: rem(25);
             width: 100%;
         }
         
@@ -106,5 +110,9 @@
     &__text {
         font-family: $lato;
         margin-bottom: rem(45);
+    }
+    
+    &__button-reset {
+        display: flex;
     }
 }
