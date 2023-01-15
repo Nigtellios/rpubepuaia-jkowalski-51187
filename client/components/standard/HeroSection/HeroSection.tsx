@@ -87,13 +87,21 @@ export default function HeroSection(
 
                 <SplideSlide
                   key={ slide.id }
-                  className={ clsx(styles.hero__slide, utils.container) }
+                  className={ clsx(
+                    styles.hero__slide,
+                    utils.container,
+                    utils[`container--no-margins`]
+                  ) }
                 >
                   <img
                     src={ process.env.NEXT_PUBLIC_URL + slide.SlideImage.data.attributes.url }
                     width={ slide.SlideImage.data.attributes.width }
                     height={ slide.SlideImage.data.attributes.height }
-                    className={ clsx(styles.hero__image, utils.container) }
+                    className={ clsx(
+                      styles.hero__image,
+                      utils.container,
+                      utils[`container--no-margins`]
+                    ) }
                     alt={ "Slider Image" }
                   />
 

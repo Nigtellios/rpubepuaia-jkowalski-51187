@@ -1,7 +1,22 @@
+@import 'styles/settings/init';
+@import 'include-media/dist/_include-media.scss';
+
 .container {
     max-width: 1440px;
     margin-left: auto;
     margin-right: auto;
+    
+    @include media('<=xxl') {
+        margin-left: rem(10);
+        margin-right: rem(10);
+    }
+    
+    &--no-margins {
+        @include media('<=xxl') {
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
 }
 
 .margin {
