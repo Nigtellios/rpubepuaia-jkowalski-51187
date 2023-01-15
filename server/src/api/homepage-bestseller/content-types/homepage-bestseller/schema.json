@@ -1,0 +1,26 @@
+{
+  "kind": "singleType",
+  "collectionName": "homepage_bestsellers",
+  "info": {
+    "singularName": "homepage-bestseller",
+    "pluralName": "homepage-bestsellers",
+    "displayName": "Homepage - Bestseller"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "products": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::product.product"
+    },
+    "Heading": {
+      "type": "text"
+    },
+    "Description": {
+      "type": "richtext"
+    }
+  }
+}
