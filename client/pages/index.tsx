@@ -7,6 +7,8 @@ import HeroSectionData from "../lib/homepage/HeroSectionData";
 import HomePicDescCTA1 from "../lib/homepage/HomePicDescCTA1";
 import PictureDescriptionCTA from "../components/reusable/PictureDescriptionCTA/PictureDescriptionCTA";
 import HomePicDescCTA2 from "../lib/homepage/HomePicDescCTA2";
+import Bestseller from "../components/standard/Bestseller/Bestseller";
+import BestsellerData from "../lib/homepage/BestsellerQueryData";
 
 export async function getServerSideProps () {
   const headerData = await HeaderData.fetchHeaderData();
@@ -14,6 +16,7 @@ export async function getServerSideProps () {
   const heroData = await HeroSectionData.fetchHeroData();
   const homePicDescCTA1 = await HomePicDescCTA1.fetchHPDCTA1();
   const homePicDescCTA2 = await HomePicDescCTA2.fetchHPDCTA2();
+  const bestsellerData = await BestsellerData.fetchBestsellerData();
 
   return {
     props: {
@@ -21,7 +24,8 @@ export async function getServerSideProps () {
       footerData,
       heroData,
       homePicDescCTA1,
-      homePicDescCTA2
+      homePicDescCTA2,
+      bestsellerData
     },
   };
 }
@@ -32,7 +36,8 @@ export default function Home(
     footerData,
     heroData,
     homePicDescCTA1,
-    homePicDescCTA2
+    homePicDescCTA2,
+    bestsellerData
   }: any
 ) {
   /* Header Variables */
