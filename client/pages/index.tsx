@@ -40,19 +40,19 @@ export default function Home(
     bestsellerData
   }: any
 ) {
-  /* Header Variables */
+  /* Header variables */
   const logoUrl = headerData.data.attributes.Logotype.data.attributes.url;
   const navigationItems = headerData.data.attributes.Navigation.Link;
   const navigationButtons = headerData.data.attributes.Navigation.Button;
   const cartButtonIcon = headerData.data.attributes.Navigation.CartButton;
   const mobileButtonIcon = headerData.data.attributes.Navigation.MobileButton;
 
-  /* Footer Variables */
+  /* Footer variables */
   const brandUrl = footerData.data.attributes.FooterBrand.FooterLogotype.data[0].attributes.url;
   const footerCopyright = footerData.data.attributes.FooterBrand.FooterCopyright;
   const footerNavigationLists = footerData.data.attributes.FooterNavLists;
 
-  /* Hero Section Variables */
+  /* Hero Section variables */
   const slider = heroData.data.attributes.Slider;
   const arrowUpIcon = heroData.data.attributes.Slider.ArrowUpIcon.data.attributes.url;
   const arrowDownIcon = heroData.data.attributes.Slider.ArrowDownIcon.data.attributes.url;
@@ -72,6 +72,11 @@ export default function Home(
   const descText2 = homePicDescCTA2.data.attributes.PictureDescriptionCTA2.DescriptionText;
   const descPic2 = homePicDescCTA2.data.attributes.PictureDescriptionCTA2.Picture;
   const descCTA2 = homePicDescCTA2.data.attributes.PictureDescriptionCTA2.CTA;
+
+  /* Bestseller variables */
+  const bestsellerProducts = bestsellerData.data.attributes.products;
+  const bestsellerHeading = bestsellerData.data.attributes.Heading;
+  const bestsellerDescription = bestsellerData.data.attributes.Description;
 
   return (
     <>
@@ -97,6 +102,12 @@ export default function Home(
           descriptionText={ descText1 }
           picture={ descPic1 }
           ctaObject={ descCTA1 }
+        />
+
+        <Bestseller
+          products={ bestsellerProducts }
+          heading={ bestsellerHeading }
+          description={ bestsellerDescription }
         />
 
         <PictureDescriptionCTA

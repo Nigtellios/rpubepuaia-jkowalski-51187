@@ -1,0 +1,39 @@
+@import 'styles/settings/init';
+@import 'include-media/dist/_include-media.scss';
+
+.bestseller {
+    margin-top: rem(100);
+    margin-bottom: rem(100);
+    position: relative;
+    
+    @include media('<=xl') {
+        margin-top: rem(50);
+        margin-bottom: rem(50);
+    }
+    
+    &__heading-box {
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: flex-start;
+        justify-content: center;
+        margin-bottom: rem(50);
+        
+        @include media('<=xl') {
+            margin-bottom: rem(25);
+        }
+    }
+    
+    &__heading {
+        margin-bottom: rem(25);
+    }
+    
+    &__description {
+        margin-bottom: rem(50);
+    }
+    
+    &__products {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: flex-start;
+    }
+}
