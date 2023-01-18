@@ -81,8 +81,7 @@
         }
         
         #{$s}__price-box-price {
-            color: $sold;
-            text-decoration: line-through;
+            color: $upcoming;
         }
         
         #{$s}__price-box-sale-price {
