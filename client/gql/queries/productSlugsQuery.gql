@@ -1,0 +1,12 @@
+query ProductSlugs {
+    products(pagination: {
+        limit: 100
+    }) {
+        data {
+            id
+            attributes {
+                Slug
+            }
+        }
+    }
+}
