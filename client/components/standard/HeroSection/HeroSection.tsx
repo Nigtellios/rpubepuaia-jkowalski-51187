@@ -112,7 +112,7 @@ export default function HeroSection(
                       {
                         heroSlider.ReusableButton[1] &&
                         <ReusableButton
-                          className={ heroSlider.ReusableButton[1].ButtonStyle }
+                          additionalClass={ heroSlider.ReusableButton[1].ButtonStyle }
                           icon={ heroSlider.ReusableButton[1].ButtonIcon.data.attributes.url }
                           url={ heroSlider.ReusableButton[1].ButtonLink }
                         />
@@ -130,7 +130,7 @@ export default function HeroSection(
                       {
                         heroSlider.ReusableButton[0] &&
                         <ReusableButton
-                          className={ heroSlider.ReusableButton[0].ButtonStyle }
+                          additionalClass={ heroSlider.ReusableButton[0].ButtonStyle }
                           icon={ heroSlider.ReusableButton[0].ButtonIcon.data.attributes.url }
                           url={ heroSlider.ReusableButton[0].ButtonLink }
                         />

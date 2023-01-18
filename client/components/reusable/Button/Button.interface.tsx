@@ -7,5 +7,7 @@ export interface IReusableButton {
   icon?: object;
   text?: string;
   url?: string;
-  className: string;
+  additionalClass?: string;
+
+  props?: any[];
 }

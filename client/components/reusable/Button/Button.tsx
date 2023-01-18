@@ -2,16 +2,16 @@ import Link from 'next/link';
 import { IReusableButton } from "./Button.interface";
 import styles from './Button.module.scss';
 import clsx from "clsx";
-
 export default function ReusableButton(
   {
     icon,
     url,
     text,
-    className
+    additionalClass,
+    ...props
   }: IReusableButton
 ) {
-  const inputStyle = `button--` + `${ className }`;
+  const inputStyle = `button--` + `${ additionalClass }`;
 
   return (
     <Link href={ `${url}` }>
@@ -19,6 +19,7 @@ export default function ReusableButton(
         styles.button,
         styles[inputStyle]
       )}
+         { ...props }
       >
         { icon &&
           <img

@@ -5,7 +5,4 @@ export interface IProductBox {
   salePrice?: number;
   slug: string
   mainPhoto: any;
-  gallery: any;
-  additionalInfo?: string;
-  marketing: object;
 }

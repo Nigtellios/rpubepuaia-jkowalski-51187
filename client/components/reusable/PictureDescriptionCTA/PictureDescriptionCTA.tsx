@@ -54,7 +54,7 @@ export default function PictureDescriptionCTA(
             ctaObject &&
             <span className={ styles[`picture-description-cta__button-reset`] }>
               <ReusableButton
-                className={ ctaObject.ButtonStyle as string }
+                additionalClass={ ctaObject.ButtonStyle as string }
                 url={ ctaObject.ButtonLink }
                 text={ ctaObject.ButtonText }
               />

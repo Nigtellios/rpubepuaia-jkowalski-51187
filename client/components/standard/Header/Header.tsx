@@ -113,7 +113,7 @@ export default function Header(
                 navigationButtonsList.map((button: IReusableButton) => (
 
                   <ReusableButton
-                    className={ button.ButtonStyle as string }
+                    additionalClass={ button.ButtonStyle as string }
                     icon={ button.ButtonIcon?.data?.attributes?.url }
                     text={ button.ButtonText }
                     url={ button.ButtonLink }
@@ -183,7 +183,7 @@ export default function Header(
                 navigationButtonsList.map((button: IReusableButton) => (
 
                   <ReusableButton
-                    className={ button.ButtonStyle as string }
+                    additionalClass={ button.ButtonStyle as string }
                     icon={ button.ButtonIcon?.data?.attributes?.url }
                     text={ button.ButtonText }
                     url={ button.ButtonLink }

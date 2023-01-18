@@ -6,6 +6,9 @@ $dark: #1E1E1E;
 $gray: #C6C6C6;
 $main: #1E4364;
 $accent: #F79F1F;
+$sale: #e74c3c;
+$sold: #7f8c8d;
+$upcoming: #8e44ad;
         
 /* Effects */
 $nav-bcg: linear-gradient(
@@ -17,6 +20,8 @@ $nav-bcg: linear-gradient(
 $nav-border: 0 0 rem(12) rgba(0, 0, 0, 0.1);
 $footer-border: 0 rem(-8) rem(12) rgba(0, 0, 0, 0.1);
 $button-shadow: rem(5) rem(5) rem(5) rgba(0, 0, 0, 0.05);
+
+$standard-shadow: rem(5) rem(5) rem(15) rgba(0, 0, 0, 0.05);
 
 $button-radius: rem(5);
 

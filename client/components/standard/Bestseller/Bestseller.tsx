@@ -43,8 +43,6 @@ export default function Bestseller(
                 salePrice={ product.attributes.SalePrice }
                 slug={ product.attributes.Slug }
                 mainPhoto={ product.attributes.MainPhoto }
-                gallery={ product.attributes.Gallery }
-                marketing={ product.attributes.Marketing }
               />
 
             ))

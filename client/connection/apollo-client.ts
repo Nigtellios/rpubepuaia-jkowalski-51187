@@ -1,7 +1,9 @@
-import { ApolloClient, InMemoryCache } from '@apollo/client';
+import { ApolloClient, HttpLink, InMemoryCache } from "@apollo/client";
 
 const client = new ApolloClient({
-  uri: process.env.NEXT_PUBLIC_GRAPHQL_URL,
+  link: new HttpLink({
+    uri: process.env.NEXT_PUBLIC_GRAPHQL_URL,
+  }),
   cache: new InMemoryCache(),
   ssrMode: true,
 });
