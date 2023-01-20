@@ -29,7 +29,9 @@ export default function BasicLayout(
         navigationItems={ navigationItems }
       />
 
-      { children }
+        <main>
+          { children }
+        </main>
 
       <Footer
         footerBrandUrl={ brandUrl }

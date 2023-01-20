@@ -18,7 +18,8 @@ export async function getStaticProps({ params }: any) {
 
   return {
     props: {
-      productData
+      productData,
+      fallback: "blocking"
     }
   }
 }

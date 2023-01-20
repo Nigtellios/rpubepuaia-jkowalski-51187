@@ -9,7 +9,7 @@ import Bestseller from "../components/standard/Bestseller/Bestseller";
 import BestsellerData from "../lib/homepage/BestsellerQueryData";
 import BasicLayout from "../components/layouts/Basic/Basic";
 
-export async function getServerSideProps () {
+export async function getServerSideProps() {
   const headerData = await HeaderData.fetchHeaderData();
   const footerData = await FooterData.fetchFooterData();
   const heroData = await HeroSectionData.fetchHeroData();
@@ -25,7 +25,7 @@ export async function getServerSideProps () {
       homePicDescCTA1,
       homePicDescCTA2,
       bestsellerData
-    },
+    }
   };
 }
 
@@ -68,41 +68,39 @@ export default function Home(
   return (
     <>
       <BasicLayout
-        headerData={ headerData }
-        footerData={ footerData }
+        headerData={headerData}
+        footerData={footerData}
       >
-        <main>
-          <HeroSection
-            slider={ slider }
-            arrowUpIcon={ arrowUpIcon }
-            arrowDownIcon={ arrowDownIcon }
-          />
+        <HeroSection
+          slider={slider}
+          arrowUpIcon={arrowUpIcon}
+          arrowDownIcon={arrowDownIcon}
+        />
 
-          <PictureDescriptionCTA
-            variant={ variant1 }
-            descriptionAlignment={ descAlignment1 }
-            descriptionHeading={ descHeading1 }
-            descriptionText={ descText1 }
-            picture={ descPic1 }
-            ctaObject={ descCTA1 }
-          />
+        <PictureDescriptionCTA
+          variant={variant1}
+          descriptionAlignment={descAlignment1}
+          descriptionHeading={descHeading1}
+          descriptionText={descText1}
+          picture={descPic1}
+          ctaObject={descCTA1}
+        />
 
-          <Bestseller
-            products={ bestsellerProducts }
-            heading={ bestsellerHeading }
-            description={ bestsellerDescription }
-          />
+        <Bestseller
+          products={bestsellerProducts}
+          heading={bestsellerHeading}
+          description={bestsellerDescription}
+        />
 
-          <PictureDescriptionCTA
-            variant={ variant2 }
-            descriptionAlignment={ descAlignment2 }
-            descriptionHeading={ descHeading2 }
-            descriptionText={ descText2 }
-            picture={ descPic2 }
-            ctaObject={ descCTA2 }
-          />
-        </main>
+        <PictureDescriptionCTA
+          variant={variant2}
+          descriptionAlignment={descAlignment2}
+          descriptionHeading={descHeading2}
+          descriptionText={descText2}
+          picture={descPic2}
+          ctaObject={descCTA2}
+        />
       </BasicLayout>
     </>
-  )
+  );
 }
