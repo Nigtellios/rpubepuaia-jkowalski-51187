@@ -8,6 +8,8 @@ const HeaderData = {
         query: headerQuery,
       });
 
+      console.log(data.header)
+
       return data.header;
     } catch (error) {
       let errorMessage = '';

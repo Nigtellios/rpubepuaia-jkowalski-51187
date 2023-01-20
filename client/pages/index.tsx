@@ -1,6 +1,4 @@
-import Header from "../components/standard/Header/Header";
 import HeaderData from "../lib/HeaderData";
-import Footer from "../components/standard/Footer/Footer";
 import FooterData from "../lib/FooterData";
 import HeroSection from "../components/standard/HeroSection/HeroSection";
 import HeroSectionData from "../lib/homepage/HeroSectionData";
@@ -9,6 +7,7 @@ import PictureDescriptionCTA from "../components/reusable/PictureDescriptionCTA/
 import HomePicDescCTA2 from "../lib/homepage/HomePicDescCTA2";
 import Bestseller from "../components/standard/Bestseller/Bestseller";
 import BestsellerData from "../lib/homepage/BestsellerQueryData";
+import BasicLayout from "../components/layouts/Basic/Basic";
 
 export async function getServerSideProps () {
   const headerData = await HeaderData.fetchHeaderData();
@@ -40,18 +39,6 @@ export default function Home(
     bestsellerData
   }: any
 ) {
-  /* Header variables */
-  const logoUrl = headerData.data.attributes.Logotype.data.attributes.url;
-  const navigationItems = headerData.data.attributes.Navigation.Link;
-  const navigationButtons = headerData.data.attributes.Navigation.Button;
-  const cartButtonIcon = headerData.data.attributes.Navigation.CartButton;
-  const mobileButtonIcon = headerData.data.attributes.Navigation.MobileButton;
-
-  /* Footer variables */
-  const brandUrl = footerData.data.attributes.FooterBrand.FooterLogotype.data[0].attributes.url;
-  const footerCopyright = footerData.data.attributes.FooterBrand.FooterCopyright;
-  const footerNavigationLists = footerData.data.attributes.FooterNavLists;
-
   /* Hero Section variables */
   const slider = heroData.data.attributes.Slider;
   const arrowUpIcon = heroData.data.attributes.Slider.ArrowUpIcon.data.attributes.url;
@@ -80,51 +67,42 @@ export default function Home(
 
   return (
     <>
-      <Header
-        logoUrl={ logoUrl }
-        navigationItems={ navigationItems }
-        navigationButtons={ navigationButtons }
-        cartButtonIcon={ cartButtonIcon }
-        mobileButtonIcon={ mobileButtonIcon }
-      />
+      <BasicLayout
+        headerData={ headerData }
+        footerData={ footerData }
+      >
+        <main>
+          <HeroSection
+            slider={ slider }
+            arrowUpIcon={ arrowUpIcon }
+            arrowDownIcon={ arrowDownIcon }
+          />
 
-      <main>
-        <HeroSection
-          slider={ slider }
-          arrowUpIcon={ arrowUpIcon }
-          arrowDownIcon={ arrowDownIcon }
-        />
+          <PictureDescriptionCTA
+            variant={ variant1 }
+            descriptionAlignment={ descAlignment1 }
+            descriptionHeading={ descHeading1 }
+            descriptionText={ descText1 }
+            picture={ descPic1 }
+            ctaObject={ descCTA1 }
+          />
 
-        <PictureDescriptionCTA
-          variant={ variant1 }
-          descriptionAlignment={ descAlignment1 }
-          descriptionHeading={ descHeading1 }
-          descriptionText={ descText1 }
-          picture={ descPic1 }
-          ctaObject={ descCTA1 }
-        />
+          <Bestseller
+            products={ bestsellerProducts }
+            heading={ bestsellerHeading }
+            description={ bestsellerDescription }
+          />
 
-        <Bestseller
-          products={ bestsellerProducts }
-          heading={ bestsellerHeading }
-          description={ bestsellerDescription }
-        />
-
-        <PictureDescriptionCTA
-          variant={ variant2 }
-          descriptionAlignment={ descAlignment2 }
-          descriptionHeading={ descHeading2 }
-          descriptionText={ descText2 }
-          picture={ descPic2 }
-          ctaObject={ descCTA2 }
-        />
-      </main>
-
-      <Footer
-        footerBrandUrl={ brandUrl }
-        footerCopyright={ footerCopyright }
-        footerNavigationLists={ footerNavigationLists }
-      />
+          <PictureDescriptionCTA
+            variant={ variant2 }
+            descriptionAlignment={ descAlignment2 }
+            descriptionHeading={ descHeading2 }
+            descriptionText={ descText2 }
+            picture={ descPic2 }
+            ctaObject={ descCTA2 }
+          />
+        </main>
+      </BasicLayout>
     </>
   )
 }

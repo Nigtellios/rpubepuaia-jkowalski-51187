@@ -30,11 +30,11 @@ export default function Product(
 ) {
 
   return (
-    <div>
+    <main>
       <h1>{ productData.Name }</h1>
       <h2>
         <Link href="/">Home</Link>
       </h2>
-    </div>
+    </main>
   );
 }
