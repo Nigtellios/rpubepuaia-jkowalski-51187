@@ -29,12 +29,16 @@ export default function Products(
     allProductsData
   }: any
 ) {
-  const allProducts = allProductsData;
+  let allProducts = allProductsData;
 
   let formData = {
     priceBottom: 0,
     priceTop: 0,
     mode: ""
+  }
+
+  const filterProducts = (inputObject: object) => {
+    console.log(inputObject);
   }
 
   const handleSubmit = (event: any) => {
@@ -44,14 +48,8 @@ export default function Products(
     formData.priceTop = event.target.priceTop.value;
     formData.mode = event.target.filterMode.value;
 
-    console.log(formData)
+    console.log(allProducts.data)
   }
-
-  const filterProducts = () => {
-    console.log("xd")
-  }
-
-  const filteredProducts = allProducts.data.filter(filterProducts);
 
   return (
     <BasicLayout
@@ -62,7 +60,6 @@ export default function Products(
         utils.container,
         styles.products
       )}>
-
         <form
           className={styles.products__filter}
           onSubmit={handleSubmit}
