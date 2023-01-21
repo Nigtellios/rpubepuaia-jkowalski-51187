@@ -21,25 +21,31 @@ time, mark, audio, video {
     font: inherit;
     vertical-align: baseline;
 }
+
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
     display: block;
 }
+
 body {
     line-height: 1;
 }
+
 ol, ul {
     list-style: none;
 }
+
 blockquote, q {
     quotes: none;
 }
+
 blockquote:before, blockquote:after,
 q:before, q:after {
     content: '';
     content: none;
 }
+
 table {
     border-collapse: collapse;
     border-spacing: 0;
@@ -58,7 +64,7 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
     font-size: rem(48);
     line-height: rem(58);
-    
+
     @include media('<=xl') {
         font-size: rem(38);
         line-height: rem(48);
@@ -68,7 +74,7 @@ h1 {
 h2 {
     font-size: rem(38);
     line-height: rem(48);
-    
+
     @include media('<=xl') {
         font-size: rem(28);
         line-height: rem(38);
@@ -78,7 +84,7 @@ h2 {
 h3 {
     font-size: rem(32);
     line-height: rem(42);
-    
+
     @include media('<=xl') {
         font-size: rem(22);
         line-height: rem(32);
@@ -88,7 +94,7 @@ h3 {
 h4 {
     font-size: rem(28);
     line-height: rem(38);
-    
+
     @include media('<=xl') {
         font-size: rem(18);
         line-height: rem(28);
@@ -98,7 +104,7 @@ h4 {
 h5 {
     font-size: rem(24);
     line-height: rem(34);
-    
+
     @include media('<=xl') {
         font-size: rem(18);
         line-height: rem(28);
@@ -108,7 +114,7 @@ h5 {
 h6 {
     font-size: rem(20);
     line-height: rem(30);
-    
+
     @include media('<=xl') {
         font-size: rem(18);
         line-height: rem(28);
@@ -130,6 +136,20 @@ a {
     box-sizing: border-box;
 }
 
+$textInputs: 'input[type="text"], input[type="search"], input[type="number"], input[type="email"], input[type="password"], textarea';
 
+#{$textInputs} {
+    border: none;
+    border-bottom: rem(1) solid $dark;
+    border-left: rem(3) solid $accent;
+    padding: rem(5) rem(10);
+}
+
+select {
+    border: none;
+    border-bottom: rem(1) solid $dark;
+    border-left: rem(3) solid $accent;
+    padding: rem(5) rem(10);
+}
 
 /* Include Media usage: https://eduardoboucas.github.io/include-media/#documentation */

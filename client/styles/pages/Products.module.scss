@@ -9,4 +9,70 @@
         margin-top: rem(50);
         margin-bottom: rem(50);
     }
+
+    &__filter {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: flex-start;
+        margin-bottom: rem(100);
+
+        @include media('<=xl') {
+            margin-bottom: rem(50);
+        }
+
+        &-submit {
+            margin-left: rem(15);
+            margin-bottom: rem(15);
+            box-shadow: $standard-shadow;
+            border-bottom: rem(5) solid transparent;
+            border-top-left-radius: rem(10);
+            border-top-right-radius: rem(10);
+
+            input[type="submit"] {
+                border: none;
+                padding: rem(10) rem(15);
+                display: flex;
+                height: 100%;
+                width: 100%;
+                background: $white;
+                border-top-left-radius: rem(10);
+                border-top-right-radius: rem(10);
+
+                &:hover, &:focus {
+                    outline: none;
+                    background: $accent;
+                    color: $white;
+                    cursor: pointer;
+                }
+            }
+        }
+
+        &-item {
+            display: flex;
+            flex-flow: column nowrap;
+            align-items: flex-start;
+            justify-content: center;
+            margin-left: rem(15);
+            margin-bottom: rem(15);
+            padding: rem(15) rem(25);
+            border-top-left-radius: rem(10);
+            border-top-right-radius: rem(10);
+            box-shadow: $standard-shadow;
+            border-bottom: rem(5) solid transparent;
+
+            &:hover, &:focus {
+                border-bottom: rem(5) solid $accent;
+            }
+
+            label {
+                margin-bottom: rem(15);
+            }
+        }
+    }
+
+    &__grid {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: flex-start;
+    }
 }

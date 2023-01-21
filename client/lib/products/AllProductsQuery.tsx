@@ -2,7 +2,9 @@ import { gql } from '@apollo/client';
 
 const allProductsQuery = gql`
     query AllProductsData {
-        products {
+        products(pagination: {
+            limit: 100
+        }) {
             data {
                 id
                 attributes {

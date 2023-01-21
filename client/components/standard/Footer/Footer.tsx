@@ -67,7 +67,7 @@ export default function Footer(
                               key={ item.id }
                             >
                               <Link
-                                href={ `${ item.LinkURL }` }
+                                href={ process.env.NEXT_PUBLIC_FRONT_URL + `${ item.LinkURL }` }
                               >
                                 { item.LinkName }
                               </Link>

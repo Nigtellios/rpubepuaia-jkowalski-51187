@@ -96,7 +96,7 @@ export default function Header(
                       key={ item.id }
                       className={ styles[`navigation__items-item`] }
                     >
-                      <Link href={ `${ item.LinkURL }` }>
+                      <Link href={ process.env.NEXT_PUBLIC_FRONT_URL + `${ item.LinkURL }` }>
                         { item.LinkName }
                       </Link>
                     </li>
@@ -165,7 +165,7 @@ export default function Header(
                       className={ styles[`navigation__items-item`] }
                     >
                       <Link
-                        href={ `${ item.LinkURL }` }
+                        href={ process.env.NEXT_PUBLIC_FRONT_URL + `${ item.LinkURL }` }
                       >
                         { item.LinkName }
                       </Link>
