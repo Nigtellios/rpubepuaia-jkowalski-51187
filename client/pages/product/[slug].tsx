@@ -254,7 +254,7 @@ export default function Product(
               </span>
 
               {
-                productData.categories &&
+                productData.categories.data.length > 0 &&
                 <div className={styles.product__categories}>
 
                   <h6 className={styles[`product__categories-title`]}>
