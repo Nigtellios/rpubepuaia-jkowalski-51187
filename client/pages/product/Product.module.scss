@@ -1,0 +1,306 @@
+@import 'styles/settings/init';
+@import 'include-media/dist/_include-media.scss';
+
+.product {
+    $s: &;
+    margin-top: rem(100);
+    margin-bottom: rem(100);
+
+    &--sale {
+        #{$s}__title {
+            border-bottom: rem(3) solid $sale;
+        }
+
+        #{$s}__price-box-price {
+            color: $sold;
+            text-decoration: line-through;
+        }
+
+        #{$s}__price-box-sale-price {
+            color: $sale;
+        }
+
+        #{$s}__button {
+            background: $sale;
+            color: $white;
+
+            &:hover, &:focus {
+                background: $white;
+                color: $sale;
+            }
+        }
+    }
+
+    &--sold_out {
+        #{$s}__title {
+            border-bottom: rem(3) solid $sold;
+        }
+
+        #{$s}__price-box-price {
+            color: $sold;
+            text-decoration: line-through;
+        }
+
+        #{$s}__price-box-sale-price {
+            color: $sold;
+        }
+
+        #{$s}__button {
+            background: $sold;
+            color: $white;
+        }
+    }
+
+    &--upcoming {
+        #{$s}__title {
+            border-bottom: rem(3) solid $upcoming;
+        }
+
+        #{$s}__price-box-price {
+            color: $upcoming;
+        }
+
+        #{$s}__price-box-sale-price {
+            color: $upcoming;
+        }
+
+        #{$s}__button {
+            background: $upcoming;
+            color: $white;
+        }
+    }
+
+    &--standard {
+        #{$s}__button {
+            background: $dark;
+            color: $white;
+
+            &:hover, &:focus {
+                background: $white;
+                color: $dark;;
+            }
+        }
+    }
+
+    &__wrapper {
+        display: flex;
+        flex-flow: column nowrap;
+    }
+
+    &__info {
+        display: flex;
+        flex-flow: row nowrap;
+        margin-bottom: rem(100);
+
+        @include media('<=xl') {
+            flex-flow: column nowrap;
+        }
+
+        &-image {
+            width: 50%;
+            max-height: rem(350);
+
+            @include media('<=xl') {
+                width: 100%;
+                margin-bottom: rem(100);
+            }
+        }
+
+        &-content {
+            width: 50%;
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content: center;
+            align-items: flex-start;
+            padding: rem(15);
+
+            @include media('<=xl') {
+                width: 100%;
+            }
+        }
+    }
+
+    &__track {
+        border-radius: rem(10);
+    }
+
+    &__slide {
+        display: block;
+        width: 100%;
+        height: rem(350);
+        margin-bottom: rem(25);
+        position: relative;
+        padding: rem(30);
+    }
+
+    &__title {
+        margin-bottom: rem(15);
+        display: flex;
+    }
+
+    &__description {
+        margin-bottom: rem(25);
+    }
+
+    &__image {
+        width: 100%;
+        height: 100%;
+        padding: rem(15);
+        object-fit: contain;
+    }
+
+    &__arrows {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        align-items: center;
+        width: auto;
+        margin-left: auto;
+        margin-right: auto;
+        padding: .5rem;
+        z-index: 2;
+    }
+
+    &__arrow {
+        position: relative !important;
+        left: unset !important;
+        right: unset !important;
+        bottom: unset !important;
+        top: unset !important;
+        transform: none !important;
+        background: $white !important;
+        border-radius: rem(10) !important;
+        opacity: 1 !important;
+        box-shadow: $button-shadow !important;
+        height: rem(35) !important;
+        width: rem(35) !important;
+        transition: .25s linear all;
+
+        &:disabled {
+            opacity: .65 !important;
+        }
+
+        &:hover, &:focus, &:active {
+            background: $dark !important;
+
+            img {
+                filter: invert(1) !important;
+            }
+        }
+
+        &--next {
+            transform: rotate(90deg) !important;
+            margin-left: rem(25);
+        }
+
+        &--prev {
+            transform: rotate(90deg) !important;
+            margin-right: rem(25);
+        }
+    }
+
+    &__pagination {
+        position: relative !important;
+        left: unset !important;
+        right: unset !important;
+        bottom: unset !important;
+        top: unset !important;
+        flex-flow: row nowrap !important;
+        height: rem(35);
+        padding: rem(10) rem(20) !important;
+        background: $white;
+        border-radius: rem(10);
+        box-shadow: $button-shadow;
+
+        li[role="presentation"] {
+            button {
+                background: $gray !important;
+                width: rem(15) !important;
+                border-radius: rem(5) !important;
+                margin-left: rem(8) !important;
+                margin-right: rem(8) !important;
+                opacity: 1 !important;
+
+                &[aria-selected="true"] {
+                    background: $dark !important;
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    &__price-box {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        font-size: rem(20);
+        font-weight: 400;
+        margin-bottom: rem(25);
+
+        &-price {
+            font-weight: 600;
+        }
+
+        &-sale-price {
+            font-weight: 600;
+            margin-right: rem(5);
+        }
+    }
+
+    &__tag {
+        padding: rem(5) rem(10);
+        margin-right: rem(10);
+        border-radius: rem(5);
+
+        &--sale {
+            background-color: $sale;
+            color: $white;
+        }
+
+        &--sold {
+            background-color: $sold;
+            color: $white;
+        }
+
+        &--upcoming {
+            background-color: $upcoming;
+            color: $white;
+        }
+    }
+
+    &__button {
+        background: $main;
+        font-weight: 600;
+        letter-spacing: .025rem;
+        cursor: pointer;
+        margin-bottom: rem(25);
+
+        &:hover, &:focus {
+            box-shadow: $standard-shadow;
+        }
+    }
+
+    &__reset {
+        display: flex;
+    }
+
+    &__categories {
+        &-title {
+            margin-bottom: rem(10);
+        }
+
+        &-wrapper {
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: flex-start;
+            align-items: center;
+            margin-bottom: rem(25);
+        }
+    }
+
+    &__category {
+        padding: rem(5) rem(10);
+        border-radius: rem(5);
+        border: rem(1) solid $dark;
+    }
+}

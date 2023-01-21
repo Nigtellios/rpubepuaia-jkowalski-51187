@@ -1,5 +1,5 @@
 import client from "../connection/apollo-client";
-import footerQuery from "../components/standard/Footer/FooterQuery";
+import footerQuery from "./FooterQuery";
 
 const FooterData = {
   fetchFooterData: async () => {

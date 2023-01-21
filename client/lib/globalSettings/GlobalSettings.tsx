@@ -1,14 +1,14 @@
 import client from "../../connection/apollo-client";
-import bestsellerQuery from "./BestsellerQuery";
+import globalSettingsQuery from "./GlobalSettingsQuery";
 
-const BestsellerData = {
-  fetchBestsellerData: async () => {
+const GlobalSettings = {
+  fetchGlobalData: async () => {
     try {
       const { data } = await client.query({
-        query: bestsellerQuery,
+        query: globalSettingsQuery,
       });
 
-      return data.homepageBestseller;
+      return data.globalSetting.data.attributes;
     } catch (error) {
       let errorMessage = '';
 
@@ -21,4 +21,4 @@ const BestsellerData = {
   }
 }
 
-export default BestsellerData;
+export default GlobalSettings;
