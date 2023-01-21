@@ -29,7 +29,8 @@ export default function Products(
     allProductsData
   }: any
 ) {
-  let allProducts = allProductsData;
+  const allProducts = allProductsData;
+
   let formData = {
     priceBottom: 0,
     priceTop: 0,
@@ -38,10 +39,19 @@ export default function Products(
 
   const handleSubmit = (event: any) => {
     event.preventDefault();
-    console.log(((formData.priceBottom as unknown) as HTMLInputElement).value)
-    console.log(((formData.priceTop as unknown) as HTMLInputElement).value)
-    console.log(((formData.mode as unknown) as HTMLInputElement).value)
+
+    formData.priceBottom = event.target.priceBottom.value;
+    formData.priceTop = event.target.priceTop.value;
+    formData.mode = event.target.filterMode.value;
+
+    console.log(formData)
   }
+
+  const filterProducts = () => {
+    console.log("xd")
+  }
+
+  const filteredProducts = allProducts.data.filter(filterProducts);
 
   return (
     <BasicLayout
@@ -58,33 +68,29 @@ export default function Products(
           onSubmit={handleSubmit}
         >
           <div className={styles[`products__filter-item`]}>
-            <label htmlFor="filter-price-bottom">
+            <label htmlFor="priceBottom">
               Minimum price (in yang):
             </label>
             <input
-              name="filter-price-bottom"
+              name="priceBottom"
               type="number"
-              ref={node => ((formData.priceBottom as unknown) = node)}
             />
           </div>
 
           <div className={styles[`products__filter-item`]}>
-            <label htmlFor="filter-price-top">
+            <label htmlFor="priceTop">
               Maximum price (in yang):
             </label>
             <input
-              name="filter-price-top"
+              name="priceTop"
               type="number"
-              ref={node => ((formData.priceTop as unknown) = node)}
             />
           </div>
 
           <div className={styles[`products__filter-item`]}>
-            <label htmlFor="filter-mode">Product mode:</label>
+            <label htmlFor="filterMode">Product mode:</label>
             <select
-              name="cars"
-              id="cars"
-              ref={node => ((formData.mode as unknown) = node)}
+              name="filterMode"
             >
               <option value="sale">Sale</option>
               <option value="sold_out">Sold</option>
