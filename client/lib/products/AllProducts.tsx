@@ -1,14 +1,14 @@
-import client from "../connection/apollo-client";
-import headerQuery from "./HeaderQuery";
+import client from "../../connection/apollo-client";
+import allProductsQuery from "./AllProductsQuery";
 
-const HeaderData = {
-  fetchHeaderData: async () => {
+const AllProducts = {
+  fetchAllProducts: async () => {
     try {
       const { data } = await client.query({
-        query: headerQuery,
+        query: allProductsQuery,
       });
 
-      return data.header;
+      return data.products;
     } catch (error) {
       let errorMessage = '';
 
@@ -21,4 +21,4 @@ const HeaderData = {
   }
 }
 
-export default HeaderData;
+export default AllProducts;
