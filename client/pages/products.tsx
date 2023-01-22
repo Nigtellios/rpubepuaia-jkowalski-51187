@@ -109,7 +109,7 @@ export default function Products(
           </div>
 
           <div className={styles[`products__filter-item`]}>
-            <label htmlFor="filterMode">Product mode:</label>
+            <label htmlFor="filterMode">Products type:</label>
             <select
               name="filterMode"
             >
