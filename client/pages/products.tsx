@@ -152,9 +152,22 @@ export default function Products(
         {
           products.length === 0 &&
           <div className={styles.products__empty}>
-            <h2>
-              No products found.
-            </h2>
+
+              {
+                formData.priceTop < 200 &&
+                <span>
+                  <h2> No products found.</h2>
+                  <h2> We don't have products with this mode cheaper than 200 yang. </h2>
+                </span>
+              }
+
+            {
+              formData.priceTop >= 200 &&
+              <span>
+                <h2> No products found.</h2>
+              </span>
+            }
+
           </div>
         }
 
