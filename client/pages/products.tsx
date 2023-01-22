@@ -6,6 +6,7 @@ import clsx from "clsx";
 import styles from "../styles/pages/Products.module.scss";
 import AllProducts from "../lib/products/AllProducts";
 import ProductBox from "../components/reusable/ProductBox/ProductBox";
+import { useEffect, useState } from "react";
 
 export async function getStaticProps() {
   const headerData = await HeaderData.fetchHeaderData();
@@ -22,6 +23,12 @@ export async function getStaticProps() {
   };
 }
 
+export type FormData = {
+  priceBottom: number,
+  priceTop: number,
+  mode: string
+}
+
 export default function Products(
   {
     headerData,
@@ -29,27 +36,44 @@ export default function Products(
     allProductsData
   }: any
 ) {
-  let allProducts = allProductsData;
+  const [products, setProducts] = useState(allProductsData);
 
-  let formData = {
+  let formData: FormData = {
     priceBottom: 0,
     priceTop: 0,
     mode: ""
-  }
+  };
 
-  const filterProducts = (inputObject: object) => {
-    console.log(inputObject);
-  }
+  useEffect(() => {
+    setProducts(allProductsData.data);
+  }, [allProductsData]);
+
+  const filterProducts = (inputObject: FormData) => {
+    inputObject = formData;
+
+    const filteredProducts = allProductsData.data.filter((value: any) => {
+      return value.attributes.Price >= inputObject.priceBottom &&
+        value.attributes.Price <= inputObject.priceTop &&
+        value.attributes.Mode === inputObject.mode;
+    });
+
+    if (inputObject.mode === "all") {
+      setProducts(allProductsData.data);
+      return;
+    } else {
+      setProducts(filteredProducts);
+    }
+  };
 
   const handleSubmit = (event: any) => {
     event.preventDefault();
 
-    formData.priceBottom = event.target.priceBottom.value;
-    formData.priceTop = event.target.priceTop.value;
-    formData.mode = event.target.filterMode.value;
+    formData.priceBottom = event.target.priceBottom.value || 0;
+    formData.priceTop = event.target.priceTop.value || 99999;
+    formData.mode = event.target.filterMode.value || "";
 
-    console.log(allProducts.data)
-  }
+    filterProducts(formData);
+  };
 
   return (
     <BasicLayout
@@ -89,6 +113,7 @@ export default function Products(
             <select
               name="filterMode"
             >
+              <option value="all">All Products</option>
               <option value="sale">Sale</option>
               <option value="sold_out">Sold</option>
               <option value="upcoming">Upcoming</option>
@@ -97,16 +122,16 @@ export default function Products(
           </div>
 
           <div className={styles[`products__filter-submit`]}>
-            <input name="filter-price-top" type="submit" value="Filter"/>
+            <input name="filter-price-top" type="submit" value="Filter" />
           </div>
         </form>
 
         {
-          allProducts.data.length > 0 &&
+          products.length > 0 &&
           <div className={styles.products__grid}>
 
             {
-              allProducts.data.map((product: any) => (
+              products.map((product: any) => (
 
                 <ProductBox
                   key={product.id}
@@ -121,6 +146,15 @@ export default function Products(
               ))
             }
 
+          </div>
+        }
+
+        {
+          products.length === 0 &&
+          <div className={styles.products__empty}>
+            <h2>
+              No products found.
+            </h2>
           </div>
         }
 
