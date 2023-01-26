@@ -1,5 +1,5 @@
 import utils from '../../styles/modules/utilities/utility.module.scss';
-import styles from '../../styles/pages/Login.module.scss';
+import styles from '../../styles/pages/Register.module.scss';
 import BasicLayout from "../../components/layouts/Basic/Basic";
 import HeaderData from "../../lib/HeaderData";
 import FooterData from "../../lib/FooterData";
@@ -7,7 +7,7 @@ import { useSession } from "next-auth/react";
 import { useEffect } from "react";
 import clsx from "clsx";
 import { useRouter } from "next/router";
-import { signInUser } from "../../services/auth";
+import { registerUser } from "../../services/auth";
 
 export async function getStaticProps() {
   const headerData = await HeaderData.fetchHeaderData();
@@ -36,21 +36,19 @@ export default function Register(
     event.preventDefault();
 
     try {
-      const result = await signInUser( {
+      const result = await registerUser( {
+        username: event.target.username.value || '',
         email: event.target.email.value || '',
         password: event.target.password.value || '',
       });
 
-      console.log(result)
-
       if (result.jwt && result.user.username !== null) {
-        console.log(result);
+        await router.replace(`${process.env.NEXT_PUBLIC_FRONT_URL}/auth/register-success`);
 
-        await router.replace(`${process.env.NEXT_PUBLIC_FRONT_URL}/`);
         return;
       }
     } catch (error) {
-      alert('Credentials are not valid!');
+      alert('Please check if your credentials are properly typed!');
     }
   };
   
@@ -71,11 +69,15 @@ export default function Register(
     >
       <section className={ clsx(
         utils.container,
-        styles.login
+        styles.register
       ) }>
         <form className={styles.form} onSubmit={onSubmit}>
+          <label htmlFor="username">Username</label>
+          <input id="username" name="username" type="text" className={styles.input} />
+
           <label htmlFor="email">Email</label>
           <input id="email" name="email" type="email" className={styles.input} />
+
           <label
             style={{
               marginTop: 10,
@@ -90,13 +92,14 @@ export default function Register(
             type="password"
             className={styles.input}
           />
+
           <button
             className={styles.button}
             style={{
               marginTop: 15,
             }}
           >
-            Sign In
+            Register
           </button>
         </form>
       </section>

@@ -1,0 +1,28 @@
+@import 'styles/settings/init';
+@import 'include-media/dist/_include-media.scss';
+
+.register {
+    margin-top: rem(100);
+    margin-bottom: rem(100);
+    
+    @include media('<=xl') {
+        margin-top: rem(50);
+        margin-bottom: rem(50);
+    }
+    
+    &__choose {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+    }
+    
+    &__title {
+        margin-bottom: rem(25);
+    }
+    
+    &__spacer {
+        margin-bottom: rem(50);
+    }
+}

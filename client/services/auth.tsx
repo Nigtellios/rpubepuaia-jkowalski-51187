@@ -18,13 +18,13 @@ export async function signInUser(
 
 export async function registerUser(
   {
-    user,
+    username,
     email,
     password
   }: any
 ) {
   const registerResponse = await axios.post(`${strapiUrl}/api/auth/local/register`, {
-    username: user || '',
+    username: username || '',
     email: email || '',
     password: password || '',
   });

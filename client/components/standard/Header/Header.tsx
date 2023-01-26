@@ -124,7 +124,7 @@ export default function Header(
                     additionalClass={ loginButtonItem.ButtonStyle as string }
                     icon={ loginButtonItem.ButtonIcon?.data?.attributes?.url }
                     text={ `Sign out` }
-                    url={ `/` }
+                    url={ loginButtonItem.ButtonLink }
                     key={ loginButtonItem.id }
                     onClick={ () => signOut() }
                   />
@@ -133,9 +133,8 @@ export default function Header(
                     additionalClass={ loginButtonItem.ButtonStyle as string }
                     icon={ loginButtonItem.ButtonIcon?.data?.attributes?.url }
                     text={ loginButtonItem.ButtonText }
-                    url={ `/` }
+                    url={ loginButtonItem.ButtonLink }
                     key={ loginButtonItem.id }
-                    onClick={ () => signIn() }
                   />
                 )
               }
@@ -212,7 +211,7 @@ export default function Header(
                     additionalClass={ loginButtonItem.ButtonStyle as string }
                     icon={ loginButtonItem.ButtonIcon?.data?.attributes?.url }
                     text={ loginButtonItem.ButtonText }
-                    url={ `/` }
+                    url={ loginButtonItem.ButtonLink }
                     key={ loginButtonItem.id }
                     onClick={ () => signIn() }
                   />
