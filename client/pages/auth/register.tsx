@@ -22,7 +22,7 @@ export async function getStaticProps() {
   };
 }
 
-export default function Login(
+export default function Register(
   {
     headerData,
     footerData
