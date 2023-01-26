@@ -15,3 +15,19 @@ export async function signInUser(
 
   return signInResponse.data;
 }
+
+export async function registerUser(
+  {
+    user,
+    email,
+    password
+  }: any
+) {
+  const registerResponse = await axios.post(`${strapiUrl}/api/auth/local/register`, {
+    username: user || '',
+    email: email || '',
+    password: password || '',
+  });
+
+  return registerResponse.data;
+}

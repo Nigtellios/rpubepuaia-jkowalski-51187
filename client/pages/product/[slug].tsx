@@ -233,44 +233,42 @@ export default function Product(
               }
 
               {
-                session &&
-                <span className={styles.product__reset}>
-                <a
-                  className={clsx(
-                    button.button,
-                    styles[`product__button`]
-                  )}
-                >
-                  {
-                    productData.Mode === "standard" &&
-                    <p>Add to cart</p>
-                  }
+                session ? (
+                  <span className={styles.product__reset}>
+                    <a
+                      className={clsx(
+                        button.button,
+                        styles[`product__button`]
+                      )}
+                    >
+                      {
+                        productData.Mode === "standard" &&
+                        <p>Add to cart</p>
+                      }
 
-                  {
-                    productData.Mode === "sold_out" &&
-                    <p>Sold Out!</p>
-                  }
+                      {
+                        productData.Mode === "sold_out" &&
+                        <p>Sold Out!</p>
+                      }
 
-                  {
-                    productData.Mode === "upcoming" &&
-                    <p>Coming soon!</p>
-                  }
+                      {
+                        productData.Mode === "upcoming" &&
+                        <p>Coming soon!</p>
+                      }
 
-                  {
-                    productData.Mode === "sale" &&
-                    <p>Be hurry! Add to cart</p>
-                  }
-                </a>
-              </span>
-              }
-
-              {
-                !session &&
-                <span className={styles.product__reset}>
-                  <span className={ styles[`product--error`] }>
-                    Only logged in users are available to see cart icon and add products to cart.
+                      {
+                        productData.Mode === "sale" &&
+                        <p>Be hurry! Add to cart</p>
+                      }
+                    </a>
                   </span>
-                </span>
+                ) : (
+                  <span className={styles.product__reset}>
+                    <span className={ styles[`product--error`] }>
+                      Only logged in users are available to see cart icon and add products to cart.
+                    </span>
+                  </span>
+                )
               }
 
               {

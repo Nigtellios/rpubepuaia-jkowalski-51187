@@ -59,8 +59,6 @@ export default function Header(
 
   /* Manage Session */
   useEffect(() => {
-    console.log("Session JTW: ", session);
-
     if (!session) {
       return;
     }
@@ -126,7 +124,7 @@ export default function Header(
                     additionalClass={ loginButtonItem.ButtonStyle as string }
                     icon={ loginButtonItem.ButtonIcon?.data?.attributes?.url }
                     text={ `Sign out` }
-                    url={ process.env.NEXT_PUBLIC_FRONT_URL }
+                    url={ `/` }
                     key={ loginButtonItem.id }
                     onClick={ () => signOut() }
                   />
@@ -135,7 +133,7 @@ export default function Header(
                     additionalClass={ loginButtonItem.ButtonStyle as string }
                     icon={ loginButtonItem.ButtonIcon?.data?.attributes?.url }
                     text={ loginButtonItem.ButtonText }
-                    url={ process.env.NEXT_PUBLIC_FRONT_URL }
+                    url={ `/` }
                     key={ loginButtonItem.id }
                     onClick={ () => signIn() }
                   />
@@ -200,27 +198,25 @@ export default function Header(
             <div className={ styles[`navigation__mobile-button-wrapper`] }>
 
               {
-                session &&
-                <ReusableButton
-                  additionalClass={ loginButtonItem.ButtonStyle as string }
-                  icon={ loginButtonItem.ButtonIcon?.data?.attributes?.url }
-                  text={ `Sign out` }
-                  url={ process.env.NEXT_PUBLIC_FRONT_URL }
-                  key={ loginButtonItem.id }
-                  onClick={ () => signOut() }
-                />
-              }
-
-              {
-                !session &&
-                <ReusableButton
-                  additionalClass={ loginButtonItem.ButtonStyle as string }
-                  icon={ loginButtonItem.ButtonIcon?.data?.attributes?.url }
-                  text={ loginButtonItem.ButtonText }
-                  url={ process.env.NEXT_PUBLIC_FRONT_URL }
-                  key={ loginButtonItem.id }
-                  onClick={ () => signIn() }
-                />
+                session ? (
+                  <ReusableButton
+                    additionalClass={ loginButtonItem.ButtonStyle as string }
+                    icon={ loginButtonItem.ButtonIcon?.data?.attributes?.url }
+                    text={ `Sign out` }
+                    url={ `/` }
+                    key={ loginButtonItem.id }
+                    onClick={ () => signOut() }
+                  />
+                ) : (
+                  <ReusableButton
+                    additionalClass={ loginButtonItem.ButtonStyle as string }
+                    icon={ loginButtonItem.ButtonIcon?.data?.attributes?.url }
+                    text={ loginButtonItem.ButtonText }
+                    url={ `/` }
+                    key={ loginButtonItem.id }
+                    onClick={ () => signIn() }
+                  />
+                )
               }
 
               {

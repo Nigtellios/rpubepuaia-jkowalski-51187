@@ -102,40 +102,38 @@ export default function ProductBox(
         }
 
         {
-          session &&
-          <a
-            className={ clsx(
-              button.button,
-              styles[`product-box__button`]
-            )}
-          >
-            {
-              mode === "standard" &&
-              <p>Add to cart</p>
-            }
+          session ? (
+              <a
+                className={ clsx(
+                  button.button,
+                  styles[`product-box__button`]
+                )}
+              >
+                {
+                  mode === "standard" &&
+                  <p>Add to cart</p>
+                }
 
-            {
-              mode === "sold_out" &&
-              <p>Sold Out!</p>
-            }
+                {
+                  mode === "sold_out" &&
+                  <p>Sold Out!</p>
+                }
 
-            {
-              mode === "upcoming" &&
-              <p>Coming soon!</p>
-            }
+                {
+                  mode === "upcoming" &&
+                  <p>Coming soon!</p>
+                }
 
-            {
-              mode === "sale" &&
-              <p>Be hurry! Add to cart</p>
-            }
-          </a>
-        }
-
-        {
-          !session &&
-          <span className={ styles[`product-box--error`] }>
-            Only logged in users are available to see cart icon and add products to cart.
-          </span>
+                {
+                  mode === "sale" &&
+                  <p>Be hurry! Add to cart</p>
+                }
+              </a>
+            ) : (
+              <span className={ styles[`product-box--error`] }>
+                Only logged in users are available to see cart icon and add products to cart.
+              </span>
+          )
         }
 
       </div>
