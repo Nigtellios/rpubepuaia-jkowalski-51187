@@ -10,7 +10,7 @@ export default function BasicLayout(
   /* Header variables */
   const logoUrl = headerData.data.attributes.Logotype.data.attributes.url;
   const navigationItems = headerData.data.attributes.Navigation.Link;
-  const navigationButtons = headerData.data.attributes.Navigation.Button;
+  const loginButton = headerData.data.attributes.Navigation.LoginButton;
   const cartButtonIcon = headerData.data.attributes.Navigation.CartButton;
   const mobileButtonIcon = headerData.data.attributes.Navigation.MobileButton;
 
@@ -25,7 +25,7 @@ export default function BasicLayout(
         cartButtonIcon={ cartButtonIcon }
         logoUrl={ logoUrl }
         mobileButtonIcon={ mobileButtonIcon }
-        navigationButtons={ navigationButtons }
+        loginButton={ loginButton }
         navigationItems={ navigationItems }
       />
 

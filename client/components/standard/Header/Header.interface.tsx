@@ -1,7 +1,7 @@
 export interface HeaderProps {
   logoUrl: string;
   navigationItems: any;
-  navigationButtons: any;
+  loginButton: any;
   cartButtonIcon: any;
   mobileButtonIcon: any;
 }

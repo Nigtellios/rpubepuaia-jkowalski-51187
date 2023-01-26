@@ -6,27 +6,30 @@ import utils from '../../../styles/modules/utilities/utility.module.scss';
 import { HeaderProps } from "./Header.interface";
 import { ComponentNavigationNavigationLink } from "../../../gql/generated/graphql";
 import ReusableButton from "../../reusable/Button/Button";
-import { IReusableButton } from "../../reusable/Button/Button.interface";
 import { useEffect, useState } from "react";
 import clsx from "clsx";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 export default function Header(
   {
     logoUrl,
     navigationItems,
-    navigationButtons,
+    loginButton,
     cartButtonIcon,
     mobileButtonIcon
   }: HeaderProps
 ) {
-  /* Variables */
+  /* Standard Variables */
   const url = logoUrl || '';
   const navigationItemsList = navigationItems || [];
-  const navigationButtonsList = navigationButtons || [];
+  const loginButtonItem = loginButton || [];
   const cartButton = cartButtonIcon || [];
   const mobileButton = mobileButtonIcon || [];
 
-  /* State */
+  /* Session Management Variables */
+  const { data: session } = useSession();
+
+  /* State Variables */
   const [ menuActive, setMenuActive ] = useState(false);
 
   const openMenu = () => {
@@ -37,6 +40,7 @@ export default function Header(
     }
   }
 
+  /* Manage Resizing */
   useEffect(() => {
     const media = window.matchMedia('(min-width: 992px)');
 
@@ -53,6 +57,14 @@ export default function Header(
     };
   }, []);
 
+  /* Manage Session */
+  useEffect(() => {
+    console.log("Session JTW: ", session);
+
+    if (!session) {
+      return;
+    }
+  }, [session]);
 
   return (
     <>
@@ -109,22 +121,29 @@ export default function Header(
             <div className={ styles[`navigation__buttons`] }>
 
               {
-                navigationButtonsList.length > 0 &&
-                navigationButtonsList.map((button: IReusableButton) => (
-
+                session ? (
                   <ReusableButton
-                    additionalClass={ button.ButtonStyle as string }
-                    icon={ button.ButtonIcon?.data?.attributes?.url }
-                    text={ button.ButtonText }
-                    url={ button.ButtonLink }
-                    key={ button.id }
+                    additionalClass={ loginButtonItem.ButtonStyle as string }
+                    icon={ loginButtonItem.ButtonIcon?.data?.attributes?.url }
+                    text={ `Sign out` }
+                    url={ process.env.NEXT_PUBLIC_FRONT_URL }
+                    key={ loginButtonItem.id }
+                    onClick={ () => signOut() }
                   />
-
-                ))
+                ) : (
+                  <ReusableButton
+                    additionalClass={ loginButtonItem.ButtonStyle as string }
+                    icon={ loginButtonItem.ButtonIcon?.data?.attributes?.url }
+                    text={ loginButtonItem.ButtonText }
+                    url={ process.env.NEXT_PUBLIC_FRONT_URL }
+                    key={ loginButtonItem.id }
+                    onClick={ () => signIn() }
+                  />
+                )
               }
 
               {
-                cartButton &&
+                cartButton && session &&
                 <Link href={ process.env.NEXT_PUBLIC_FRONT_URL + `/cart` }>
                   <a className={ clsx(
                     cartButtonStyles.button,
@@ -181,37 +200,48 @@ export default function Header(
             <div className={ styles[`navigation__mobile-button-wrapper`] }>
 
               {
-                navigationButtonsList.length > 0 &&
-                navigationButtonsList.map((button: IReusableButton) => (
-
-                  <ReusableButton
-                    additionalClass={ button.ButtonStyle as string }
-                    icon={ button.ButtonIcon?.data?.attributes?.url }
-                    text={ button.ButtonText }
-                    url={ button.ButtonLink }
-                    key={ button.id }
-                  />
-
-                ))
+                session &&
+                <ReusableButton
+                  additionalClass={ loginButtonItem.ButtonStyle as string }
+                  icon={ loginButtonItem.ButtonIcon?.data?.attributes?.url }
+                  text={ `Sign out` }
+                  url={ process.env.NEXT_PUBLIC_FRONT_URL }
+                  key={ loginButtonItem.id }
+                  onClick={ () => signOut() }
+                />
               }
 
               {
-                cartButton &&
-                <a className={ clsx(
-                  cartButtonStyles.button,
-                  cartButtonStyles[`button--cart`]
-                ) }
-                >
-                  <img
-                    src={
-                      process.env.NEXT_PUBLIC_URL +
-                      `${ cartButton.CartIcon.data.attributes.url }`
-                    }
-                    width={ 25 }
-                    height={ 25 }
-                    alt={ "Cart" }
-                  />
-                </a>
+                !session &&
+                <ReusableButton
+                  additionalClass={ loginButtonItem.ButtonStyle as string }
+                  icon={ loginButtonItem.ButtonIcon?.data?.attributes?.url }
+                  text={ loginButtonItem.ButtonText }
+                  url={ process.env.NEXT_PUBLIC_FRONT_URL }
+                  key={ loginButtonItem.id }
+                  onClick={ () => signIn() }
+                />
+              }
+
+              {
+                cartButton && session &&
+                <Link href={ process.env.NEXT_PUBLIC_FRONT_URL + `/cart` }>
+                  <a className={ clsx(
+                    cartButtonStyles.button,
+                    cartButtonStyles[`button--cart`]
+                  ) }
+                  >
+                    <img
+                      src={
+                        process.env.NEXT_PUBLIC_URL +
+                        `${ cartButton.CartIcon.data.attributes.url }`
+                      }
+                      width={ 25 }
+                      height={ 25 }
+                      alt={ "Cart" }
+                    />
+                  </a>
+                </Link>
               }
 
             </div>

@@ -12,6 +12,8 @@ import "@splidejs/react-splide/css/core";
 import GlobalSettings from "../../lib/globalSettings/GlobalSettings";
 import button from "../../components/reusable/Button/Button.module.scss";
 import PictureDescriptionCTA from "../../components/reusable/PictureDescriptionCTA/PictureDescriptionCTA";
+import { useSession } from "next-auth/react";
+import { useEffect } from "react";
 
 export async function getStaticPaths() {
   const paths = await getAllProductSlugs;
@@ -26,8 +28,6 @@ export async function getStaticProps({ params }: any) {
   const productData = await getProductData(
     params.slug
   );
-
-  console.log(productData);
 
   const headerData = await HeaderData.fetchHeaderData();
   const footerData = await FooterData.fetchFooterData();
@@ -53,6 +53,14 @@ export default function Product(
   }: any
 ) {
   let inputStyle = `product--` + `${productData.Mode}`;
+
+  const { data: session } = useSession();
+
+  useEffect(() => {
+    if (!session) {
+      return;
+    }
+  }, [session]);
 
   return (
     <BasicLayout
@@ -224,7 +232,9 @@ export default function Product(
                 </div>
               }
 
-              <span className={styles.product__reset}>
+              {
+                session &&
+                <span className={styles.product__reset}>
                 <a
                   className={clsx(
                     button.button,
@@ -252,6 +262,16 @@ export default function Product(
                   }
                 </a>
               </span>
+              }
+
+              {
+                !session &&
+                <span className={styles.product__reset}>
+                  <span className={ styles[`product--error`] }>
+                    Only logged in users are available to see cart icon and add products to cart.
+                  </span>
+                </span>
+              }
 
               {
                 productData.categories.data.length > 0 &&

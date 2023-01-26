@@ -81,6 +81,11 @@
             }
         }
     }
+    
+    &--error {
+        color: $sale;
+        margin-bottom: rem(15);
+    }
 
     &__wrapper {
         display: flex;

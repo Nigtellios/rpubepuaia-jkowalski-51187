@@ -1,11 +1,11 @@
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
-import { signInUser } from '../../../services/auth';
+import { signInUser } from "../../../services/auth";
 
 export default NextAuth({
   providers: [
     CredentialsProvider({
-      name: 'Use your email to register!',
+      name: 'Sign in with your email',
       credentials: {
         email: {
           label: 'Email',
@@ -37,44 +37,19 @@ export default NextAuth({
             jwt
           };
         } catch (error) {
-          throw new Error(error as string);
+          return null;
         }
       },
     }),
   ],
   callbacks: {
-    session: async (
-      {
-        session,
-        token
-      }
-    ) => {
-      console.log(session)
-      console.log(token)
-
-      session.id = token.id;
-      session.token = token.jwt;
-
+    session: async ({ session }) => {
       return Promise.resolve(session);
     },
 
-    jwt: async (
-      {
-        token,
-        user
-      }
-    ) => {
-      const isSignIn = user;
-
-      console.log(token)
-      console.log(user)
-
-      if (isSignIn) {
-        token.id = user.id;
-        token.jwt = user.jwt;
-      }
-
+    jwt: async ({ token }) => {
       return Promise.resolve(token);
     },
   },
+  debug: true,
 });

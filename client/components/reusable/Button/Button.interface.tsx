@@ -8,6 +8,6 @@ export interface IReusableButton {
   text?: string;
   url?: string;
   additionalClass?: string;
-
-  props?: any[];
+  props?: any;
+  onClick?: any;
 }

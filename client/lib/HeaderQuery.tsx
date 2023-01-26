@@ -21,7 +21,7 @@ const headerQuery = gql`
                             LinkName
                             LinkURL
                         }
-                        Button {
+                        LoginButton {
                             id
                             ButtonIcon {
                                 data {

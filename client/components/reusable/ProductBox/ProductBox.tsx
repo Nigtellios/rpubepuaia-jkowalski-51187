@@ -3,6 +3,8 @@ import button from "../Button/Button.module.scss";
 import clsx from "clsx";
 import { IProductBox } from "./ProductBox.interface";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
+import { useEffect } from "react";
 
 export default function ProductBox(
   {
@@ -15,6 +17,14 @@ export default function ProductBox(
   }: IProductBox
 ) {
   let inputStyle = `product-box--` + `${ mode }`;
+
+  const { data: session } = useSession();
+
+  useEffect(() => {
+    if (!session) {
+      return;
+    }
+  }, [session]);
 
   return (
     <div className={ clsx(
@@ -91,32 +101,43 @@ export default function ProductBox(
           </div>
         }
 
-        <a
-          className={ clsx(
-            button.button,
-            styles[`product-box__button`]
-          )}
-        >
-          {
-            mode === "standard" &&
-            <p>Add to cart</p>
-          }
+        {
+          session &&
+          <a
+            className={ clsx(
+              button.button,
+              styles[`product-box__button`]
+            )}
+          >
+            {
+              mode === "standard" &&
+              <p>Add to cart</p>
+            }
 
-          {
-            mode === "sold_out" &&
-            <p>Sold Out!</p>
-          }
+            {
+              mode === "sold_out" &&
+              <p>Sold Out!</p>
+            }
 
-          {
-            mode === "upcoming" &&
-            <p>Coming soon!</p>
-          }
+            {
+              mode === "upcoming" &&
+              <p>Coming soon!</p>
+            }
 
-          {
-            mode === "sale" &&
-            <p>Be hurry! Add to cart</p>
-          }
-        </a>
+            {
+              mode === "sale" &&
+              <p>Be hurry! Add to cart</p>
+            }
+          </a>
+        }
+
+        {
+          !session &&
+          <span className={ styles[`product-box--error`] }>
+            Only logged in users are available to see cart icon and add products to cart.
+          </span>
+        }
+
       </div>
     </div>
   );

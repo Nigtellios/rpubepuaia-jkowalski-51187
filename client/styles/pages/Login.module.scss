@@ -1,0 +1,12 @@
+@import 'styles/settings/init';
+@import 'include-media/dist/_include-media.scss';
+
+.login {
+    margin-top: rem(100);
+    margin-bottom: rem(100);
+    
+    @include media('<=xl') {
+        margin-top: rem(50);
+        margin-bottom: rem(50);
+    }
+}

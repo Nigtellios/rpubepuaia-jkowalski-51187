@@ -13,9 +13,9 @@
       "repeatable": true,
       "component": "navigation.navigation-link"
     },
-    "Button": {
+    "LoginButton": {
       "type": "component",
-      "repeatable": true,
+      "repeatable": false,
       "component": "reusable.navigation-button"
     },
     "CartButton": {

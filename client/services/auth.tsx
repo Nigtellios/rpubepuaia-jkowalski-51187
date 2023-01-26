@@ -9,8 +9,8 @@ export async function signInUser(
   }: any
 ) {
   const signInResponse = await axios.post(`${strapiUrl}/api/auth/local`, {
-    identifier: email,
-    password,
+    identifier: email || '',
+    password: password || '',
   });
 
   return signInResponse.data;
