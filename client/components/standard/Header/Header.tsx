@@ -125,21 +125,23 @@ export default function Header(
 
               {
                 cartButton &&
-                <a className={ clsx(
+                <Link href={ process.env.NEXT_PUBLIC_FRONT_URL + `/cart` }>
+                  <a className={ clsx(
                     cartButtonStyles.button,
                     cartButtonStyles[`button--cart`]
                   ) }
-                >
-                  <img
-                    src={
-                      process.env.NEXT_PUBLIC_URL +
-                      `${ cartButton.CartIcon.data.attributes.url }`
-                    }
-                    width={ 25 }
-                    height={ 25 }
-                    alt={ "Cart" }
-                  />
-                </a>
+                  >
+                    <img
+                      src={
+                        process.env.NEXT_PUBLIC_URL +
+                        `${ cartButton.CartIcon.data.attributes.url }`
+                      }
+                      width={ 25 }
+                      height={ 25 }
+                      alt={ "Cart" }
+                    />
+                  </a>
+                </Link>
               }
 
             </div>
