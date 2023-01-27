@@ -1,0 +1,9 @@
+mutation addProductToUserCart($id: ID!, $cartData: JSON) {
+    updateUsersPermissionsUser(id: $id, data: { cart: $cartData }) {
+        data {
+            attributes {
+                cart
+            }
+        }
+    }
+}

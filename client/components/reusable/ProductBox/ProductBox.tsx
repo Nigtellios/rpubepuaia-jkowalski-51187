@@ -6,6 +6,8 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { useEffect } from "react";
 import findUser from "../../../lib/cart/findUser";
+import { getProductData } from "../../../lib/product/product";
+import addProductToUserCart from "../../../lib/cart/addProduct";
 
 export default function ProductBox(
   {
@@ -28,13 +30,21 @@ export default function ProductBox(
   }, [session]);
 
   const addToCart = () => {
-    const findUserByEmail = async () => {
-      const data = await findUser(session?.user?.email as string);
+    const manageAddToCart = async () => {
+      const userData = await findUser(session?.user?.email as string);
+      const productData = await getProductData(slug);
 
-      console.log(data);
+      await addProductToUserCart(
+        userData.id,
+        { productData }
+      );
+
+      console.log(userData.id);
+      console.log(productData);
+      console.log(userData)
     }
 
-    findUserByEmail().catch((error) => { throw new Error(error) });
+    manageAddToCart().catch((error) => { throw new Error(error) });
   }
 
   return (

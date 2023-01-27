@@ -14,7 +14,7 @@ const findUser = async (
       }
     });
 
-    return data.usersPermissionsUsers.data[0].attributes;
+    return data.usersPermissionsUsers.data[0];
   } catch (error) {
     let errorMessage = '';
 

@@ -1,6 +1,7 @@
 import type { AppProps } from "next/app";
 import '../styles/globals.scss';
 import { SessionProvider } from "next-auth/react";
+import { ShopContextProvider } from "../components/context/ShopContext";
 
 export type SessionAppProps = AppProps &{
   pageProps: {
@@ -17,9 +18,11 @@ function MyApp(
     }
   }: SessionAppProps) {
   return (
-    <SessionProvider session={session}>
-      <Component {...pageProps} />
-    </SessionProvider>
+    <ShopContextProvider>
+      <SessionProvider session={session}>
+        <Component {...pageProps} />
+      </SessionProvider>
+    </ShopContextProvider>
   )
 }
 
