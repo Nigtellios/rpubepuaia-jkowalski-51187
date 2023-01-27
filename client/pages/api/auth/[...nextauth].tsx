@@ -5,7 +5,7 @@ import { signInUser } from "../../../services/auth";
 export default NextAuth({
   providers: [
     CredentialsProvider({
-      name: 'Sign in with your email',
+      name: 'Sign in',
       credentials: {
         email: {
           label: 'Email',

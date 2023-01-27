@@ -238,18 +238,11 @@ export type ComponentNavigationMobileButtonInput = {
 
 export type ComponentNavigationNavigation = {
   __typename?: 'ComponentNavigationNavigation';
-  Button?: Maybe<Array<Maybe<ComponentReusableNavigationButton>>>;
   CartButton?: Maybe<ComponentNavigationCartButton>;
   Link?: Maybe<Array<Maybe<ComponentNavigationNavigationLink>>>;
+  LoginButton?: Maybe<ComponentReusableNavigationButton>;
   MobileButton?: Maybe<ComponentNavigationMobileButton>;
   id: Scalars['ID'];
-};
-
-
-export type ComponentNavigationNavigationButtonArgs = {
-  filters?: InputMaybe<ComponentReusableNavigationButtonFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 
@@ -260,9 +253,9 @@ export type ComponentNavigationNavigationLinkArgs = {
 };
 
 export type ComponentNavigationNavigationInput = {
-  Button?: InputMaybe<Array<InputMaybe<ComponentReusableNavigationButtonInput>>>;
   CartButton?: InputMaybe<ComponentNavigationCartButtonInput>;
   Link?: InputMaybe<Array<InputMaybe<ComponentNavigationNavigationLinkInput>>>;
+  LoginButton?: InputMaybe<ComponentReusableNavigationButtonInput>;
   MobileButton?: InputMaybe<ComponentNavigationMobileButtonInput>;
   id?: InputMaybe<Scalars['ID']>;
 };
@@ -458,7 +451,31 @@ export type FooterInput = {
   FooterNavLists?: InputMaybe<Array<InputMaybe<ComponentFooterFooterListInput>>>;
 };
 
-export type GenericMorph = Category | ComponentFooterCombinedFooter | ComponentFooterFooterList | ComponentHeroSectionSingleSlide | ComponentHeroSectionSlider | ComponentNavigationCartButton | ComponentNavigationFooterNavList | ComponentNavigationMobileButton | ComponentNavigationNavigation | ComponentNavigationNavigationLink | ComponentReusableNavigationButton | ComponentReusablePictureWithDescriptionAndCta | Footer | Header | HeroSection | HomepageBestseller | HomepagePresentationPhoto1 | HomepagePresentationPhoto2 | I18NLocale | Product | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = Category | ComponentFooterCombinedFooter | ComponentFooterFooterList | ComponentHeroSectionSingleSlide | ComponentHeroSectionSlider | ComponentNavigationCartButton | ComponentNavigationFooterNavList | ComponentNavigationMobileButton | ComponentNavigationNavigation | ComponentNavigationNavigationLink | ComponentReusableNavigationButton | ComponentReusablePictureWithDescriptionAndCta | Footer | GlobalSetting | Header | HeroSection | HomepageBestseller | HomepagePresentationPhoto1 | HomepagePresentationPhoto2 | I18NLocale | Product | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+
+export type GlobalSetting = {
+  __typename?: 'GlobalSetting';
+  ArrowDown?: Maybe<UploadFileEntityResponse>;
+  ArrowUp?: Maybe<UploadFileEntityResponse>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type GlobalSettingEntity = {
+  __typename?: 'GlobalSettingEntity';
+  attributes?: Maybe<GlobalSetting>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type GlobalSettingEntityResponse = {
+  __typename?: 'GlobalSettingEntityResponse';
+  data?: Maybe<GlobalSettingEntity>;
+};
+
+export type GlobalSettingInput = {
+  ArrowDown?: InputMaybe<Scalars['ID']>;
+  ArrowUp?: InputMaybe<Scalars['ID']>;
+};
 
 export type Header = {
   __typename?: 'Header';
@@ -708,6 +725,7 @@ export type Mutation = {
   createUsersPermissionsUser: UsersPermissionsUserEntityResponse;
   deleteCategory?: Maybe<CategoryEntityResponse>;
   deleteFooter?: Maybe<FooterEntityResponse>;
+  deleteGlobalSetting?: Maybe<GlobalSettingEntityResponse>;
   deleteHeader?: Maybe<HeaderEntityResponse>;
   deleteHeroSection?: Maybe<HeroSectionEntityResponse>;
   deleteHomepageBestseller?: Maybe<HomepageBestsellerEntityResponse>;
@@ -734,6 +752,7 @@ export type Mutation = {
   updateCategory?: Maybe<CategoryEntityResponse>;
   updateFileInfo: UploadFileEntityResponse;
   updateFooter?: Maybe<FooterEntityResponse>;
+  updateGlobalSetting?: Maybe<GlobalSettingEntityResponse>;
   updateHeader?: Maybe<HeaderEntityResponse>;
   updateHeroSection?: Maybe<HeroSectionEntityResponse>;
   updateHomepageBestseller?: Maybe<HomepageBestsellerEntityResponse>;
@@ -871,6 +890,11 @@ export type MutationUpdateFileInfoArgs = {
 
 export type MutationUpdateFooterArgs = {
   data: FooterInput;
+};
+
+
+export type MutationUpdateGlobalSettingArgs = {
+  data: GlobalSettingInput;
 };
 
 
@@ -1051,6 +1075,7 @@ export type Query = {
   categories?: Maybe<CategoryEntityResponseCollection>;
   category?: Maybe<CategoryEntityResponse>;
   footer?: Maybe<FooterEntityResponse>;
+  globalSetting?: Maybe<GlobalSettingEntityResponse>;
   header?: Maybe<HeaderEntityResponse>;
   heroSection?: Maybe<HeroSectionEntityResponse>;
   homepageBestseller?: Maybe<HomepageBestsellerEntityResponse>;
@@ -1498,6 +1523,7 @@ export type UsersPermissionsUpdateRolePayload = {
 export type UsersPermissionsUser = {
   __typename?: 'UsersPermissionsUser';
   blocked?: Maybe<Scalars['Boolean']>;
+  cart?: Maybe<Scalars['JSON']>;
   confirmed?: Maybe<Scalars['Boolean']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   email: Scalars['String'];
@@ -1527,6 +1553,7 @@ export type UsersPermissionsUserEntityResponseCollection = {
 export type UsersPermissionsUserFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<UsersPermissionsUserFiltersInput>>>;
   blocked?: InputMaybe<BooleanFilterInput>;
+  cart?: InputMaybe<JsonFilterInput>;
   confirmationToken?: InputMaybe<StringFilterInput>;
   confirmed?: InputMaybe<BooleanFilterInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
@@ -1544,6 +1571,7 @@ export type UsersPermissionsUserFiltersInput = {
 
 export type UsersPermissionsUserInput = {
   blocked?: InputMaybe<Scalars['Boolean']>;
+  cart?: InputMaybe<Scalars['JSON']>;
   confirmationToken?: InputMaybe<Scalars['String']>;
   confirmed?: InputMaybe<Scalars['Boolean']>;
   email?: InputMaybe<Scalars['String']>;
@@ -1567,7 +1595,7 @@ export type FooterQuery = { __typename?: 'Query', footer?: { __typename?: 'Foote
 export type HeaderQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type HeaderQuery = { __typename?: 'Query', header?: { __typename?: 'HeaderEntityResponse', data?: { __typename?: 'HeaderEntity', id?: string | null, attributes?: { __typename?: 'Header', PageName?: string | null, Logotype?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null, Navigation?: { __typename?: 'ComponentNavigationNavigation', id: string, Link?: Array<{ __typename?: 'ComponentNavigationNavigationLink', id: string, LinkName?: string | null, LinkURL?: string | null } | null> | null, Button?: Array<{ __typename?: 'ComponentReusableNavigationButton', id: string, ButtonText?: string | null, ButtonStyle?: Enum_Componentreusablenavigationbutton_Buttonstyle | null, ButtonLink?: string | null, ButtonIcon?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null> | null, CartButton?: { __typename?: 'ComponentNavigationCartButton', id: string, CartIcon?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null, MobileButton?: { __typename?: 'ComponentNavigationMobileButton', id: string, MobileButtonIcon?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null } | null } | null } | null } | null };
+export type HeaderQuery = { __typename?: 'Query', header?: { __typename?: 'HeaderEntityResponse', data?: { __typename?: 'HeaderEntity', id?: string | null, attributes?: { __typename?: 'Header', PageName?: string | null, Logotype?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null, Navigation?: { __typename?: 'ComponentNavigationNavigation', id: string, Link?: Array<{ __typename?: 'ComponentNavigationNavigationLink', id: string, LinkName?: string | null, LinkURL?: string | null } | null> | null, LoginButton?: { __typename?: 'ComponentReusableNavigationButton', id: string, ButtonText?: string | null, ButtonStyle?: Enum_Componentreusablenavigationbutton_Buttonstyle | null, ButtonLink?: string | null, ButtonIcon?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null, CartButton?: { __typename?: 'ComponentNavigationCartButton', id: string, CartIcon?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null, MobileButton?: { __typename?: 'ComponentNavigationMobileButton', id: string, MobileButtonIcon?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null } | null } | null } | null } | null };
 
 export type HeroSectionQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -1589,6 +1617,13 @@ export type HomepagePresentationPhoto2QueryVariables = Exact<{ [key: string]: ne
 
 export type HomepagePresentationPhoto2Query = { __typename?: 'Query', homepagePresentationPhoto2?: { __typename?: 'HomepagePresentationPhoto2EntityResponse', data?: { __typename?: 'HomepagePresentationPhoto2Entity', id?: string | null, attributes?: { __typename?: 'HomepagePresentationPhoto2', PictureDescriptionCTA2?: { __typename?: 'ComponentReusablePictureWithDescriptionAndCta', id: string, DescriptionHeading?: string | null, DescriptionText?: string | null, Variant?: Enum_Componentreusablepicturewithdescriptionandcta_Variant | null, DescriptionAlignment?: Enum_Componentreusablepicturewithdescriptionandcta_Descriptionalignment | null, Picture?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', url: string, width?: number | null, height?: number | null } | null } | null } | null, CTA?: { __typename?: 'ComponentReusableNavigationButton', id: string, ButtonText?: string | null, ButtonStyle?: Enum_Componentreusablenavigationbutton_Buttonstyle | null, ButtonLink?: string | null, ButtonIcon?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', url: string, width?: number | null, height?: number | null } | null } | null } | null } | null } | null } | null } | null } | null };
 
+export type GetProductDataQueryQueryVariables = Exact<{
+  slug?: InputMaybe<StringFilterInput>;
+}>;
+
+
+export type GetProductDataQueryQuery = { __typename?: 'Query', products?: { __typename?: 'ProductEntityResponseCollection', data: Array<{ __typename?: 'ProductEntity', id?: string | null, attributes?: { __typename?: 'Product', Name?: string | null, Description?: string | null, Mode?: Enum_Product_Mode | null, Price?: number | null, SalePrice?: number | null, Slug: string, AdditionalInfo?: string | null, MainPhoto?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', url: string, width?: number | null, height?: number | null } | null } | null } | null, Gallery?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', url: string, width?: number | null, height?: number | null } | null }> } | null, categories?: { __typename?: 'CategoryRelationResponseCollection', data: Array<{ __typename?: 'CategoryEntity', id?: string | null, attributes?: { __typename?: 'Category', Name?: string | null } | null }> } | null, Marketing?: { __typename?: 'ComponentReusablePictureWithDescriptionAndCta', id: string, DescriptionHeading?: string | null, DescriptionText?: string | null, Variant?: Enum_Componentreusablepicturewithdescriptionandcta_Variant | null, Picture?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', url: string, width?: number | null, height?: number | null } | null } | null } | null, CTA?: { __typename?: 'ComponentReusableNavigationButton', id: string, ButtonText?: string | null, ButtonStyle?: Enum_Componentreusablenavigationbutton_Buttonstyle | null, ButtonLink?: string | null, ButtonIcon?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', url: string, width?: number | null, height?: number | null } | null } | null } | null } | null } | null } | null }> } | null };
+
 export type ProductSlugsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -1596,11 +1631,12 @@ export type ProductSlugsQuery = { __typename?: 'Query', products?: { __typename?
 
 
 export const FooterDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Footer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"footer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"FooterBrand"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"FooterLogotype"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"FooterCopyright"}}]}},{"kind":"Field","name":{"kind":"Name","value":"FooterNavLists"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"ListName"}},{"kind":"Field","name":{"kind":"Name","value":"FooterLink"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"LinkName"}},{"kind":"Field","name":{"kind":"Name","value":"LinkURL"}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<FooterQuery, FooterQueryVariables>;
-export const HeaderDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Header"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"header"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Logotype"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"PageName"}},{"kind":"Field","name":{"kind":"Name","value":"Navigation"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"Link"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"LinkName"}},{"kind":"Field","name":{"kind":"Name","value":"LinkURL"}}]}},{"kind":"Field","name":{"kind":"Name","value":"Button"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"ButtonIcon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"ButtonText"}},{"kind":"Field","name":{"kind":"Name","value":"ButtonStyle"}},{"kind":"Field","name":{"kind":"Name","value":"ButtonLink"}}]}},{"kind":"Field","name":{"kind":"Name","value":"CartButton"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"CartIcon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"MobileButton"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"MobileButtonIcon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<HeaderQuery, HeaderQueryVariables>;
+export const HeaderDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Header"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"header"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Logotype"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"PageName"}},{"kind":"Field","name":{"kind":"Name","value":"Navigation"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"Link"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"LinkName"}},{"kind":"Field","name":{"kind":"Name","value":"LinkURL"}}]}},{"kind":"Field","name":{"kind":"Name","value":"LoginButton"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"ButtonIcon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"ButtonText"}},{"kind":"Field","name":{"kind":"Name","value":"ButtonStyle"}},{"kind":"Field","name":{"kind":"Name","value":"ButtonLink"}}]}},{"kind":"Field","name":{"kind":"Name","value":"CartButton"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"CartIcon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"MobileButton"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"MobileButtonIcon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<HeaderQuery, HeaderQueryVariables>;
 export const HeroSectionDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"HeroSection"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"heroSection"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Slider"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"SingleSlide"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"SlideHeading"}},{"kind":"Field","name":{"kind":"Name","value":"SlideSubheading"}},{"kind":"Field","name":{"kind":"Name","value":"SlideImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"ArrowUpIcon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"ArrowDownIcon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"ReusableButton"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"ButtonIcon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"ButtonText"}},{"kind":"Field","name":{"kind":"Name","value":"ButtonStyle"}},{"kind":"Field","name":{"kind":"Name","value":"ButtonLink"}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<HeroSectionQuery, HeroSectionQueryVariables>;
 export const HomepageBestsellerDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"homepageBestseller"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"homepageBestseller"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"products"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Name"}},{"kind":"Field","name":{"kind":"Name","value":"Mode"}},{"kind":"Field","name":{"kind":"Name","value":"Price"}},{"kind":"Field","name":{"kind":"Name","value":"SalePrice"}},{"kind":"Field","name":{"kind":"Name","value":"Slug"}},{"kind":"Field","name":{"kind":"Name","value":"MainPhoto"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"Gallery"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"AdditionalInfo"}},{"kind":"Field","name":{"kind":"Name","value":"Marketing"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"DescriptionHeading"}},{"kind":"Field","name":{"kind":"Name","value":"DescriptionText"}},{"kind":"Field","name":{"kind":"Name","value":"Variant"}},{"kind":"Field","name":{"kind":"Name","value":"Picture"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"CTA"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"ButtonIcon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"ButtonText"}},{"kind":"Field","name":{"kind":"Name","value":"ButtonStyle"}},{"kind":"Field","name":{"kind":"Name","value":"ButtonLink"}}]}},{"kind":"Field","name":{"kind":"Name","value":"DescriptionAlignment"}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"Heading"}},{"kind":"Field","name":{"kind":"Name","value":"Description"}}]}}]}}]}}]}}]} as unknown as DocumentNode<HomepageBestsellerQuery, HomepageBestsellerQueryVariables>;
 export const HomepagePresentationPhoto1Document = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"HomepagePresentationPhoto1"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"homepagePresentationPhoto1"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"PictureDescriptionCTA"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"DescriptionHeading"}},{"kind":"Field","name":{"kind":"Name","value":"DescriptionText"}},{"kind":"Field","name":{"kind":"Name","value":"Variant"}},{"kind":"Field","name":{"kind":"Name","value":"Picture"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"CTA"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"ButtonIcon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"ButtonText"}},{"kind":"Field","name":{"kind":"Name","value":"ButtonStyle"}},{"kind":"Field","name":{"kind":"Name","value":"ButtonLink"}}]}},{"kind":"Field","name":{"kind":"Name","value":"DescriptionAlignment"}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<HomepagePresentationPhoto1Query, HomepagePresentationPhoto1QueryVariables>;
 export const HomepagePresentationPhoto2Document = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"HomepagePresentationPhoto2"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"homepagePresentationPhoto2"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"PictureDescriptionCTA2"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"DescriptionHeading"}},{"kind":"Field","name":{"kind":"Name","value":"DescriptionText"}},{"kind":"Field","name":{"kind":"Name","value":"Variant"}},{"kind":"Field","name":{"kind":"Name","value":"Picture"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"CTA"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"ButtonIcon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"ButtonText"}},{"kind":"Field","name":{"kind":"Name","value":"ButtonStyle"}},{"kind":"Field","name":{"kind":"Name","value":"ButtonLink"}}]}},{"kind":"Field","name":{"kind":"Name","value":"DescriptionAlignment"}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<HomepagePresentationPhoto2Query, HomepagePresentationPhoto2QueryVariables>;
+export const GetProductDataQueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getProductDataQuery"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"StringFilterInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"products"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"filters"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"Slug"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Name"}},{"kind":"Field","name":{"kind":"Name","value":"Description"}},{"kind":"Field","name":{"kind":"Name","value":"Mode"}},{"kind":"Field","name":{"kind":"Name","value":"Price"}},{"kind":"Field","name":{"kind":"Name","value":"SalePrice"}},{"kind":"Field","name":{"kind":"Name","value":"Slug"}},{"kind":"Field","name":{"kind":"Name","value":"MainPhoto"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"Gallery"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"AdditionalInfo"}},{"kind":"Field","name":{"kind":"Name","value":"categories"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Name"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"Marketing"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"DescriptionHeading"}},{"kind":"Field","name":{"kind":"Name","value":"DescriptionText"}},{"kind":"Field","name":{"kind":"Name","value":"Variant"}},{"kind":"Field","name":{"kind":"Name","value":"Picture"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"CTA"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"ButtonIcon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"ButtonText"}},{"kind":"Field","name":{"kind":"Name","value":"ButtonStyle"}},{"kind":"Field","name":{"kind":"Name","value":"ButtonLink"}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetProductDataQueryQuery, GetProductDataQueryQueryVariables>;
 export const ProductSlugsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"ProductSlugs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"products"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"pagination"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"100"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Slug"}}]}}]}}]}}]}}]} as unknown as DocumentNode<ProductSlugsQuery, ProductSlugsQueryVariables>;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
@@ -1832,18 +1868,11 @@ export type ComponentNavigationMobileButtonInput = {
 
 export type ComponentNavigationNavigation = {
   __typename?: 'ComponentNavigationNavigation';
-  Button?: Maybe<Array<Maybe<ComponentReusableNavigationButton>>>;
   CartButton?: Maybe<ComponentNavigationCartButton>;
   Link?: Maybe<Array<Maybe<ComponentNavigationNavigationLink>>>;
+  LoginButton?: Maybe<ComponentReusableNavigationButton>;
   MobileButton?: Maybe<ComponentNavigationMobileButton>;
   id: Scalars['ID'];
-};
-
-
-export type ComponentNavigationNavigationButtonArgs = {
-  filters?: InputMaybe<ComponentReusableNavigationButtonFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 
@@ -1854,9 +1883,9 @@ export type ComponentNavigationNavigationLinkArgs = {
 };
 
 export type ComponentNavigationNavigationInput = {
-  Button?: InputMaybe<Array<InputMaybe<ComponentReusableNavigationButtonInput>>>;
   CartButton?: InputMaybe<ComponentNavigationCartButtonInput>;
   Link?: InputMaybe<Array<InputMaybe<ComponentNavigationNavigationLinkInput>>>;
+  LoginButton?: InputMaybe<ComponentReusableNavigationButtonInput>;
   MobileButton?: InputMaybe<ComponentNavigationMobileButtonInput>;
   id?: InputMaybe<Scalars['ID']>;
 };
@@ -2052,7 +2081,31 @@ export type FooterInput = {
   FooterNavLists?: InputMaybe<Array<InputMaybe<ComponentFooterFooterListInput>>>;
 };
 
-export type GenericMorph = Category | ComponentFooterCombinedFooter | ComponentFooterFooterList | ComponentHeroSectionSingleSlide | ComponentHeroSectionSlider | ComponentNavigationCartButton | ComponentNavigationFooterNavList | ComponentNavigationMobileButton | ComponentNavigationNavigation | ComponentNavigationNavigationLink | ComponentReusableNavigationButton | ComponentReusablePictureWithDescriptionAndCta | Footer | Header | HeroSection | HomepageBestseller | HomepagePresentationPhoto1 | HomepagePresentationPhoto2 | I18NLocale | Product | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = Category | ComponentFooterCombinedFooter | ComponentFooterFooterList | ComponentHeroSectionSingleSlide | ComponentHeroSectionSlider | ComponentNavigationCartButton | ComponentNavigationFooterNavList | ComponentNavigationMobileButton | ComponentNavigationNavigation | ComponentNavigationNavigationLink | ComponentReusableNavigationButton | ComponentReusablePictureWithDescriptionAndCta | Footer | GlobalSetting | Header | HeroSection | HomepageBestseller | HomepagePresentationPhoto1 | HomepagePresentationPhoto2 | I18NLocale | Product | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+
+export type GlobalSetting = {
+  __typename?: 'GlobalSetting';
+  ArrowDown?: Maybe<UploadFileEntityResponse>;
+  ArrowUp?: Maybe<UploadFileEntityResponse>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type GlobalSettingEntity = {
+  __typename?: 'GlobalSettingEntity';
+  attributes?: Maybe<GlobalSetting>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type GlobalSettingEntityResponse = {
+  __typename?: 'GlobalSettingEntityResponse';
+  data?: Maybe<GlobalSettingEntity>;
+};
+
+export type GlobalSettingInput = {
+  ArrowDown?: InputMaybe<Scalars['ID']>;
+  ArrowUp?: InputMaybe<Scalars['ID']>;
+};
 
 export type Header = {
   __typename?: 'Header';
@@ -2302,6 +2355,7 @@ export type Mutation = {
   createUsersPermissionsUser: UsersPermissionsUserEntityResponse;
   deleteCategory?: Maybe<CategoryEntityResponse>;
   deleteFooter?: Maybe<FooterEntityResponse>;
+  deleteGlobalSetting?: Maybe<GlobalSettingEntityResponse>;
   deleteHeader?: Maybe<HeaderEntityResponse>;
   deleteHeroSection?: Maybe<HeroSectionEntityResponse>;
   deleteHomepageBestseller?: Maybe<HomepageBestsellerEntityResponse>;
@@ -2328,6 +2382,7 @@ export type Mutation = {
   updateCategory?: Maybe<CategoryEntityResponse>;
   updateFileInfo: UploadFileEntityResponse;
   updateFooter?: Maybe<FooterEntityResponse>;
+  updateGlobalSetting?: Maybe<GlobalSettingEntityResponse>;
   updateHeader?: Maybe<HeaderEntityResponse>;
   updateHeroSection?: Maybe<HeroSectionEntityResponse>;
   updateHomepageBestseller?: Maybe<HomepageBestsellerEntityResponse>;
@@ -2465,6 +2520,11 @@ export type MutationUpdateFileInfoArgs = {
 
 export type MutationUpdateFooterArgs = {
   data: FooterInput;
+};
+
+
+export type MutationUpdateGlobalSettingArgs = {
+  data: GlobalSettingInput;
 };
 
 
@@ -2645,6 +2705,7 @@ export type Query = {
   categories?: Maybe<CategoryEntityResponseCollection>;
   category?: Maybe<CategoryEntityResponse>;
   footer?: Maybe<FooterEntityResponse>;
+  globalSetting?: Maybe<GlobalSettingEntityResponse>;
   header?: Maybe<HeaderEntityResponse>;
   heroSection?: Maybe<HeroSectionEntityResponse>;
   homepageBestseller?: Maybe<HomepageBestsellerEntityResponse>;
@@ -3092,6 +3153,7 @@ export type UsersPermissionsUpdateRolePayload = {
 export type UsersPermissionsUser = {
   __typename?: 'UsersPermissionsUser';
   blocked?: Maybe<Scalars['Boolean']>;
+  cart?: Maybe<Scalars['JSON']>;
   confirmed?: Maybe<Scalars['Boolean']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   email: Scalars['String'];
@@ -3121,6 +3183,7 @@ export type UsersPermissionsUserEntityResponseCollection = {
 export type UsersPermissionsUserFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<UsersPermissionsUserFiltersInput>>>;
   blocked?: InputMaybe<BooleanFilterInput>;
+  cart?: InputMaybe<JsonFilterInput>;
   confirmationToken?: InputMaybe<StringFilterInput>;
   confirmed?: InputMaybe<BooleanFilterInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
@@ -3138,6 +3201,7 @@ export type UsersPermissionsUserFiltersInput = {
 
 export type UsersPermissionsUserInput = {
   blocked?: InputMaybe<Scalars['Boolean']>;
+  cart?: InputMaybe<Scalars['JSON']>;
   confirmationToken?: InputMaybe<Scalars['String']>;
   confirmed?: InputMaybe<Scalars['Boolean']>;
   email?: InputMaybe<Scalars['String']>;
@@ -3161,7 +3225,7 @@ export type FooterQuery = { __typename?: 'Query', footer?: { __typename?: 'Foote
 export type HeaderQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type HeaderQuery = { __typename?: 'Query', header?: { __typename?: 'HeaderEntityResponse', data?: { __typename?: 'HeaderEntity', id?: string | null, attributes?: { __typename?: 'Header', PageName?: string | null, Logotype?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null, Navigation?: { __typename?: 'ComponentNavigationNavigation', id: string, Link?: Array<{ __typename?: 'ComponentNavigationNavigationLink', id: string, LinkName?: string | null, LinkURL?: string | null } | null> | null, Button?: Array<{ __typename?: 'ComponentReusableNavigationButton', id: string, ButtonText?: string | null, ButtonStyle?: Enum_Componentreusablenavigationbutton_Buttonstyle | null, ButtonLink?: string | null, ButtonIcon?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null> | null, CartButton?: { __typename?: 'ComponentNavigationCartButton', id: string, CartIcon?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null, MobileButton?: { __typename?: 'ComponentNavigationMobileButton', id: string, MobileButtonIcon?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null } | null } | null } | null } | null };
+export type HeaderQuery = { __typename?: 'Query', header?: { __typename?: 'HeaderEntityResponse', data?: { __typename?: 'HeaderEntity', id?: string | null, attributes?: { __typename?: 'Header', PageName?: string | null, Logotype?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null, Navigation?: { __typename?: 'ComponentNavigationNavigation', id: string, Link?: Array<{ __typename?: 'ComponentNavigationNavigationLink', id: string, LinkName?: string | null, LinkURL?: string | null } | null> | null, LoginButton?: { __typename?: 'ComponentReusableNavigationButton', id: string, ButtonText?: string | null, ButtonStyle?: Enum_Componentreusablenavigationbutton_Buttonstyle | null, ButtonLink?: string | null, ButtonIcon?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null, CartButton?: { __typename?: 'ComponentNavigationCartButton', id: string, CartIcon?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null, MobileButton?: { __typename?: 'ComponentNavigationMobileButton', id: string, MobileButtonIcon?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null } | null } | null } | null } | null };
 
 export type HeroSectionQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -3182,6 +3246,13 @@ export type HomepagePresentationPhoto2QueryVariables = Exact<{ [key: string]: ne
 
 
 export type HomepagePresentationPhoto2Query = { __typename?: 'Query', homepagePresentationPhoto2?: { __typename?: 'HomepagePresentationPhoto2EntityResponse', data?: { __typename?: 'HomepagePresentationPhoto2Entity', id?: string | null, attributes?: { __typename?: 'HomepagePresentationPhoto2', PictureDescriptionCTA2?: { __typename?: 'ComponentReusablePictureWithDescriptionAndCta', id: string, DescriptionHeading?: string | null, DescriptionText?: string | null, Variant?: Enum_Componentreusablepicturewithdescriptionandcta_Variant | null, DescriptionAlignment?: Enum_Componentreusablepicturewithdescriptionandcta_Descriptionalignment | null, Picture?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', url: string, width?: number | null, height?: number | null } | null } | null } | null, CTA?: { __typename?: 'ComponentReusableNavigationButton', id: string, ButtonText?: string | null, ButtonStyle?: Enum_Componentreusablenavigationbutton_Buttonstyle | null, ButtonLink?: string | null, ButtonIcon?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', url: string, width?: number | null, height?: number | null } | null } | null } | null } | null } | null } | null } | null } | null };
+
+export type GetProductDataQueryQueryVariables = Exact<{
+  slug?: InputMaybe<StringFilterInput>;
+}>;
+
+
+export type GetProductDataQueryQuery = { __typename?: 'Query', products?: { __typename?: 'ProductEntityResponseCollection', data: Array<{ __typename?: 'ProductEntity', id?: string | null, attributes?: { __typename?: 'Product', Name?: string | null, Description?: string | null, Mode?: Enum_Product_Mode | null, Price?: number | null, SalePrice?: number | null, Slug: string, AdditionalInfo?: string | null, MainPhoto?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', url: string, width?: number | null, height?: number | null } | null } | null } | null, Gallery?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', url: string, width?: number | null, height?: number | null } | null }> } | null, categories?: { __typename?: 'CategoryRelationResponseCollection', data: Array<{ __typename?: 'CategoryEntity', id?: string | null, attributes?: { __typename?: 'Category', Name?: string | null } | null }> } | null, Marketing?: { __typename?: 'ComponentReusablePictureWithDescriptionAndCta', id: string, DescriptionHeading?: string | null, DescriptionText?: string | null, Variant?: Enum_Componentreusablepicturewithdescriptionandcta_Variant | null, Picture?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', url: string, width?: number | null, height?: number | null } | null } | null } | null, CTA?: { __typename?: 'ComponentReusableNavigationButton', id: string, ButtonText?: string | null, ButtonStyle?: Enum_Componentreusablenavigationbutton_Buttonstyle | null, ButtonLink?: string | null, ButtonIcon?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', url: string, width?: number | null, height?: number | null } | null } | null } | null } | null } | null } | null }> } | null };
 
 export type ProductSlugsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -3269,7 +3340,7 @@ export const HeaderDocument = gql`
             LinkName
             LinkURL
           }
-          Button {
+          LoginButton {
             id
             ButtonIcon {
               data {
@@ -3673,6 +3744,112 @@ export function useHomepagePresentationPhoto2LazyQuery(baseOptions?: Apollo.Lazy
 export type HomepagePresentationPhoto2QueryHookResult = ReturnType<typeof useHomepagePresentationPhoto2Query>;
 export type HomepagePresentationPhoto2LazyQueryHookResult = ReturnType<typeof useHomepagePresentationPhoto2LazyQuery>;
 export type HomepagePresentationPhoto2QueryResult = Apollo.QueryResult<HomepagePresentationPhoto2Query, HomepagePresentationPhoto2QueryVariables>;
+export const GetProductDataQueryDocument = gql`
+    query getProductDataQuery($slug: StringFilterInput) {
+  products(filters: {Slug: $slug}) {
+    data {
+      id
+      attributes {
+        Name
+        Description
+        Mode
+        Price
+        SalePrice
+        Slug
+        MainPhoto {
+          data {
+            id
+            attributes {
+              url
+              width
+              height
+            }
+          }
+        }
+        Gallery {
+          data {
+            id
+            attributes {
+              url
+              width
+              height
+            }
+          }
+        }
+        AdditionalInfo
+        categories {
+          data {
+            id
+            attributes {
+              Name
+            }
+          }
+        }
+        Marketing {
+          id
+          DescriptionHeading
+          DescriptionText
+          Variant
+          Picture {
+            data {
+              id
+              attributes {
+                url
+                width
+                height
+              }
+            }
+          }
+          CTA {
+            id
+            ButtonIcon {
+              data {
+                id
+                attributes {
+                  url
+                  width
+                  height
+                }
+              }
+            }
+            ButtonText
+            ButtonStyle
+            ButtonLink
+          }
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetProductDataQueryQuery__
+ *
+ * To run a query within a React component, call `useGetProductDataQueryQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetProductDataQueryQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetProductDataQueryQuery({
+ *   variables: {
+ *      slug: // value for 'slug'
+ *   },
+ * });
+ */
+export function useGetProductDataQueryQuery(baseOptions?: Apollo.QueryHookOptions<GetProductDataQueryQuery, GetProductDataQueryQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetProductDataQueryQuery, GetProductDataQueryQueryVariables>(GetProductDataQueryDocument, options);
+      }
+export function useGetProductDataQueryLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetProductDataQueryQuery, GetProductDataQueryQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetProductDataQueryQuery, GetProductDataQueryQueryVariables>(GetProductDataQueryDocument, options);
+        }
+export type GetProductDataQueryQueryHookResult = ReturnType<typeof useGetProductDataQueryQuery>;
+export type GetProductDataQueryLazyQueryHookResult = ReturnType<typeof useGetProductDataQueryLazyQuery>;
+export type GetProductDataQueryQueryResult = Apollo.QueryResult<GetProductDataQueryQuery, GetProductDataQueryQueryVariables>;
 export const ProductSlugsDocument = gql`
     query ProductSlugs {
   products(pagination: {limit: 100}) {

@@ -20,9 +20,45 @@
     
     &__title {
         margin-bottom: rem(25);
+        
+        &--center {
+            text-align: center;
+        }
     }
     
     &__spacer {
         margin-bottom: rem(50);
+    }
+    
+    &__form {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        
+        &-row {
+            margin-bottom: rem(25);
+        }
+    }
+    
+    &__button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem 2rem;
+        margin-left: .25rem;
+        margin-right: .25rem;
+        border-radius: $button-radius;
+        transition: .15s ease-in all;
+        border: none;
+        background: $main;
+        color: $white;
+        cursor: pointer;
+    
+        &:hover, &:focus, &:active {
+            background: $accent;
+            color: $dark;
+        }
     }
 }

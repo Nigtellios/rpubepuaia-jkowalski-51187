@@ -71,30 +71,47 @@ export default function Register(
         utils.container,
         styles.register
       ) }>
-        <form className={styles.form} onSubmit={onSubmit}>
-          <label htmlFor="username">Username</label>
-          <input id="username" name="username" type="text" className={styles.input} />
+        <div>
+          <h1 className={ clsx(
+            styles.register__title,
+            styles[`register__title--center`]
+          ) }>
+            Register
+          </h1>
+        </div>
 
-          <label htmlFor="email">Email</label>
-          <input id="email" name="email" type="email" className={styles.input} />
-
-          <label
-            style={{
-              marginTop: 10,
-            }}
-            htmlFor="password"
-          >
-            Password
-          </label>
-          <input
-            id="password"
-            name="password"
-            type="password"
-            className={styles.input}
-          />
-
+        <form className={styles.register__form} onSubmit={onSubmit}>
+          <div className={styles[`register__form-row`]}>
+            <input
+              id="username"
+              name="username"
+              type="text"
+              className={styles.input}
+              placeholder="Username"
+            />
+          </div>
+          <div className={styles[`register__form-row`]}>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              className={styles.input}
+              placeholder="Email"
+            />
+          </div>
+          <div className={styles[`register__form-row`]}>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              className={styles.input}
+              placeholder="Password"
+            />
+          </div>
           <button
-            className={styles.button}
+            className={ clsx(
+              styles.register__button
+            )}
             style={{
               marginTop: 15,
             }}

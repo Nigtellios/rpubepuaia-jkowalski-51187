@@ -50,9 +50,9 @@ export default function RegisterSuccess(
 
             {
               session ? (
-                <>Let's go shopping!</>
+                <span>Let's go shopping!</span>
               ) : (
-                <>You're registered, you can now use your credentials to login.</>
+                <span>You're registered, you can now use your credentials to login.</span>
               )
             }
 
