@@ -5,6 +5,7 @@ import { IProductBox } from "./ProductBox.interface";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { useEffect } from "react";
+import findUser from "../../../lib/cart/findUser";
 
 export default function ProductBox(
   {
@@ -25,6 +26,16 @@ export default function ProductBox(
       return;
     }
   }, [session]);
+
+  const addToCart = () => {
+    const findUserByEmail = async () => {
+      const data = await findUser(session?.user?.email as string);
+
+      console.log(data);
+    }
+
+    findUserByEmail().catch((error) => { throw new Error(error) });
+  }
 
   return (
     <div className={ clsx(
@@ -108,6 +119,7 @@ export default function ProductBox(
                   button.button,
                   styles[`product-box__button`]
                 )}
+                onClick={ addToCart }
               >
                 {
                   mode === "standard" &&

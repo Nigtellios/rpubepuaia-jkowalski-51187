@@ -18,7 +18,10 @@ export default NextAuth({
         },
       },
 
-      async authorize(credentials, req) {
+      async authorize(
+        credentials,
+        req
+      ) {
         if (credentials == null) {
           return null;
         }
@@ -43,7 +46,9 @@ export default NextAuth({
     }),
   ],
   callbacks: {
-    session: async ({ session }) => {
+    session: async (
+      { session }
+    ) => {
       return Promise.resolve(session);
     },
 
