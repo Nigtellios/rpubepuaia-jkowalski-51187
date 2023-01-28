@@ -14,6 +14,7 @@ import button from "../../components/reusable/Button/Button.module.scss";
 import PictureDescriptionCTA from "../../components/reusable/PictureDescriptionCTA/PictureDescriptionCTA";
 import { useSession } from "next-auth/react";
 import { useEffect } from "react";
+import { useShopContext } from "../../components/context/ShopContext";
 
 export async function getStaticPaths() {
   const paths = await getAllProductSlugs;
@@ -52,8 +53,9 @@ export default function Product(
     globalData
   }: any
 ) {
-  let inputStyle = `product--` + `${productData.Mode}`;
+  let inputStyle = `product--` + `${productData.attributes.Mode}`;
 
+  const context = useShopContext();
   const { data: session } = useSession();
 
   useEffect(() => {
@@ -76,7 +78,7 @@ export default function Product(
           <div className={styles.product__info}>
 
             {
-              productData.Gallery &&
+              productData.attributes.Gallery &&
               <div className={styles[`product__info-image`]}>
 
                 <Splide
@@ -91,7 +93,7 @@ export default function Product(
                     className={styles.product__track}
                   >
                     {
-                      productData.Gallery.data.map((slide: any) => (
+                      productData.attributes.Gallery.data.map((slide: any) => (
 
                         <SplideSlide
                           key={slide.id}
@@ -175,24 +177,24 @@ export default function Product(
             <div className={styles[`product__info-content`]}>
 
               {
-                productData.Name &&
+                productData.attributes.Name &&
                 <h2 className={styles.product__title}>
-                  {productData.Name}
+                  {productData.attributes.Name}
                 </h2>
               }
 
               {
-                productData.Description &&
+                productData.attributes.Description &&
                 <p className={styles.product__description}>
-                  {productData.Description}
+                  {productData.attributes.Description}
                 </p>
               }
 
               {
-                productData.Price &&
+                productData.attributes.Price &&
                 <div className={styles[`product__price-box`]}>
                   {
-                    productData.Mode === "sale" &&
+                    productData.attributes.Mode === "sale" &&
                     <span className={clsx(
                       styles[`product__tag`],
                       styles[`product__tag--sale`]
@@ -201,7 +203,7 @@ export default function Product(
                     </span>
                   }
                   {
-                    productData.Mode === "sold_out" &&
+                    productData.attributes.Mode === "sold_out" &&
                     <span className={clsx(
                       styles[`product__tag`],
                       styles[`product__tag--sold`]
@@ -210,7 +212,7 @@ export default function Product(
                     </span>
                   }
                   {
-                    productData.Mode === "upcoming" &&
+                    productData.attributes.Mode === "upcoming" &&
                     <span className={clsx(
                       styles[`product__tag`],
                       styles[`product__tag--upcoming`]
@@ -219,14 +221,14 @@ export default function Product(
                     </span>
                   }
                   {
-                    productData.SalePrice &&
+                    productData.attributes.SalePrice &&
                     <p className={styles[`product__price-box-sale-price`]}>
-                      {productData.SalePrice}
+                      {productData.attributes.SalePrice}
                       <span> yang</span>
                     </p>
                   }
                   <p className={styles[`product__price-box-price`]}>
-                    {productData.Price}
+                    {productData.attributes.Price}
                     <span> yang</span>
                   </p>
                 </div>
@@ -240,24 +242,25 @@ export default function Product(
                         button.button,
                         styles[`product__button`]
                       )}
+                      onClick={() => { context.addToCart(productData) }}
                     >
                       {
-                        productData.Mode === "standard" &&
+                        productData.attributes.Mode === "standard" &&
                         <p>Add to cart</p>
                       }
 
                       {
-                        productData.Mode === "sold_out" &&
+                        productData.attributes.Mode === "sold_out" &&
                         <p>Sold Out!</p>
                       }
 
                       {
-                        productData.Mode === "upcoming" &&
+                        productData.attributes.Mode === "upcoming" &&
                         <p>Coming soon!</p>
                       }
 
                       {
-                        productData.Mode === "sale" &&
+                        productData.attributes.Mode === "sale" &&
                         <p>Be hurry! Add to cart</p>
                       }
                     </a>
@@ -272,7 +275,7 @@ export default function Product(
               }
 
               {
-                productData.categories.data.length > 0 &&
+                productData.attributes.categories.data.length > 0 &&
                 <div className={styles.product__categories}>
 
                   <h6 className={styles[`product__categories-title`]}>
@@ -282,7 +285,7 @@ export default function Product(
                   <div className={ styles[`product__categories-wrapper`] }>
 
                     {
-                      productData.categories.data.map((category: any) => (
+                      productData.attributes.categories.data.map((category: any) => (
                         <span className={ styles.product__category }>
                           {category.attributes.Name}
                         </span>
@@ -299,16 +302,16 @@ export default function Product(
         </div>
 
         {
-          productData.Marketing &&
+          productData.attributes.Marketing &&
           <div className={styles.product__marketing}>
 
             <PictureDescriptionCTA
-              variant={productData.Marketing.Variant}
-              descriptionAlignment={productData.Marketing.DescriptionAlignment}
-              descriptionHeading={productData.Marketing.DescriptionHeading}
-              descriptionText={productData.Marketing.DescriptionText}
-              picture={productData.Marketing.Picture}
-              ctaObject={productData.Marketing.CTA}
+              variant={productData.attributes.Marketing.Variant}
+              descriptionAlignment={productData.attributes.Marketing.DescriptionAlignment}
+              descriptionHeading={productData.attributes.Marketing.DescriptionHeading}
+              descriptionText={productData.attributes.Marketing.DescriptionText}
+              picture={productData.attributes.Marketing.Picture}
+              ctaObject={productData.attributes.Marketing.CTA}
             />
 
           </div>

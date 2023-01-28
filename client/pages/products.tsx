@@ -7,6 +7,7 @@ import styles from "../styles/pages/Products.module.scss";
 import AllProducts from "../lib/products/AllProducts";
 import ProductBox from "../components/reusable/ProductBox/ProductBox";
 import { useEffect, useState } from "react";
+import { useShopContext } from "../components/context/ShopContext";
 
 export async function getStaticProps() {
   const headerData = await HeaderData.fetchHeaderData();
@@ -36,6 +37,7 @@ export default function Products(
     allProductsData
   }: any
 ) {
+  const context = useShopContext();
   const [products, setProducts] = useState(allProductsData);
 
   let formData: FormData = {
@@ -141,6 +143,7 @@ export default function Products(
                   salePrice={product.attributes.SalePrice}
                   slug={product.attributes.Slug}
                   mainPhoto={product.attributes.MainPhoto}
+                  onClickEvent={ () => { context.addToCart(product) }}
                 />
 
               ))

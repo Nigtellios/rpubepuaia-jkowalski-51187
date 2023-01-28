@@ -12,7 +12,7 @@ export async function getProductData(slug: any) {
       }
     });
 
-    return data.products.data[0].attributes;
+    return data.products.data[0];
   } catch (error) {
     let errorMessage = '';
 
