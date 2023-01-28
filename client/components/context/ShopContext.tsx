@@ -1,4 +1,6 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useReducer, useState } from "react";
+import { addProduct, removeProduct } from "./CartMethods";
+import CartMethods from "./CartMethods";
 
 const ShopContext = createContext({
   cart: [],
@@ -7,14 +9,37 @@ const ShopContext = createContext({
 });
 
 export function ShopContextProvider({ children }: any) {
-  let sharedState = {
-    cart: [],
-    addToCart: (product: any) => {},
-    removeFromCart: (product: any) => {},
+  const [cartState, dispatch] = useReducer(CartMethods.cartReducer, { cart: [] });
+
+  console.log("CART STATE: ")
+  console.log(cartState);
+
+  const addToCart = (product: any) => {
+    setTimeout(() => {
+      dispatch({
+        type: addProduct,
+        product: product,
+      });
+    }, 150)
+  };
+
+  const removeFromCart = (productId: number) => {
+    setTimeout(() => {
+      dispatch({
+        type: removeProduct,
+        productId: productId,
+      });
+    }, 150)
   };
 
   return (
-    <ShopContext.Provider value={sharedState}>
+    <ShopContext.Provider value={
+      {
+        cart: cartState.cart,
+        addToCart: addToCart,
+        removeFromCart: removeFromCart,
+      }
+    }>
       { children }
     </ShopContext.Provider>
   );

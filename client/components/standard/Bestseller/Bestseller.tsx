@@ -3,6 +3,7 @@ import styles from "./Bestseller.module.scss";
 import utils from "../../../styles/modules/utilities/utility.module.scss";
 import ProductBox from "../../reusable/ProductBox/ProductBox";
 import { IBestseller } from "./Bestseller.interface";
+import { useShopContext } from "../../context/ShopContext";
 
 export default function Bestseller(
   {
@@ -11,6 +12,8 @@ export default function Bestseller(
     description
   }: IBestseller
 ) {
+  const context = useShopContext();
+
   return (
     <section className={ clsx(
       utils.container,
@@ -43,6 +46,7 @@ export default function Bestseller(
                 salePrice={ product.attributes.SalePrice }
                 slug={ product.attributes.Slug }
                 mainPhoto={ product.attributes.MainPhoto }
+                onClickEvent={ () => { context.addToCart(product) } }
               />
 
             ))

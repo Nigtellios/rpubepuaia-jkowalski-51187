@@ -5,4 +5,5 @@ export interface IProductBox {
   salePrice?: number;
   slug: string
   mainPhoto: any;
+  onClickEvent?: any;
 }

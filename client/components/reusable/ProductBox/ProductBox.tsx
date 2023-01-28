@@ -16,7 +16,8 @@ export default function ProductBox(
     price,
     salePrice,
     slug,
-    mainPhoto
+    mainPhoto,
+    onClickEvent
   }: IProductBox
 ) {
   let inputStyle = `product-box--` + `${ mode }`;
@@ -30,21 +31,21 @@ export default function ProductBox(
   }, [session]);
 
   const addToCart = () => {
-    const manageAddToCart = async () => {
-      const userData = await findUser(session?.user?.email as string);
-      const productData = await getProductData(slug);
+    // const manageAddToCart = async () => {
+    //   const userData = await findUser(session?.user?.email as string);
+    //   const productData = await getProductData(slug);
+    //
+    //   await addProductToUserCart(
+    //     userData.id,
+    //     { productData }
+    //   );
+    //
+    //   console.log(userData.id);
+    //   console.log(productData);
+    //   console.log(userData)
+    // }
 
-      await addProductToUserCart(
-        userData.id,
-        { productData }
-      );
-
-      console.log(userData.id);
-      console.log(productData);
-      console.log(userData)
-    }
-
-    manageAddToCart().catch((error) => { throw new Error(error) });
+    //manageAddToCart().catch((error) => { throw new Error(error) });
   }
 
   return (
@@ -129,7 +130,7 @@ export default function ProductBox(
                   button.button,
                   styles[`product-box__button`]
                 )}
-                onClick={ addToCart }
+                onClick={ onClickEvent }
               >
                 {
                   mode === "standard" &&
