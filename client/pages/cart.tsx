@@ -41,7 +41,9 @@ export default function Cart(
   const totalAmount = context.cart.reduce((acc: any, item: any) => {
     let price: number;
 
-    item.attributes.SalePrice !== null ? price = item.attributes.SalePrice : price = item.attributes.Price;
+    item.attributes.SalePrice !== null
+      ? price = item.attributes.SalePrice
+      : price = item.attributes.Price;
 
     return acc + (price * item.quantity);
   }, 0);
@@ -104,6 +106,7 @@ export default function Cart(
                               {
                                 item.attributes.Price &&
                                 <div className={ styles[`cart__price-box`] }>
+
                                   {
                                     item.attributes.Mode === 'sale' &&
                                     <span className={clsx(
@@ -146,7 +149,9 @@ export default function Cart(
                                     { item.attributes.Price }
                                     <span> yang</span>
                                   </p>
+
                                 </div>
+
                               }
 
                             </div>
@@ -172,6 +177,7 @@ export default function Cart(
                               </a>
                             </div>
                           </div>
+
                         ))
                       }
 
