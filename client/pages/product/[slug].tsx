@@ -236,40 +236,50 @@ export default function Product(
 
               {
                 session ? (
-                  <span className={styles.product__reset}>
-                    <a
-                      className={clsx(
-                        button.button,
-                        styles[`product__button`]
-                      )}
-                      onClick={() => { context.addToCart(productData) }}
-                    >
-                      {
-                        productData.attributes.Mode === "standard" &&
-                        <p>Add to cart</p>
-                      }
+                  <>
+                    {
+                      productData.attributes.Mode === "sold_out" ||
+                      productData.attributes.Mode === "upcoming" ? (
+                        <a
+                          className={ clsx(
+                            button.button,
+                            styles[`product__button`]
+                          )}
+                        >
+                          {
+                            productData.attributes.Mode === "upcoming" &&
+                            <p>Coming soon!</p>
+                          }
 
-                      {
-                        productData.attributes.Mode === "sold_out" &&
-                        <p>Sold Out!</p>
-                      }
+                          {
+                            productData.attributes.Mode === "sold_out" &&
+                            <p>Sold Out!</p>
+                          }
+                        </a>
+                      ) : (
+                        <a
+                          className={ clsx(
+                            button.button,
+                            styles[`product__button`]
+                          )}
+                          onClick={ () => { context.addToCart(productData) }}
+                        >
+                          {
+                            productData.attributes.Mode === "standard" &&
+                            <p>Add to cart</p>
+                          }
 
-                      {
-                        productData.attributes.Mode === "upcoming" &&
-                        <p>Coming soon!</p>
-                      }
-
-                      {
-                        productData.attributes.Mode === "sale" &&
-                        <p>Be hurry! Add to cart</p>
-                      }
-                    </a>
-                  </span>
+                          {
+                            productData.attributes.Mode === "sale" &&
+                            <p>Be hurry! Add to cart</p>
+                          }
+                        </a>
+                      )
+                    }
+                  </>
                 ) : (
-                  <span className={styles.product__reset}>
-                    <span className={ styles[`product--error`] }>
-                      Only logged in users are available to see cart icon and add products to cart.
-                    </span>
+                  <span className={ styles[`product--error`] }>
+                    Only logged in users are available to see cart icon and add products to cart.
                   </span>
                 )
               }

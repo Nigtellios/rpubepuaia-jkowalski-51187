@@ -8,6 +8,8 @@ const CartMethods = {
   ) => {
     const updatedCart = [...state.cart];
 
+    console.log(product);
+
     const updatedItemIndex = updatedCart.findIndex(
       (item: any) => item.id === product.id
     );
