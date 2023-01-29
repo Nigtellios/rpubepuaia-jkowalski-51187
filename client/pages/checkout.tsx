@@ -4,11 +4,13 @@ import BasicLayout from "../components/layouts/Basic/Basic";
 import HeaderData from "../lib/HeaderData";
 import FooterData from "../lib/FooterData";
 import clsx from "clsx";
-import { useSession } from "next-auth/react";
+import { SessionContextValue, useSession } from "next-auth/react";
 import { useEffect } from "react";
 import { useShopContext } from "../components/context/ShopContext";
+import HeaderProps from "../components/standard/Header/Header.interface";
+import FooterProps from "../components/standard/Footer/Footer.interface";
 
-export async function getStaticProps() {
+export async function getStaticProps(): Promise<{props: CheckoutProps}> {
   const headerData = await HeaderData.fetchHeaderData();
   const footerData = await FooterData.fetchFooterData();
 
@@ -21,16 +23,22 @@ export async function getStaticProps() {
   };
 }
 
-export default function Cart(
+export interface CheckoutProps {
+  headerData: HeaderProps;
+  footerData: FooterProps;
+  fallback: string;
+}
+
+export default function Checkout(
   {
     headerData,
     footerData
-  }: any
+  }: CheckoutProps
 ) {
-  const context = useShopContext();
-  const { data: session } = useSession();
+  const context: any = useShopContext();
+  const { data: session }: SessionContextValue = useSession();
 
-  useEffect(() => {
+  useEffect((): void => {
     if (!session) {
       return;
     }

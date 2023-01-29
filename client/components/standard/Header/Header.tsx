@@ -3,7 +3,7 @@ import Link from 'next/link';
 import styles from './Header.module.scss';
 import cartButtonStyles from '../../reusable/Button/Button.module.scss';
 import utils from '../../../styles/modules/utilities/utility.module.scss';
-import { HeaderProps } from "./Header.interface";
+import HeaderProps from "./Header.interface";
 import { ComponentNavigationNavigationLink } from "../../../gql/generated/graphql";
 import ReusableButton from "../../reusable/Button/Button";
 import { useEffect, useState } from "react";

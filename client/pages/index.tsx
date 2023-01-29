@@ -8,8 +8,10 @@ import HomePicDescCTA2 from "../lib/homepage/HomePicDescCTA2";
 import Bestseller from "../components/standard/Bestseller/Bestseller";
 import BestsellerData from "../lib/homepage/BestsellerQueryData";
 import BasicLayout from "../components/layouts/Basic/Basic";
+import HeaderProps from "../components/standard/Header/Header.interface";
+import FooterProps from "../components/standard/Footer/Footer.interface";
 
-export async function getServerSideProps() {
+export async function getServerSideProps(): Promise<{ props: HomeProps }> {
   const headerData = await HeaderData.fetchHeaderData();
   const footerData = await FooterData.fetchFooterData();
   const heroData = await HeroSectionData.fetchHeroData();
@@ -29,6 +31,15 @@ export async function getServerSideProps() {
   };
 }
 
+export interface HomeProps {
+  headerData: HeaderProps;
+  footerData: FooterProps;
+  heroData: any;
+  homePicDescCTA1: any;
+  homePicDescCTA2: any;
+  bestsellerData: any;
+}
+
 export default function Home(
   {
     headerData,
@@ -37,7 +48,7 @@ export default function Home(
     homePicDescCTA1,
     homePicDescCTA2,
     bestsellerData
-  }: any
+  }: HomeProps
 ) {
   /* Hero Section variables */
   const slider = heroData.data.attributes.Slider;

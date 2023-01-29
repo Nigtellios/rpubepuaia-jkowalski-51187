@@ -1,0 +1,12 @@
+query getUserDataQuery($userEmail: StringFilterInput) {
+    usersPermissionsUsers(filters: { email: $userEmail }) {
+        data {
+            id
+            attributes {
+                email
+                username
+                cart
+            }
+        }
+    }
+}

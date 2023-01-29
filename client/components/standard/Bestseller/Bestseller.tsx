@@ -12,7 +12,7 @@ export default function Bestseller(
     description
   }: IBestseller
 ) {
-  const context = useShopContext();
+  const context: any = useShopContext();
 
   return (
     <section className={ clsx(

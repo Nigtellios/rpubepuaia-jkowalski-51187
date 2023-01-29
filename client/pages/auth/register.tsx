@@ -3,13 +3,15 @@ import styles from '../../styles/pages/Register.module.scss';
 import BasicLayout from "../../components/layouts/Basic/Basic";
 import HeaderData from "../../lib/HeaderData";
 import FooterData from "../../lib/FooterData";
-import { useSession } from "next-auth/react";
+import { SessionContextValue, useSession } from "next-auth/react";
 import { useEffect } from "react";
 import clsx from "clsx";
 import { useRouter } from "next/router";
 import { registerUser } from "../../services/auth";
+import HeaderProps from "../../components/standard/Header/Header.interface";
+import FooterProps from "../../components/standard/Footer/Footer.interface";
 
-export async function getStaticProps() {
+export async function getStaticProps(): Promise<{props: RegisterProps}> {
   const headerData = await HeaderData.fetchHeaderData();
   const footerData = await FooterData.fetchFooterData();
 
@@ -22,17 +24,23 @@ export async function getStaticProps() {
   };
 }
 
+export interface RegisterProps {
+  headerData: HeaderProps;
+  footerData: FooterProps;
+  fallback: string;
+}
+
 export default function Register(
   {
     headerData,
     footerData
-  }: any
+  }: RegisterProps
 ) {
   /* Routing Variables */
   const router = useRouter();
   
   /* On Sign-In */
-  const onSubmit = async (event: any) => {
+  const onSubmit = async (event: any): Promise<any> => {
     event.preventDefault();
 
     try {
@@ -53,10 +61,10 @@ export default function Register(
   };
   
   /* Session Variables */
-  const { data: session } = useSession();
+  const { data: session }: SessionContextValue = useSession();
 
   /* Session Management */
-  useEffect(() => {
+  useEffect((): void => {
     if (!session) {
       return;
     }

@@ -8,8 +8,12 @@ import AllProducts from "../lib/products/AllProducts";
 import ProductBox from "../components/reusable/ProductBox/ProductBox";
 import { useEffect, useState } from "react";
 import { useShopContext } from "../components/context/ShopContext";
+import FooterProps from "../components/standard/Footer/Footer.interface";
+import HeaderProps from "../components/standard/Header/Header.interface";
+import { IAllProducts } from "../interfaces/AllProducts.interface";
+import { IFormData } from "../interfaces/FormData.interface";
 
-export async function getStaticProps() {
+export async function getStaticProps(): Promise<{ props: ProductsProps }> {
   const headerData = await HeaderData.fetchHeaderData();
   const footerData = await FooterData.fetchFooterData();
   const allProductsData = await AllProducts.fetchAllProducts();
@@ -24,10 +28,11 @@ export async function getStaticProps() {
   };
 }
 
-export type FormData = {
-  priceBottom: number,
-  priceTop: number,
-  mode: string
+export interface ProductsProps {
+  headerData: HeaderProps,
+  footerData: FooterProps,
+  allProductsData: IAllProducts,
+  fallback: string
 }
 
 export default function Products(
@@ -35,22 +40,22 @@ export default function Products(
     headerData,
     footerData,
     allProductsData
-  }: any
+  }: ProductsProps
 ) {
-  const context = useShopContext();
-  const [products, setProducts] = useState(allProductsData);
+  const context: any = useShopContext();
+  const [products, setProducts]: any[] = useState(allProductsData);
 
-  let formData: FormData = {
+  let formData: IFormData = {
     priceBottom: 0,
     priceTop: 0,
     mode: ""
   };
 
-  useEffect(() => {
+  useEffect((): void => {
     setProducts(allProductsData.data);
   }, [allProductsData]);
 
-  const filterProducts = (inputObject: FormData) => {
+  const filterProducts = (inputObject: IFormData): void => {
     inputObject = formData;
 
     const filteredProducts = allProductsData.data.filter((value: any) => {

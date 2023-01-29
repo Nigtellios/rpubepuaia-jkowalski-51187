@@ -3,7 +3,6 @@ import utils from '../../../styles/modules/utilities/utility.module.scss';
 import clsx from "clsx";
 import FooterProps from "./Footer.interface";
 import Link from "next/link";
-
 export default function Footer(
   {
     footerBrandUrl,

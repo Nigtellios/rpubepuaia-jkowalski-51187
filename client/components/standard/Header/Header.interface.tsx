@@ -1,4 +1,4 @@
-export interface HeaderProps {
+export default interface HeaderProps {
   logoUrl: string;
   navigationItems: any;
   loginButton: any;

@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import styles from './PictureDescriptionCTA.module.scss';
 import utils from '../../../styles/modules/utilities/utility.module.scss';
 import { IPictureDescriptionCTA } from "./PictureDescriptionCTA.interface";
@@ -15,8 +14,8 @@ export default function PictureDescriptionCTA(
     ctaObject
   }: IPictureDescriptionCTA
 ) {
-  const inputStyle = `picture-description-cta--` + `${ variant }`;
-  const alignmentStyle = `picture-description-cta__description--` + `${ descriptionAlignment }`;
+  const inputStyle: string = `picture-description-cta--` + `${ variant }`;
+  const alignmentStyle: string = `picture-description-cta__description--` + `${ descriptionAlignment }`;
 
   return (
     <section className={ clsx(

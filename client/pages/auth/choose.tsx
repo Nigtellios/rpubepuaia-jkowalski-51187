@@ -5,9 +5,12 @@ import HeaderData from "../../lib/HeaderData";
 import FooterData from "../../lib/FooterData";
 import clsx from "clsx";
 import ReusableButton from "../../components/reusable/Button/Button";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { SessionContextValue, signIn, useSession } from "next-auth/react";
 import { useEffect } from "react";
-export async function getStaticProps() {
+import HeaderProps from "../../components/standard/Header/Header.interface";
+import FooterProps from "../../components/standard/Footer/Footer.interface";
+
+export async function getStaticProps(): Promise<{ props: ChooseProps }> {
   const headerData = await HeaderData.fetchHeaderData();
   const footerData = await FooterData.fetchFooterData();
 
@@ -20,17 +23,23 @@ export async function getStaticProps() {
   };
 }
 
+export interface ChooseProps {
+  headerData: HeaderProps;
+  footerData: FooterProps;
+  fallback: string;
+}
+
 export default function Choose(
   {
     headerData,
     footerData
-  }: any
+  }: ChooseProps
 ) {
   /* Session Management Variables */
-  const { data: session } = useSession();
+  const { data: session }: SessionContextValue = useSession();
 
   /* Manage Session */
-  useEffect(() => {
+  useEffect((): void => {
     if (!session) {
       return;
     }

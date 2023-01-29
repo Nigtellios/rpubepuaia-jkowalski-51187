@@ -1,4 +1,5 @@
 import { IReusableButton } from "../Button/Button.interface";
+import { IPhotoData } from "../../../interfaces/ProductData.interface";
 
 export type Picture = {
   data: {
@@ -14,6 +15,6 @@ export interface IPictureDescriptionCTA {
   descriptionAlignment: string;
   descriptionHeading: string;
   descriptionText: string
-  picture: Picture;
+  picture: IPhotoData;
   ctaObject: IReusableButton;
 }

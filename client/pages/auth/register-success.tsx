@@ -5,9 +5,11 @@ import HeaderData from "../../lib/HeaderData";
 import FooterData from "../../lib/FooterData";
 import clsx from "clsx";
 import ReusableButton from "../../components/reusable/Button/Button";
-import { signIn, useSession } from "next-auth/react";
+import { SessionContextValue, signIn, useSession } from "next-auth/react";
 import { useEffect } from "react";
-export async function getStaticProps() {
+import { RegisterProps } from "./register";
+
+export async function getStaticProps(): Promise<{props: RegisterProps}> {
   const headerData = await HeaderData.fetchHeaderData();
   const footerData = await FooterData.fetchFooterData();
 
@@ -24,13 +26,13 @@ export default function RegisterSuccess(
   {
     headerData,
     footerData
-  }: any
+  }: RegisterProps
 ) {
   /* Session Variables */
-  const { data: session } = useSession();
+  const { data: session }: SessionContextValue = useSession();
 
   /* Session Management */
-  useEffect(() => {
+  useEffect((): void => {
     if (!session) {
       return;
     }

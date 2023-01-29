@@ -1,22 +1,26 @@
+import styles from "./Product.module.scss";
+import utils from "../../styles/modules/utilities/utility.module.scss";
+import button from "../../components/reusable/Button/Button.module.scss";
 import getAllProductSlugs from "../../lib/product/getAllProductSlugs";
 import { getProductData } from "../../lib/product/product";
 import BasicLayout from "../../components/layouts/Basic/Basic";
 import FooterData from "../../lib/FooterData";
 import HeaderData from "../../lib/HeaderData";
-import styles from "./Product.module.scss";
-import utils from "../../styles/modules/utilities/utility.module.scss";
 import clsx from "clsx";
 import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 import "@splidejs/react-splide/css/core";
 import GlobalSettings from "../../lib/globalSettings/GlobalSettings";
-import button from "../../components/reusable/Button/Button.module.scss";
 import PictureDescriptionCTA from "../../components/reusable/PictureDescriptionCTA/PictureDescriptionCTA";
-import { useSession } from "next-auth/react";
+import { SessionContextValue, useSession } from "next-auth/react";
 import { useEffect } from "react";
 import { useShopContext } from "../../components/context/ShopContext";
+import HeaderProps from "../../components/standard/Header/Header.interface";
+import FooterProps from "../../components/standard/Footer/Footer.interface";
+import { IProductData } from "../../interfaces/ProductData.interface";
+import { IGlobalData } from "../../interfaces/GlobalData.interface";
 
-export async function getStaticPaths() {
+export async function getStaticPaths(): Promise<{ paths: any; fallback: string }> {
   const paths = await getAllProductSlugs;
 
   return {
@@ -25,7 +29,7 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps({ params }: any) {
+export async function getStaticProps({ params }: any): Promise<{ props: ProductProps }> {
   const productData = await getProductData(
     params.slug
   );
@@ -45,20 +49,28 @@ export async function getStaticProps({ params }: any) {
   };
 }
 
+export interface ProductProps {
+  headerData: HeaderProps;
+  footerData: FooterProps;
+  productData: IProductData;
+  globalData: IGlobalData;
+  fallback: string;
+}
+
 export default function Product(
   {
     headerData,
     footerData,
     productData,
     globalData
-  }: any
+  }: ProductProps
 ) {
-  let inputStyle = `product--` + `${productData.attributes.Mode}`;
+  let inputStyle: string = `product--` + `${productData.attributes.Mode}`;
 
-  const context = useShopContext();
-  const { data: session } = useSession();
+  const context: any = useShopContext();
+  const { data: session }: SessionContextValue = useSession();
 
-  useEffect(() => {
+  useEffect((): void => {
     if (!session) {
       return;
     }
@@ -92,6 +104,7 @@ export default function Product(
                   <SplideTrack
                     className={styles.product__track}
                   >
+
                     {
                       productData.attributes.Gallery.data.map((slide: any) => (
 
@@ -167,6 +180,7 @@ export default function Product(
                         />
                       </button>
                     }
+
                   </div>
 
                 </Splide>
@@ -193,6 +207,7 @@ export default function Product(
               {
                 productData.attributes.Price &&
                 <div className={styles[`product__price-box`]}>
+
                   {
                     productData.attributes.Mode === "sale" &&
                     <span className={clsx(
@@ -202,6 +217,7 @@ export default function Product(
                       SALE
                     </span>
                   }
+
                   {
                     productData.attributes.Mode === "sold_out" &&
                     <span className={clsx(
@@ -211,6 +227,7 @@ export default function Product(
                       SOLD OUT
                     </span>
                   }
+
                   {
                     productData.attributes.Mode === "upcoming" &&
                     <span className={clsx(
@@ -220,6 +237,7 @@ export default function Product(
                       COMING SOON
                     </span>
                   }
+
                   {
                     productData.attributes.SalePrice &&
                     <p className={styles[`product__price-box-sale-price`]}>
@@ -227,6 +245,7 @@ export default function Product(
                       <span> yang</span>
                     </p>
                   }
+
                   <p className={styles[`product__price-box-price`]}>
                     {productData.attributes.Price}
                     <span> yang</span>

@@ -3,11 +3,8 @@ import button from "../Button/Button.module.scss";
 import clsx from "clsx";
 import { IProductBox } from "./ProductBox.interface";
 import Link from "next/link";
-import { useSession } from "next-auth/react";
+import { SessionContextValue, useSession } from "next-auth/react";
 import { useEffect } from "react";
-import findUser from "../../../lib/cart/findUser";
-import { getProductData } from "../../../lib/product/product";
-import addProductToUserCart from "../../../lib/cart/addProduct";
 
 export default function ProductBox(
   {
@@ -20,33 +17,15 @@ export default function ProductBox(
     onClickEvent
   }: IProductBox
 ) {
-  let inputStyle = `product-box--` + `${ mode }`;
+  let inputStyle: string = `product-box--` + `${ mode }`;
 
-  const { data: session } = useSession();
+  const { data: session }: SessionContextValue = useSession();
 
-  useEffect(() => {
+  useEffect((): void => {
     if (!session) {
       return;
     }
   }, [session]);
-
-  const addToCart = () => {
-    // const manageAddToCart = async () => {
-    //   const userData = await findUser(session?.user?.email as string);
-    //   const productData = await getProductData(slug);
-    //
-    //   await addProductToUserCart(
-    //     userData.id,
-    //     { productData }
-    //   );
-    //
-    //   console.log(userData.id);
-    //   console.log(productData);
-    //   console.log(userData)
-    // }
-
-    //manageAddToCart().catch((error) => { throw new Error(error) });
-  }
 
   return (
     <div className={ clsx(
@@ -54,6 +33,7 @@ export default function ProductBox(
       styles[inputStyle]
     ) }>
       <div className={ styles[`product-box__wrapper`] }>
+
         {
           mainPhoto &&
           <Link
@@ -69,6 +49,7 @@ export default function ProductBox(
             </div>
           </Link>
         }
+
         {
           name &&
           <Link
@@ -79,9 +60,11 @@ export default function ProductBox(
             </h6>
           </Link>
         }
+
         {
           price &&
           <div className={ styles[`product-box__price-box`] }>
+
             {
               mode === 'sale' &&
               <span className={clsx(
@@ -91,6 +74,7 @@ export default function ProductBox(
                 SALE
               </span>
             }
+
             {
               mode === 'sold_out' &&
               <span className={clsx(
@@ -100,6 +84,7 @@ export default function ProductBox(
                 SOLD OUT
               </span>
             }
+
             {
               mode === 'upcoming' &&
               <span className={clsx(
@@ -109,6 +94,7 @@ export default function ProductBox(
                 COMING SOON
               </span>
             }
+
             {
               salePrice &&
               <p className={ styles[`product-box__price-box-sale-price`] }>
@@ -116,6 +102,7 @@ export default function ProductBox(
                 <span> yang</span>
               </p>
             }
+
             <p className={ styles[`product-box__price-box-price`] }>
               { price }
               <span> yang</span>
@@ -128,6 +115,7 @@ export default function ProductBox(
             <>
               {
                 mode === "sold_out" || mode === "upcoming" ? (
+
                     <a
                       className={ clsx(
                         button.button,
@@ -144,7 +132,9 @@ export default function ProductBox(
                         <p>Sold Out!</p>
                       }
                     </a>
+
                   ) : (
+
                   <a
                     className={ clsx(
                       button.button,
@@ -162,6 +152,7 @@ export default function ProductBox(
                       <p>Be hurry! Add to cart</p>
                     }
                   </a>
+
                 )
               }
             </>

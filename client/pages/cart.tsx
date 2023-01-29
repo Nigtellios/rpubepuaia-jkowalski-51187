@@ -1,16 +1,18 @@
 import styles from '../styles/pages/Cart.module.scss';
 import utils from '../styles/modules/utilities/utility.module.scss';
+import button from "../components/reusable/Button/Button.module.scss";
 import BasicLayout from "../components/layouts/Basic/Basic";
 import HeaderData from "../lib/HeaderData";
 import FooterData from "../lib/FooterData";
+import Link from "next/link";
 import clsx from "clsx";
 import { useShopContext } from "../components/context/ShopContext";
-import { useSession } from "next-auth/react";
+import { SessionContextValue, useSession } from "next-auth/react";
 import { useEffect } from "react";
-import Link from "next/link";
-import button from "../components/reusable/Button/Button.module.scss";
+import HeaderProps from "../components/standard/Header/Header.interface";
+import FooterProps from "../components/standard/Footer/Footer.interface";
 
-export async function getStaticProps() {
+export async function getStaticProps(): Promise<{ props: CartProps }> {
   const headerData = await HeaderData.fetchHeaderData();
   const footerData = await FooterData.fetchFooterData();
 
@@ -23,22 +25,28 @@ export async function getStaticProps() {
   };
 }
 
+export interface CartProps {
+  headerData: HeaderProps;
+  footerData: FooterProps;
+  fallback: string;
+}
+
 export default function Cart(
   {
     headerData,
     footerData
-  }: any
+  }: CartProps
 ) {
-  const context = useShopContext();
-  const { data: session } = useSession();
+  const context: any = useShopContext();
+  const { data: session }: SessionContextValue = useSession();
 
-  useEffect(() => {
+  useEffect((): void => {
     if (!session) {
       return;
     }
   }, [session]);
 
-  const totalAmount = context.cart.reduce((acc: any, item: any) => {
+  const totalAmount: number = context.cart.reduce((acc: any, item: any): number => {
     let price: number;
 
     item.attributes.SalePrice !== null

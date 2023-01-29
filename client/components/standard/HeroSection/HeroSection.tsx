@@ -6,17 +6,22 @@ import "@splidejs/react-splide/css";
 import "@splidejs/react-splide/css/core";
 import clsx from "clsx";
 import ReusableButton from "../../reusable/Button/Button";
+import { HeroSectionProps } from "./HeroSection.interface";
 
 export default function HeroSection(
   {
     slider,
     arrowUpIcon,
     arrowDownIcon
-  }: any
+  }: HeroSectionProps
 ) {
   const heroSlider = slider || [];
   const arrowUp = arrowUpIcon || "";
   const arrowDown = arrowDownIcon || "";
+
+  console.log(heroSlider)
+  console.log(arrowUp);
+  console.log(arrowDown);
 
   return (
     <section className={styles.hero}>
