@@ -8,8 +8,11 @@
     border-bottom-left-radius: rem(10);
     border-bottom-right-radius: rem(10);
     box-shadow: $nav-border;
-    position: relative;
-    z-index: 5;
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
     
     &:after {
         filter: blur(2.5rem);
@@ -25,14 +28,6 @@
         z-index: -1;
         border-bottom-left-radius: rem(10);
         border-bottom-right-radius: rem(10);
-    }
-    
-    &--attached {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 10;
     }
     
     &__bar {

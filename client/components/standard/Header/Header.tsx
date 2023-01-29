@@ -33,7 +33,6 @@ export default function Header(
 
   /* State Variables */
   const [ menuActive, setMenuActive ] = useState(false);
-  const [ menuAttached, setMenuAttached ] = useState(false);
 
   const openMenu = () => {
     if (menuActive) {
@@ -53,23 +52,9 @@ export default function Header(
       }
     }
 
-    const handleScrolling = () => {
-      if (window.scrollY > 0) {
-        document.body.style.paddingTop = '8.125rem';
-        setMenuAttached(true);
-      } else {
-        document.body.style.paddingTop = '0';
-        setMenuAttached(false);
-      }
-    }
-
     return () => {
-      if (
-        typeof window !== "undefined" &&
-        typeof document !== "undefined"
-      ) {
+      if (typeof window !== "undefined") {
         window.addEventListener('resize', handleResizing);
-        window.addEventListener('scroll', handleScrolling);
       }
     };
   }, []);
@@ -97,7 +82,6 @@ export default function Header(
       <nav className={ clsx(
           styles.navigation,
           utils.container,
-          menuAttached && styles[`navigation--attached`],
         )}
       >
         <div className={ styles.navigation__bar }>
