@@ -26,10 +26,19 @@
         
         &:hover, &:focus {
             background: $white;
+            color: $dark;
             
             img {
                 filter: invert(1);
             }
+        }
+    }
+    
+    &--cart {
+        &-amount {
+            color: $white;
+            margin-left: rem(10);
+            font-size: rem(18);
         }
     }
     

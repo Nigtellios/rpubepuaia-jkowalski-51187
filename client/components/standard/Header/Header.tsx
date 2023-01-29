@@ -16,7 +16,8 @@ export default function Header(
     navigationItems,
     loginButton,
     cartButtonIcon,
-    mobileButtonIcon
+    mobileButtonIcon,
+    cartItemsAmount
   }: HeaderProps
 ) {
   /* Standard Variables */
@@ -25,12 +26,14 @@ export default function Header(
   const loginButtonItem = loginButton || [];
   const cartButton = cartButtonIcon || [];
   const mobileButton = mobileButtonIcon || [];
+  const cartItems = cartItemsAmount || 0;
 
   /* Session Management Variables */
   const { data: session } = useSession();
 
   /* State Variables */
   const [ menuActive, setMenuActive ] = useState(false);
+  const [ menuAttached, setMenuAttached ] = useState(false);
 
   const openMenu = () => {
     if (menuActive) {
@@ -50,9 +53,23 @@ export default function Header(
       }
     }
 
+    const handleScrolling = () => {
+      if (window.scrollY > 0) {
+        document.body.style.paddingTop = '8.125rem';
+        setMenuAttached(true);
+      } else {
+        document.body.style.paddingTop = '0';
+        setMenuAttached(false);
+      }
+    }
+
     return () => {
-      if (typeof window !== "undefined") {
+      if (
+        typeof window !== "undefined" &&
+        typeof document !== "undefined"
+      ) {
         window.addEventListener('resize', handleResizing);
+        window.addEventListener('scroll', handleScrolling);
       }
     };
   }, []);
@@ -79,7 +96,8 @@ export default function Header(
 
       <nav className={ clsx(
           styles.navigation,
-          utils.container
+          utils.container,
+          menuAttached && styles[`navigation--attached`],
         )}
       >
         <div className={ styles.navigation__bar }>
@@ -156,6 +174,14 @@ export default function Header(
                       height={ 25 }
                       alt={ "Cart" }
                     />
+
+                    {
+                      cartItems > 0 &&
+                      <span className={ cartButtonStyles[`button--cart-amount`] }>
+                        { cartItems }
+                      </span>
+                    }
+
                   </a>
                 </Link>
               }
@@ -235,6 +261,14 @@ export default function Header(
                       height={ 25 }
                       alt={ "Cart" }
                     />
+
+                    {
+                      cartItems > 0 &&
+                      <span className={ cartButtonStyles[`button--cart-amount`] }>
+                        { cartItems }
+                      </span>
+                    }
+
                   </a>
                 </Link>
               }

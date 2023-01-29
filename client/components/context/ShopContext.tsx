@@ -11,15 +11,14 @@ const ShopContext = createContext({
 export function ShopContextProvider({ children }: any) {
   const [cartState, dispatch] = useReducer(CartMethods.cartReducer, { cart: [] });
 
-  console.log("CART STATE: ")
-  console.log(cartState);
-
   const addToCart = (product: any) => {
     setTimeout(() => {
       dispatch({
         type: addProduct,
         product: product,
       });
+
+      alert("Product added to cart!");
     }, 150)
   };
 
@@ -29,6 +28,8 @@ export function ShopContextProvider({ children }: any) {
         type: removeProduct,
         productId: productId,
       });
+
+      alert("Product removed from cart!");
     }, 150)
   };
 

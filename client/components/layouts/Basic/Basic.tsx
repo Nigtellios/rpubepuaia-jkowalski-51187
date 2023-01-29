@@ -1,5 +1,6 @@
 import Header from "../../standard/Header/Header";
 import Footer from "../../standard/Footer/Footer";
+import { useShopContext } from "../../context/ShopContext";
 export default function BasicLayout(
   {
     children,
@@ -7,6 +8,8 @@ export default function BasicLayout(
     footerData
   }: any
 ) {
+  const context = useShopContext();
+
   /* Header variables */
   const logoUrl = headerData.data.attributes.Logotype.data.attributes.url;
   const navigationItems = headerData.data.attributes.Navigation.Link;
@@ -27,6 +30,9 @@ export default function BasicLayout(
         mobileButtonIcon={ mobileButtonIcon }
         loginButton={ loginButton }
         navigationItems={ navigationItems }
+        cartItemsAmount={ context.cart.reduce((counter: number, currentProduct: any) => {
+          return counter + currentProduct.quantity;
+        }, 0) }
       />
 
         <main>

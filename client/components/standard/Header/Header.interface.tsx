@@ -4,4 +4,5 @@ export interface HeaderProps {
   loginButton: any;
   cartButtonIcon: any;
   mobileButtonIcon: any;
+  cartItemsAmount: any;
 }
