@@ -39,7 +39,11 @@ export default function Cart(
   }, [session]);
 
   const totalAmount = context.cart.reduce((acc: any, item: any) => {
-    return acc + (item.attributes.Price * item.quantity);
+    let price: number;
+
+    item.attributes.SalePrice !== null ? price = item.attributes.SalePrice : price = item.attributes.Price;
+
+    return acc + (price * item.quantity);
   }, 0);
 
   return (
