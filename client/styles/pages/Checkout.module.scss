@@ -1,0 +1,20 @@
+@import 'styles/settings/init';
+@import 'include-media/dist/_include-media.scss';
+
+.checkout {
+    margin-top: rem(100);
+    margin-bottom: rem(100);
+    
+    @include media('<=xl') {
+        margin-top: rem(50);
+        margin-bottom: rem(50);
+    }
+    
+    &__title {
+        margin-bottom: rem(35);
+    }
+    
+    &__info {
+        margin-bottom: rem(15);
+    }
+}
