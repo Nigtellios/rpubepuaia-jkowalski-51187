@@ -125,33 +125,46 @@ export default function ProductBox(
 
         {
           session ? (
-              <a
-                className={ clsx(
-                  button.button,
-                  styles[`product-box__button`]
-                )}
-                onClick={ onClickEvent }
-              >
-                {
-                  mode === "standard" &&
-                  <p>Add to cart</p>
-                }
+            <>
+              {
+                mode === "sold_out" || mode === "upcoming" ? (
+                    <a
+                      className={ clsx(
+                        button.button,
+                        styles[`product-box__button`]
+                      )}
+                    >
+                      {
+                        mode === "upcoming" &&
+                        <p>Coming soon!</p>
+                      }
 
-                {
-                  mode === "sold_out" &&
-                  <p>Sold Out!</p>
-                }
+                      {
+                        mode === "sold_out" &&
+                        <p>Sold Out!</p>
+                      }
+                    </a>
+                  ) : (
+                  <a
+                    className={ clsx(
+                      button.button,
+                      styles[`product-box__button`]
+                    )}
+                    onClick={ onClickEvent }
+                  >
+                    {
+                      mode === "standard" &&
+                      <p>Add to cart</p>
+                    }
 
-                {
-                  mode === "upcoming" &&
-                  <p>Coming soon!</p>
-                }
-
-                {
-                  mode === "sale" &&
-                  <p>Be hurry! Add to cart</p>
-                }
-              </a>
+                    {
+                      mode === "sale" &&
+                      <p>Be hurry! Add to cart</p>
+                    }
+                  </a>
+                )
+              }
+            </>
             ) : (
               <span className={ styles[`product-box--error`] }>
                 Only logged in users are available to see cart icon and add products to cart.
