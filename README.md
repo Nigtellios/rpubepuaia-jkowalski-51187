@@ -1,5 +1,5 @@
 # rpubepuaia-jkowalski-51187
-Research and prediction of user behavior on an e-commerce platform using artifical intelligence algorithms
+Implementation and review of an E-commerce application written in TypeScript, Next.JS and Node.JS
 
 # Structure
 **Lerna** manages both the frontend and backend packages. The frontend is a React app, while the backend is a Strapi app.
